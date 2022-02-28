@@ -1,0 +1,1 @@
+## Resumo para ferramentas, linguagens e tecnologias que venho aprendendo como desenvolvedor
