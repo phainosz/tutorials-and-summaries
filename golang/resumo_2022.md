@@ -78,14 +78,14 @@ for {
 ```go
 strings := []string{"hello", "world"}
 for index, element := range strings {
-    fmt.Println(i, s)
+    fmt.Println(index, element)
 }
 ```
 - Em casos onde o index do ForEach não é necessário, pode utilizar _ para ignorar o indice, ex:
 ```go
 strings := []string{"hello", "world"}
 for _, element := range strings {
-    fmt.Println(i, s)
+    fmt.Println(element)
 }
 ```
 ### Condições IFs e Switch
