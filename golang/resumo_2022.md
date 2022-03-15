@@ -11,6 +11,20 @@
 - Criar a função principal: `func main()`
 - Como rodar: `go run main.go`
 
+### Geral
+* Tipos
+    * Integers e seus derivados, ex: int, uint8, rune
+    * Pontos flutuantes, ex: float32, float64
+    * string
+    * bool
+* Operador curto (gopher)
+    * Usado para atribuir valor e tipo para variáveis, ex:
+        ```go
+            name := "A randon name"
+        ```
+    * Só funciona dentro de codeblocks
+    * Apenas para variáveis novas
+
 ### Variáveis
 - var, const
 - tipos int, int8, uint, string, float ...
@@ -40,35 +54,35 @@
 ### Loops
 - Apenas for existe no Go, while, doWhile não existem
 - O mesmo de C ou Java, ex: 
-```
+```go
 sum := 0
 for i := 1; i < 5; i++ {
     sum += i
 }
 ```
-- Maneira que se assemelha ao whie, ex: 
-```
+- Maneira que se assemelha ao while, ex: 
+```go
 n := 1
 for n < 5 {
     n *= 2
 }
 ```
 - Loop infinito, ex:
-```
+```go
 sum := 0
 for {
     sum++ 
 }
 ```
 - ForEach range loop, ex:
-```
+```go
 strings := []string{"hello", "world"}
 for index, element := range strings {
     fmt.Println(i, s)
 }
 ```
 - Em casos onde o index do ForEach não é necessário, pode utilizar _ para ignorar o indice, ex:
-```
+```go
 strings := []string{"hello", "world"}
 for _, element := range strings {
     fmt.Println(i, s)
@@ -76,7 +90,7 @@ for _, element := range strings {
 ```
 ### Condições IFs e Switch
 - Seguem o mesmo formato, apenas muda o fato de usar () após o if, ex:
-```
+```go
 if someVariable {
 
 } else {
@@ -84,7 +98,7 @@ if someVariable {
 }
 ```
 - Para o switch, mesma coisa, ex:
-```
+```go
 switch someVariable {
     case 1:
         //do something
@@ -94,23 +108,47 @@ switch someVariable {
         //do default
 }
 ```
+- No switch, pode-se utilizar o fallthrough para pular para o próximo case. Será executado o case que satisfez a condição e o próximo na sequência, ex:
+```go
+switch someVariable {
+    case 1:
+        //do something
+        fallthrough
+    case 2, 3, 4:
+        //do something
+    default:
+        //do default
+}
+```
+- Pode-se utilizar expressões em troca da condicional do switch, ex:
+```go
+value := 5
+switch {
+    case (value == 5), (value > 3):
+        //do something
+    case value < 3:
+        //do something
+    default:
+        //do default
+}
+```
 ### Funções
 - A nomenclatura usada no Go é func.
 - Funções sem retorno, ex:
-```
+```go
 func someFunction() {
     //do something
 }
 ```
 - Funções com retorno, ex:
-```
+```go
 func someFunction() string {
     //do something
     return someString
 }
 ```
 - No Golang, pode ser retornado múltiplos valores, ex:
-```
+```go
 func someFunction() (string, int) {
     //do something
     return someString, someInt
@@ -128,7 +166,7 @@ func someFunction() (string, int) {
 - Alternativa para classes em Go
 - Os campos da struct seguem o padrão de nomenclatura para export de dados, pascal case para usar fora do pacote.
 - Ex: 
-```
+```go
 type UserData struct {
 	firstName       string
 	lastName        string
@@ -137,7 +175,7 @@ type UserData struct {
 }
 ```
 - Como adicionar valores para struct. Primeiro segue como o nome do campo da struct, segundo como o valor, ex:
-```
+```go
 var userData = UserData {
 		firstName:       firstName,
 		lastName:        lastName,
@@ -146,7 +184,7 @@ var userData = UserData {
 	}
 ```
 - Ou de forma simplificada
-```
+```go
 var userData = UserData {
 		firstName,
 		lastName,
@@ -155,7 +193,7 @@ var userData = UserData {
 	}
 ```
 - Ou adicionar apenas no campo como se fosse um set
-```
+```go
 var userData = UserData{}
 	userData.email = "email"
 	userData.firstName = "Name"
