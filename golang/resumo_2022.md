@@ -241,3 +241,15 @@ var userData = UserData{}
 	userData.email = "email"
 	userData.firstName = "Name"
 ```
+- Stuct anônimos são struct que são criado apenas em código, sem poderem ser utilizados em outros trechos de código, ex:
+```go
+func main() {
+    anonymouStruct := struct {
+		name string
+		age  int
+	}{
+		name: "Test",
+		age:  10,
+	}
+}
+```
