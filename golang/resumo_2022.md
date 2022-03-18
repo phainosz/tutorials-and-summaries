@@ -190,11 +190,48 @@ func someFunction() string {
     return someString
 }
 ```
+- Funções com parametros, ex:
+```go
+func someFunction(param string) {
+    //do something
+}
+```
+- Ou com multiplos parametros, que tenham o mesmo tipo, pode ser simplificado
+```go
+func someFunction(param string, param2 string) {
+    //do something
+}
+func someFunction2(param, param2 string) {
+    //do something
+}
+```
 - No Golang, pode ser retornado múltiplos valores, ex:
 ```go
 func someFunction() (string, int) {
     //do something
     return someString, someInt
+}
+```
+- Defer func serve para adiar algo, ele deixa a execução por último.
+    * Multiplos defer, funcionam como uma pilha, LIFO.
+
+### Métodos
+- São funções especificas de um tipo. Podendo ser acessadas apenas por esse tipo, ex:
+```go
+type pessoa struct {
+	name string
+}
+
+func (p pessoa) printName() {
+	fmt.Print(p.name)
+}
+
+func main() {
+
+	pessoa := pessoa{"Test"}
+
+	pessoa.printName()
+
 }
 ```
 
