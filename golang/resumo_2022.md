@@ -235,6 +235,42 @@ func main() {
 }
 ```
 
+### Interfaces
+- Funciona como um contrato, semelhante em orientação a object, mas sem a necessidade de implementar diretamente, ex:
+```go
+type printer interface {
+	print()
+}
+
+type person struct {
+	name string
+}
+
+func (p person) print() {
+	fmt.Println(p.name)
+}
+
+type dog struct {
+	name string
+}
+
+func (d dog) print() {
+	fmt.Println("Au au")
+}
+
+func print(p printer) {
+	p.print()
+}
+
+func main() {
+	person := person{"Carlos"}
+	print(person)
+
+	dog := dog{"Carlos"}
+	print(dog)
+}
+```
+
 ### Packages
 - O pacote main é o principal como o nome já diz. Podendo ser utilizado com varios arquivos .go neste mesmo pacote, a diferença está na forma de rodar, os arquivos precisam ser declarados no `go run main.go xxx.go yyy.go` ou na raiz `go run .`.
 - Novos pacotes podem ser criado com outras pastas com o nome do pacote.
