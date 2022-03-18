@@ -43,8 +43,37 @@
 ### Slices
 - É uma abstração do array com tamanho dinâmico
 - Criado igual o array mas sem o tamanho do array, ex: `var slice[]string` ou `var slice = []string{}`
-- Para adicionar no próximo elemento do slice, é utilizado append, ex: `slice = append(slice, "Dado")`
-
+- Para adicionar no próximo elemento do slice, é utilizado append, ex: `slice = append(slice, "Dado")`. Podendo ser passado n elementos como parametros, ex: `slice = append(slice, "Dado", "Dado2")`
+- Para fazer o slice de um slice, usar os indices desejados, ex: 
+```go
+    slice := []int{1,2,3,4,5}
+    slice2 := slice[0:3]
+    //ira retornar: [1 2 3]
+```
+- O slice pode ser simplificado na passagem do indices, ex:
+```go
+    slice := []int{1,2,3,4,5}
+    slice2 := slice[:3]
+    //ira retornar: [1 2 3]
+```
+- ou
+```go
+    slice := []int{1,2,3,4,5}
+    slice2 := slice[:]
+    //ira retornar: [1,2,3,4,5]
+```
+- Para remover itens de um splice, usar a função append() para criar um novo slice a partir dos indices, ex:
+```go
+    slice := []int{1,2,3,4,5}
+    slice2 := append(slice[:2], slice[3:]...) 
+    //... é usado pois o append espera elemento do mesmo tipo do slice, semelhante ao spread do javascript
+    //ira retornar: [1 2 4 5]
+```
+- O slice pode ser criado de outra forma, usando o make([]T, length, cap), ex: `slice := make([]int, 5, 10)`
+    * []T é a declaração do tipo do array, ex: `[]int`
+    * length é o tamanho inicial do array
+    * cap é a capacidade máxima do array
+- Tomar cuidado com o array subjacente.
 ### Maps
 - É uma collection de chave valor
 - Criado usando chave e valor tipados, ex: `var mymap map[string]string` ou um map vazio `var mymap = make(map[string]string)`
