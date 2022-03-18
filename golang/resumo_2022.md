@@ -78,7 +78,21 @@
 - É uma collection de chave valor
 - Criado usando chave e valor tipados, ex: `var mymap map[string]string` ou um map vazio `var mymap = make(map[string]string)`
 - Para adicionar no map, é utilizado append, ex: `mymap["key"] = value`
-
+- O range em maps seria o mesmo de arrays e slices, porém o indice se torna a key, ex:
+```go
+myMap := map[int]string{1: "Um", 2: "Dois"}
+for key, value := range myMap {
+    fmt.Println(key, value)
+}
+```
+- Para deletar elementos do map, usar delete usando a chave, ex:
+```go
+myMap := map[int]string{1: "Um", 2: "Dois", 3: "Tres"}
+delete(myMap, 2)
+for key, value := range myMap {
+    fmt.Println(key, value)
+}
+```
 
 ### Loops
 - Apenas for existe no Go, while, doWhile não existem
