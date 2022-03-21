@@ -214,6 +214,24 @@ func someFunction() (string, int) {
 ```
 - Defer func serve para adiar algo, ele deixa a execução por último.
     * Multiplos defer, funcionam como uma pilha, LIFO.
+- Funções anônimas, usadas para serem chamadas apenas uma vez, sem necessidade de criação e nome.
+    * Podendo ser criadas com invocação imediata ou invocação apenas quando chamada
+```go
+func main() {
+
+    x := 123
+
+    func(x int) {
+        fmt.Println(x*2)
+    }(x)
+
+    y := func(x int) {
+        fmt.Println(x42)
+    }
+    
+    y(x)
+}
+```
 
 ### Métodos
 - São funções especificas de um tipo. Podendo ser acessadas apenas por esse tipo, ex:
