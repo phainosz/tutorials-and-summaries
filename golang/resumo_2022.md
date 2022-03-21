@@ -12,18 +12,20 @@
 - Como rodar: `go run main.go`
 
 ### Geral
-* Tipos
+- Tipos
     * Integers e seus derivados, ex: int, uint8, rune
     * Pontos flutuantes, ex: float32, float64
     * string
     * bool
-* Operador curto (gopher)
+- Operador curto (gopher)
     * Usado para atribuir valor e tipo para variáveis, ex:
         ```go
             name := "A randon name"
         ```
     * Só funciona dentro de codeblocks
     * Apenas para variáveis novas
+- Json marshal e unmarshal, necessita do uppercase para funcionar.
+- Tags nos atributos do struct servem para mudar o nome dos atributos.
 
 ### Variáveis
 - var, const
