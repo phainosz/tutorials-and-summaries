@@ -34,6 +34,29 @@
 ### Ponteiros
 - Usar & para apontar para o local em memória de uma variável
 - Exemplo de uso, ponteiro para adicionar valor em variável usando Scan: `fmt.Scan(&myVar)`
+- Quando usado uma variável para apontar para o endereço de memória, para pegar o valor do endereço de memória, usa *, ex:
+```go
+x := 10
+y := &x // & define y com o mesmo endereço de memória de x
+fmt.Println(*y) //ira retornar o valor do endereço de memória de y
+```
+- Ou
+```go
+x int := 10
+y *int := &x // & define y com o mesmo endereço de memória de x
+fmt.Println(*y) //ira retornar o valor do endereço de memória de y
+```
+- Para passar o ponteiro e receber o endereço dentro de uma função, ex:
+```go
+x := 0
+changeNumber(&x)
+
+func changeNumber(number *int) {
+    fmt.Println(x) //endereço de memória
+    fmt.Println(*x) // valor do numero recebido
+    *x++ // acrescenta no valor e não apenas no scopo dentro da função
+}
+```
 
 ### Arrays
 - Sintaxe: `var array = [50]string{}` ou `var array [50]string`
