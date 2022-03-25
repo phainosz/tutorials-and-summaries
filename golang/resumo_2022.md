@@ -369,3 +369,16 @@ func main() {
 	}
 }
 ```
+
+### Goroutines
+- São semelhantes a threads para executar código simultâneo usando a palavra go, ex:
+```go
+func main() {
+    go doSomething()
+    doSomething2()
+}
+
+func doSomething() {
+    // do something
+}
+```
