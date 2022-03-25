@@ -2,7 +2,21 @@
 
 
 ## Instalação
-[Golang](https://go.dev/doc/install)
+- [Golang](https://go.dev/doc/install)
+- GOPATH
+    * bin/ - arquivos executáveis(binarios do código)
+    * pkg/
+    * src/ - arquivos src dos projetos go. Ex:
+        * github.com/phainosz/NOME_PROJETO
+        * github.com/NOME_USUARIO/NOME_PROJETO
+        * gitlab.com/NOME_USUARIO/NOME_PROJETO
+    * GOPATH: onde seus arquivos de trabalho, seu workspace, fica localizado
+    * GOPATH="/home/ellen/go"
+    * export GOPATH=$HOME/go (.bashrc)
+    * echo $GOPATH
+- Package management
+    * go get LIB
+    * go get -u LIB - baixa o atualização do código, caso houver
 
 ### Primeiros passos
 - Criar o arquivo main.go
