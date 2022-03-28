@@ -18,6 +18,14 @@
     * go get LIB
     * go get -u LIB - baixa o atualização do código, caso houver
 
+### Comandos Go
+- go version
+- go env
+    * lista as variaveis do go
+- go run
+    * go run FILE_NAME - para apenas um package
+    * go run *.go - quando existir mais de um package
+
 ### Primeiros passos
 - Criar o arquivo main.go
 - Criar o módulo para a aplicação: `go mod init MODULE_NAME`
