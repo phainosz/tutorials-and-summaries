@@ -3,6 +3,14 @@
 
 ## Instalação
 - [Golang](https://go.dev/doc/install)
+    * Instalação linux
+        * Seguir os comandos para remover e extrair o zip baixado
+            * `rm -rf /usr/local/go && tar -C /usr/local -xzf ZIP_FILE_GO.tar.gz`
+        * Adicionar o caminho do bin para variaveis de ambientes
+            * `gegit .profile`
+            * Adicionar no final `export PATH=$PATH:/usr/local/go/bin`
+            * Rodar o comando para atualiar as variáveis `source .profile`
+        * Testar com `go version` ou `go env`
 - GOPATH
     * bin/ - arquivos executáveis(binarios do código)
     * pkg/
