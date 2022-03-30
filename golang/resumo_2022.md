@@ -404,3 +404,21 @@ func doSomething() {
     // do something
 }
 ```
+
+### Channels
+- Canais são o Jeito Certo de fazer sincronização e código concorrente.
+- Eles nos permitem trasmitir valores entre goroutines.
+- Servem pra coordenar, sincronizar, orquestrar, e buffering.
+- Para adicionar e retirar informação de um channel, precisa ser feito de forma concorrente.
+    * Não podendo adicionar e retirar em uma mesma goroutine.
+- Para criar um channel, ex: 
+```go 
+func main() {
+    channel := make(chan int)
+    go func() {
+        channel <- 42 //send channel(envia um valor via channel)
+    }()
+    //<-channel receive channel(recebe um valor via channel)
+    fmt.Println(<-channel)//print 42
+}
+```
