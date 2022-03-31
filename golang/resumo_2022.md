@@ -19,7 +19,7 @@
         * github.com/NOME_USUARIO/NOME_PROJETO
         * gitlab.com/NOME_USUARIO/NOME_PROJETO
     * GOPATH: onde seus arquivos de trabalho, seu workspace, fica localizado
-    * GOPATH="/home/ellen/go"
+    * GOPATH="/home/user/go"
     * export GOPATH=$HOME/go (.bashrc)
     * echo $GOPATH
 - Package management
