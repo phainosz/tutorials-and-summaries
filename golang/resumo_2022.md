@@ -5,12 +5,12 @@
 - [Golang](https://go.dev/doc/install)
     * Instalação linux
         * Seguir os comandos para remover e extrair o zip baixado
-            * `rm -rf /usr/local/go && tar -C /usr/local -xzf ZIP_FILE_GO.tar.gz`
-        * Adicionar o caminho do bin para variaveis de ambientes
+            * `sudo rm -rf /usr/local/go && tar -C /usr/local -xzf ZIP_FILE_GO.tar.gz`
+        * Testar com `go version` ou `go env`
+        * Talvez precise adicionar o caminho do bin para variaveis de ambientes
             * `gegit .profile`
             * Adicionar no final `export PATH=$PATH:/usr/local/go/bin`
             * Rodar o comando para atualiar as variáveis `source .profile`
-        * Testar com `go version` ou `go env`
 - GOPATH
     * bin/ - arquivos executáveis(binarios do código)
     * pkg/
@@ -430,3 +430,20 @@ func main() {
     fmt.Println(<-channel)//print 42
 }
 ```
+
+### Testes
+- Para criar testes, o Go disponibiliza ferramentas nativas nos seus pacotes
+- Para rodar os testes, pode ser feito no pacote que contem os testes, `go test`
+- Para rodar todos os testes do projeto, usar `go test ./...`
+- Para rodar com o modo verboso, `go test -v`
+- Para rodar com a cobertura de testes, `go test --cover`
+- Tem um modo que gera um txt com a cobertura de cada pacote. Esse arquivo é gerado e feito a leitura por outro comando Go.
+    * Para gerar o arquivo, `go test --coverprofile NOME_ARQUIVO.txt`
+    * Para visualizar a cobertura por cada pacote no terminal, `go tool cover --func=NOME_ARQUIVO.txt`
+    * Para visualizar a cobertura por cada pacote em html, `go tool cover --html=NOME_ARQUIVO.txt`
+- Cada teste deve ter o seguinte formato:
+    * Criar o arquivo .go com o respectivo nome _test.go
+        * ex: Para o main.go, criar o main_test.go no mesmo pacote
+    * Cada teste deve começar com Test antes do nome do método e adicionar o parametro para uso das validacoes
+        * ex: TestMetodoXpto(t *testing.T)
+    
