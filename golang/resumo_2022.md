@@ -19,7 +19,7 @@
         * github.com/NOME_USUARIO/NOME_PROJETO
         * gitlab.com/NOME_USUARIO/NOME_PROJETO
     * GOPATH: onde seus arquivos de trabalho, seu workspace, fica localizado
-    * GOPATH="/home/ellen/go"
+    * GOPATH="/home/user/go"
     * export GOPATH=$HOME/go (.bashrc)
     * echo $GOPATH
 - Package management
@@ -430,7 +430,6 @@ func main() {
     fmt.Println(<-channel)//print 42
 }
 ```
-
 ### Testes
 - Para criar testes, o Go disponibiliza ferramentas nativas nos seus pacotes
 - Para rodar os testes, pode ser feito no pacote que contem os testes, `go test`
