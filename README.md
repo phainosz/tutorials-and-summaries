@@ -1,4 +1,4 @@
-## Resumo para ferramentas, linguagens e tecnologias que venho aprendendo como desenvolvedor
+# Tutoriais de tecnologias
 
 - [Golang](golang.md)
 - [Docker](docker.md)
