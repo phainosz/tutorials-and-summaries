@@ -1,4 +1,4 @@
-# Anotações gerais sobre docker
+# Anotações gerais sobre Docker
 
 ## Intalação
 - [Docker](https://docs.docker.com/get-docker/)
