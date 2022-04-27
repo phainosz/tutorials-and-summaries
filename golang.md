@@ -3,36 +3,36 @@
 
 ## Instalação
 - [Golang](https://go.dev/doc/install)
-    * Instalação linux
+    - Instalação linux
         * Seguir os comandos para remover e extrair o zip baixado
-            * `sudo rm -rf /usr/local/go && tar -C /usr/local -xzf ZIP_FILE_GO.tar.gz`
-        * Testar com `go version` ou `go env`
-        * Talvez precise adicionar o caminho do bin para variaveis de ambientes
-            * `gegit .profile`
-            * Adicionar no final `export PATH=$PATH:/usr/local/go/bin`
-            * Rodar o comando para atualiar as variáveis `source .profile`
+            - `sudo rm -rf /usr/local/go && tar -C /usr/local -xzf ZIP_FILE_GO.tar.gz`
+        - Testar com `go version` ou `go env`
+        - Talvez precise adicionar o caminho do bin para variaveis de ambientes
+            - `gegit .profile`
+            - Adicionar no final `export PATH=$PATH:/usr/local/go/bin`
+            - Rodar o comando para atualiar as variáveis `source .profile`
 - GOPATH
-    * bin/ - arquivos executáveis(binarios do código)
-    * pkg/
-    * src/ - arquivos src dos projetos go. Ex:
-        * github.com/phainosz/NOME_PROJETO
-        * github.com/NOME_USUARIO/NOME_PROJETO
-        * gitlab.com/NOME_USUARIO/NOME_PROJETO
-    * GOPATH: onde seus arquivos de trabalho, seu workspace, fica localizado
-    * GOPATH="/home/user/go"
-    * export GOPATH=$HOME/go (.bashrc)
-    * echo $GOPATH
+    - bin/ - arquivos executáveis(binarios do código)
+    - pkg/
+    - src/ - arquivos src dos projetos go. Ex:
+        - github.com/phainosz/NOME_PROJETO
+        - github.com/NOME_USUARIO/NOME_PROJETO
+        - gitlab.com/NOME_USUARIO/NOME_PROJETO
+    - GOPATH: onde seus arquivos de trabalho, seu workspace, fica localizado
+    - GOPATH="/home/user/go"
+    - export GOPATH=$HOME/go (.bashrc)
+    - echo $GOPATH
 - Package management
-    * go get LIB
-    * go get -u LIB - baixa o atualização do código, caso houver
+    - go get LIB
+    - go get -u LIB - baixa o atualização do código, caso houver
 
 ### Comandos Go
 - go version
 - go env
-    * lista as variaveis do go
+    - lista as variaveis do go
 - go run
-    * go run FILE_NAME - para apenas um package
-    * go run *.go - quando existir mais de um package
+    - go run FILE_NAME - para apenas um package
+    - go run *.go - quando existir mais de um package
 
 ### Primeiros passos
 - Criar o arquivo main.go
@@ -43,17 +43,17 @@
 
 ### Geral
 - Tipos
-    * Integers e seus derivados, ex: int, uint8, rune
-    * Pontos flutuantes, ex: float32, float64
-    * string
-    * bool
+    - Integers e seus derivados, ex: int, uint8, rune
+    - Pontos flutuantes, ex: float32, float64
+    - string
+    - bool
 - Operador curto (gopher)
-    * Usado para atribuir valor e tipo para variáveis, ex:
+    - Usado para atribuir valor e tipo para variáveis, ex:
         ```go
             name := "A randon name"
         ```
-    * Só funciona dentro de codeblocks
-    * Apenas para variáveis novas
+    - Só funciona dentro de codeblocks
+    - Apenas para variáveis novas
 - Json marshal e unmarshal, necessita do uppercase para funcionar.
 - Tags nos atributos do struct servem para mudar o nome dos atributos.
 
@@ -125,9 +125,9 @@ func changeNumber(number *int) {
     //ira retornar: [1 2 4 5]
 ```
 - O slice pode ser criado de outra forma, usando o make([]T, length, cap), ex: `slice := make([]int, 5, 10)`
-    * []T é a declaração do tipo do array, ex: `[]int`
-    * length é o tamanho inicial do array
-    * cap é a capacidade máxima do array
+    - []T é a declaração do tipo do array, ex: `[]int`
+    - length é o tamanho inicial do array
+    - cap é a capacidade máxima do array
 - Tomar cuidado com o array subjacente.
 ### Maps
 - É uma collection de chave valor
@@ -268,9 +268,9 @@ func someFunction() (string, int) {
 }
 ```
 - Defer func serve para adiar algo, ele deixa a execução por último.
-    * Multiplos defer, funcionam como uma pilha, LIFO.
+    - Multiplos defer, funcionam como uma pilha, LIFO.
 - Funções anônimas, usadas para serem chamadas apenas uma vez, sem necessidade de criação e nome.
-    * Podendo ser criadas com invocação imediata ou invocação apenas quando chamada
+    - Podendo ser criadas com invocação imediata ou invocação apenas quando chamada
 ```go
 func main() {
 
@@ -418,7 +418,7 @@ func doSomething() {
 - Eles nos permitem trasmitir valores entre goroutines.
 - Servem pra coordenar, sincronizar, orquestrar, e buffering.
 - Para adicionar e retirar informação de um channel, precisa ser feito de forma concorrente.
-    * Não podendo adicionar e retirar em uma mesma goroutine.
+    - Não podendo adicionar e retirar em uma mesma goroutine.
 - Para criar um channel, ex: 
 ```go 
 func main() {
@@ -437,12 +437,12 @@ func main() {
 - Para rodar com o modo verboso, `go test -v`
 - Para rodar com a cobertura de testes, `go test --cover`
 - Tem um modo que gera um txt com a cobertura de cada pacote. Esse arquivo é gerado e feito a leitura por outro comando Go.
-    * Para gerar o arquivo, `go test --coverprofile NOME_ARQUIVO.txt`
-    * Para visualizar a cobertura por cada pacote no terminal, `go tool cover --func=NOME_ARQUIVO.txt`
-    * Para visualizar a cobertura por cada pacote em html, `go tool cover --html=NOME_ARQUIVO.txt`
+    - Para gerar o arquivo, `go test --coverprofile NOME_ARQUIVO.txt`
+    - Para visualizar a cobertura por cada pacote no terminal, `go tool cover --func=NOME_ARQUIVO.txt`
+    - Para visualizar a cobertura por cada pacote em html, `go tool cover --html=NOME_ARQUIVO.txt`
 - Cada teste deve ter o seguinte formato:
-    * Criar o arquivo .go com o respectivo nome _test.go
-        * ex: Para o main.go, criar o main_test.go no mesmo pacote
-    * Cada teste deve começar com Test antes do nome do método e adicionar o parametro para uso das validacoes
-        * ex: TestMetodoXpto(t *testing.T)
+    - Criar o arquivo .go com o respectivo nome _test.go
+        - ex: Para o main.go, criar o main_test.go no mesmo pacote
+    - Cada teste deve começar com Test antes do nome do método e adicionar o parametro para uso das validacoes
+        - ex: TestMetodoXpto(t *testing.T)
     
