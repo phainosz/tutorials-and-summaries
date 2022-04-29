@@ -49,15 +49,15 @@
     - `WORKDIR`define um diretório de trabalho
         - EX: `WORKDIR /app`
     - `COPY` basicamente copia arquivos locais para o container
-        - Ex: `COPY myfolder/file.txt /containerFolder`
+        - Ex: `COPY foo/bar.txt /containerFolder`
     - `ENV` serve para declaração de variaveis de ambiente
-        - Ex: Multiplos valores `ENV MY_ENV=http://bla.com MY_ENV2="My Env"`
-        - Ex: Sem o uso do igual(=), desencajado `ENV MY_ENV http://bla.com`
+        - Ex: Multiplos valores `ENV FOO=bar XPTO="http://xpto.com"`
+        - Ex: Sem o uso do igual(=), desencajado `ENV FOO bar`
     - `EXPOSE` funciona como uma documentação para qual porta o container estará rodando
         - Ex: `EXPOSE 8080`
         - Este comando não altera a porta do container. Para alterar a porta usada no container, usar a flag **-p**
     - `ENTRYPOINT` executa um comando quando o container é iniciado.
-        - Ex: `ENTRYPOINT ["java" "-jar" "meuJar.jar"]`
+        - Ex: `ENTRYPOINT ["java" "-jar" "myJar.jar"]`
         - Este comando pode ser sobreescrito usando --entrypoint \<COMMAND\> ao rodar o container
         
 ## Docker Compose
