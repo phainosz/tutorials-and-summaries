@@ -25,6 +25,7 @@
 - `docker images` ou `docker image ls` mostra detalhes de imagens local
 - `docker images inspect <IMAGE>` ou `docker image inspect <IMAGE>` mostra detalhes da imagem informada
 - `docker cp <SOURCE> <DEST>` ou `docker container cp <SOURCE> <DEST>` para copiar arquivos, podendo ser do container para o pc ou vice versa
+- `docker exec <CONTAINER> -it bash` para executar comandos dentro do container
 - Usar FLAGS para auxiliar ao rodar o container
     - -d para rodar no background(detached) sem travar o terminal
     - -i para interagir com o container
@@ -38,7 +39,7 @@
 - Para criar um dockerfile, basta criar um arquivo com o nome Dockerfile
 - Após criado e adicionado os comandos para criação da imagem, fazer o build
     - Usar `docker build .` ou `docker build -f <SRC_DOCKERFILE> .`
-    - Para dar um nome e TAG para a imagem usar `docker build -t NOME:TAG .`
+    - Para dar um nome e TAG para a imagem usar `docker build -t NAME:TAG .`
 - Instruções para o Dockerfile
     * \# Adiciona comentários dentro do Dockerfile
     - INSTRUCAO argumento, este é o padrão para adicionar os comandos
@@ -56,8 +57,13 @@
     - `EXPOSE` funciona como uma documentação para qual porta o container estará rodando
         - Ex: `EXPOSE 8080`
         - Este comando não altera a porta do container. Para alterar a porta usada no container, usar a flag **-p**
-    - `ENTRYPOINT` executa um comando quando o container é iniciado.
+    - `ENTRYPOINT` executa um comando quando o container é iniciado. 
         - Ex: `ENTRYPOINT ["java" "-jar" "myJar.jar"]`
+        - Indicado conter apenas um comando pois será executado o ultimo encontrado
         - Este comando pode ser sobreescrito usando --entrypoint \<COMMAND\> ao rodar o container
+    - `CMD` executa um comando quando o container é iniciado, similar ao `ENTRYPOINT`
+        - Ex: `CMD ["java" "-jar" "myJar.jar"]`
+        - Indicado conter apenas um comando pois será executado o ultimo encontrado
+        - Este comando pode ser sobreescrito ao rodar o container, adicionando o comando desejado no terminal
         
 ## Docker Compose
