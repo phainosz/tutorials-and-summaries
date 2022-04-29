@@ -13,14 +13,17 @@
     - Serve para outros comandos, olhar doc ou usar `docker <COMANDO> --help`
 - `docker ps` ou `docker container ls` exibe os containers rodando
 - `docker ps-a` ou `docker container ls -a` exibe todos os containers
-- `docker rm <CONTAINER>` ou `docker container rm <CONTAINER>` remove o container escolhido
-- `docker run <IMAGEM>` ou `docker container run <IMAGEM>` roda o container
-- `docker start <CONTAINER>` ou `docker container run <CONTAINER>` roda o container
-- `docker stop <CONTAINER>` ou `docker container stop <CONTAINER>` parar o container
-- `docker exec <CONTAINER>` ou `docker container exec <CONTAINER>` executar um container ou comando para o container
-- `docker pull <IMAGEM>` ou `docker image pull <IMAGEM>` faz o download da imagem
+- `docker rm <CONTAINER_ID>` ou `docker container rm <CONTAINER_ID>` remove o container escolhido
+- `docker container prune` para remover todos os containers parados
+- `docker run <IMAGE>` ou `docker container run <IMAGE>` roda o container
+- `docker start <CONTAINER_ID>` ou `docker container run <CONTAINER_ID>` roda o container
+- `docker stop <CONTAINER_ID>` ou `docker container stop <CONTAINER_ID>` parar o container
+- `docker exec <CONTAINER_ID>` ou `docker container exec <CONTAINER_ID>` executar um container ou comando para o container
+    - Usado em conjunto com os comandos -it para realizar comando dentro do container
+- `docker container logs <CONTAINER_ID>` para ver os logs do container informado
+- `docker pull <IMAGE>` ou `docker image pull <IMAGE>` faz o download da imagem
 - `docker images` ou `docker image ls` mostra detalhes de imagens local
-- `docker images inspect <IMAGEM>` ou `docker image inspect <IMAGEM>` mostra detalhes da imagem informada
+- `docker images inspect <IMAGE>` ou `docker image inspect <IMAGE>` mostra detalhes da imagem informada
 - `docker cp <SOURCE> <DEST>` ou `docker container cp <SOURCE> <DEST>` para copiar arquivos, podendo ser do container para o pc ou vice versa
 - Usar FLAGS para auxiliar ao rodar o container
     - -d para rodar no background(detached) sem travar o terminal
