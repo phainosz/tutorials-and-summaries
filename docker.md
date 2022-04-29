@@ -31,6 +31,7 @@
     - -t faz a alocação de um pseudo terminal
     - -p para mapear a porta do container com o host
     - -u para username quando disponível
+    - --name para alterar o nome do container
 
 ## Dockerfile
 - Serve para criar uma imagem customizada
@@ -52,5 +53,11 @@
     - `ENV` serve para declaração de variaveis de ambiente
         - Ex: Multiplos valores `ENV MY_ENV=http://bla.com MY_ENV2="My Env"`
         - Ex: Sem o uso do igual(=), desencajado `ENV MY_ENV http://bla.com`
+    - `EXPOSE` funciona como uma documentação para qual porta o container estará rodando
+        - Para alterar a porta usada no container, usar a flag **-p**
+        - Ex: `EXPOSE 8080`
+    - `ENTRYPOINT` executa um comando quando o container é iniciado.
+        - Ex: `ENTRYPOINT ["java" "-jar" "meuJar.jar"]`
+        - Este comando pode ser sobreescrito usando --entrypoint <COMMAND>
         
 ## Docker Compose
