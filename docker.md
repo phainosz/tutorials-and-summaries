@@ -25,7 +25,7 @@
 - `docker images` ou `docker image ls` mostra detalhes de imagens local
 - `docker images inspect <IMAGE>` ou `docker image inspect <IMAGE>` mostra detalhes da imagem informada
 - `docker cp <SOURCE> <DEST>` ou `docker container cp <SOURCE> <DEST>` para copiar arquivos, podendo ser do container para o pc ou vice versa
-- `docker exec <CONTAINER> -it bash` para executar comandos dentro do container
+- `docker exec <CONTAINER> -it bash` para executar comandos dentro do container. Alguns formatos de imagens podem não conter bash e outras ferramentas, nesses casos, trocar bash por sh.
 - Usar FLAGS para auxiliar ao rodar o container
     - -d para rodar no background(detached) sem travar o terminal
     - -i para interagir com o container
@@ -38,8 +38,11 @@
 - Serve para criar uma imagem customizada
 - Para criar um dockerfile, basta criar um arquivo com o nome Dockerfile
 - Após criado e adicionado os comandos para criação da imagem, fazer o build
-    - Usar `docker build .` ou `docker build -f <SRC_DOCKERFILE> .`
+    - Usar `docker build .` ou `docker image build .` para criar imagem através do Dockerfile quando estiver no mesmo local do Dockerfile
+    - Usar `docker build -t <IMAGE_NAME> .` ou `docker image build -t <IMAGE_NAME> .` para nomear a imagem criada com Dockerfile
+    - Usar `docker build -f <SRC_FILE> .` ou `docker image build -f <SRC_FILE> .` para criar imagem em outra pasta
     - Para dar um nome e TAG para a imagem usar `docker build -t NAME:TAG .`
+- Para o dockerfile existe uma forma de ignorar arquivos assim como usado gitignore no git. Usar .dockerignore quando houver arquivos a serem ignorados na construção da imagem usando Dockerfile.
 - Instruções para o Dockerfile
     * \# Adiciona comentários dentro do Dockerfile
     - INSTRUCAO argumento, este é o padrão para adicionar os comandos
@@ -51,19 +54,31 @@
         - EX: `WORKDIR /app`
     - `COPY` basicamente copia arquivos locais para o container
         - Ex: `COPY foo/bar.txt /containerFolder`
-    - `ENV` serve para declaração de variaveis de ambiente
+    - `ENV` serve para declaração de variaveis de ambiente. Para acessar vairáveis dentro do Dockerfile, usar $ + nome da variável.
         - Ex: Multiplos valores `ENV FOO=bar XPTO="http://xpto.com"`
         - Ex: Sem o uso do igual(=), desencajado `ENV FOO bar`
     - `EXPOSE` funciona como uma documentação para qual porta o container estará rodando
         - Ex: `EXPOSE 8080`
         - Este comando não altera a porta do container. Para alterar a porta usada no container, usar a flag **-p**
     - `ENTRYPOINT` executa um comando quando o container é iniciado. 
-        - Ex: `ENTRYPOINT ["java" "-jar" "myJar.jar"]`
+        - Ex: `ENTRYPOINT ["java", "-jar", "myJar.jar"]`
         - Indicado conter apenas um comando pois será executado o ultimo encontrado
         - Este comando pode ser sobreescrito usando --entrypoint \<COMMAND\> ao rodar o container
     - `CMD` executa um comando quando o container é iniciado, similar ao `ENTRYPOINT`
-        - Ex: `CMD ["java" "-jar" "myJar.jar"]`
+        - Ex: `CMD ["java", "-jar", "myJar.jar"]`
         - Indicado conter apenas um comando pois será executado o ultimo encontrado
         - Este comando pode ser sobreescrito ao rodar o container, adicionando o comando desejado no terminal
-        
+    - Exemplo usando um Dockerfile com java e empacotamento em arquivo jar
+    ```
+    # Openjdk amazon corretto
+    FROM amazoncorretto:17.0.3-alpine3.15
+
+    WORKDIR /usr/local/bin/
+
+    # insert you jar here
+    COPY ./target/CHANGE_FOR_YOUR_JAR .
+
+    ENTRYPOINT ["java", "-Dspring.profiles.active=prd", "-jar", "CHANGE_FOR_YOUR_JAR.jar"]
+    ```
+
 ## Docker Compose
