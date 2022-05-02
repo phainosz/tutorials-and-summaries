@@ -33,7 +33,7 @@
     - -p para mapear a porta do container com o host
     - -u para username quando disponível
     - --name para alterar o nome do container
-
+    - --rm ira remover o mesmo container quando ele parar
 ## Dockerfile
 - Serve para criar uma imagem customizada
 - Para criar um dockerfile, basta criar um arquivo com o nome Dockerfile
@@ -82,3 +82,25 @@
     ```
 
 ## Docker Compose
+
+## Enviar imagem para o docker hub
+- Para publicar uma imagem no docker hub, primeiramente precisa ter uma conta
+- Para fazer login no seu computador, digitar no terminal `docker login` e inserir suas credenciais
+- Usar o comando `docker image push <IMAGE_NAME>` para enviar a imagem
+    - Obs. A imagem precisa conter o nome do owner. Ex: fulano/myapp
+    - No caso de sua imagem não conter o nome do owner, usar `docker image tag <IMAGE_ID> fulano/myapp` ou recriar a imagem usando build com o nome correto.
+
+## Network
+- Habilita a comunicação entre containers
+- Um container pode ter uma ou mais networks
+- Caso não seja especificado uma, ele usará a padrão
+- Para criar uma network via CLI, usar `docker network create <NAME>`
+- Para listar networks existentes, usar `docker network ls`
+- Para usar a network criada ao rodar um container via CLI, `docker run -it --network <NETWORK> <CONTAINER>`
+
+
+## Volumes
+- Servem para manter os dados quando um container é parado, ao iniciar ele novamente, continuar com os dados gerados anteriomente
+- Para criar um volume via CLI, usar `docker volume create <NAME>`
+- Para listar volumes, usar `docker volume ls`
+- Para usar um volume na criação de container via CLI, usar `docker run -v <VOLUME> <CONTAINER>`
