@@ -89,8 +89,11 @@
 - **build** se informado, usa um arquivo Dockerfile para criar a imagem
 - **services** é uma seção para a definição de cada container usado no docker-compose
 - **ports** é usado para mapear a porta do container para a porta do host
-- **volumes** serve para definir volume, usado da mesmma forma como na CLI usando o *-v* ou *--volume*
+- **volumes** serve para criar ou definir volume, usado da mesmma forma como na CLI usando o *-v* ou *--volume*
 - **image** será a imagem usada para o container
+- **networks** para criar ou utilizar uma network no container
+- **depends_on** informa que um container precisa de outro para subir, o valor usado é o nome dado ao container que ele necessita
+- **env_file** adiciona variável de ambiente usando um arquivo *.env*
 - **environment** permite configurar variáveis dentro do container, o mesmo que *-e* na CLI
     - Quando estiver usando spring ou outra linguagem e precise usar variáveis de ambiente, pode-se utilizar com este comando ou *env_file* para usar um arquivo externo usando *.env*
     - Para adicionar variáveis em spring seguir o exemplo abaixo
@@ -112,6 +115,11 @@
 - **tty** funciona da mesma forma que *-t* através do CLI, abre um pseudo terminal
 - **stdin_open** funciona da mesma forma que *-i* através do CLI, habilita interação com o terminal
 - Exemplo de docker compose V2, usando uma imagem do mysql versão 8.0.
+    - Usar `docker compose up` no mesmo diretório para geração de container
+    - Usar `docker compose -f <SRC_FILE> up` quando o arquivo estiver em outro diretório ou com outro nome
+    - Usar `docker compose up -d` para rodar no background
+    - Usar `docker compose down` para parar
+    - Obs. estes comandos seguem a nova especificação do docker compose V2
 ```
 # version was not added following the specification in this date
 services:
