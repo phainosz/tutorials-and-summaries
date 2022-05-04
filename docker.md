@@ -82,6 +82,30 @@
     ```
 
 ## Docker Compose
+- Docker compose é uma ferramenta para definir vários containers e rodar com apenas um comando usando arquivo yaml
+- Especificação e lista de comandos [The Compose Specification](https://github.com/compose-spec/compose-spec/blob/master/spec.md)
+- Para verificar a versão do docker compose, usar `docker-compose -v`
+- **version** é a versão do docker-compose.yaml, ver mais em [Compose versioning](https://docs.docker.com/compose/compose-file/compose-versioning/)
+- **build** se informado, usa um arquivo Dockerfile para criar a imagem
+- **services** é uma seção para a definição de cada container usado no docker-compose
+- **ports** é usado para mapear a porta do container para a porta do host
+- **volumes** serve para definir volume, usado da mesmma forma como na CLI usando o *-v* ou *--volume*
+- **image** será a imagem usada para o container
+- **environment** permite configurar variáveis dentro do container, o mesmo que *-e* na CLI
+- **tty** funciona da mesma forma que *-t* através do CLI, abre um pseudo terminal
+- **stdin_open** funciona da mesma forma que *-i* através do CLI, habilita interação com o terminal
+- Exemplo de docker compose V2, usando uma imagem do mysql versão 8.0.
+```
+# version was not added following the specification in this date
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysqldb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+```
 
 ## Enviar imagem para o docker hub
 - Para publicar uma imagem no docker hub, primeiramente precisa ter uma conta
