@@ -92,6 +92,23 @@
 - **volumes** serve para definir volume, usado da mesmma forma como na CLI usando o *-v* ou *--volume*
 - **image** será a imagem usada para o container
 - **environment** permite configurar variáveis dentro do container, o mesmo que *-e* na CLI
+    - Quando estiver usando spring ou outra linguagem e precise usar variáveis de ambiente, pode-se utilizar com este comando ou *env_file* para usar um arquivo externo usando *.env*
+    - Para adicionar variáveis em spring seguir o exemplo abaixo
+    ```
+    ...
+    environment:
+     SPRING_APPLICATION_NAME=myApp
+    ...
+    ```
+    **ou**
+    ```
+    ...
+    environment:
+    SPRING_APPLICATION_JSON: '{
+      "spring.application.name": "myApp",
+    }'
+    ...
+    ```
 - **tty** funciona da mesma forma que *-t* através do CLI, abre um pseudo terminal
 - **stdin_open** funciona da mesma forma que *-i* através do CLI, habilita interação com o terminal
 - Exemplo de docker compose V2, usando uma imagem do mysql versão 8.0.
