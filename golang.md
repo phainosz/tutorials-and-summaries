@@ -84,9 +84,9 @@ x := 0
 changeNumber(&x)
 
 func changeNumber(number *int) {
-    fmt.Println(x) //endereço de memória
-    fmt.Println(*x) // valor do numero recebido
-    *x++ // acrescenta no valor e não apenas no scopo dentro da função
+    fmt.Println(number) //endereço de memória
+    fmt.Println(*number) // valor do numero recebido
+    *number++ // acrescenta no valor e não apenas no scopo dentro da função
 }
 ```
 
@@ -387,7 +387,7 @@ var userData = UserData{}
 	userData.email = "email"
 	userData.firstName = "Name"
 ```
-- Stuct anônimos são struct que são criado apenas em código, sem poderem ser utilizados em outros trechos de código, ex:
+- Structs anônimos são structs que são criados apenas em código, sem poderem ser utilizados em outros trechos de código, ex:
 ```go
 func main() {
     anonymouStruct := struct {
