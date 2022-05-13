@@ -57,6 +57,12 @@
 - Json marshal e unmarshal, necessita do uppercase para funcionar.
 - Tags nos atributos do struct servem para mudar o nome dos atributos.
 
+### Modules
+- Go Mod servem para gerenciamento de dependências em projetos Go
+- Modulos são coleções de pacotes indicados dentro do *go.mod*
+- `go mod init <MOD_NAME>` cria um novo modulo
+- `go mod tidy` remove dependências não utilizadas
+
 ### Variáveis
 - var, const
 - tipos int, int8, uint, string, float ...
