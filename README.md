@@ -1,4 +1,4 @@
-# Tutoriais de tecnologias
+# Tutoriais
 
 - [Golang](golang.md)
 - [Docker](docker.md)
