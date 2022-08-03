@@ -54,9 +54,11 @@
         - EX: `WORKDIR /app`
     - `COPY` basicamente copia arquivos locais para o container
         - Ex: `COPY foo/bar.txt /containerFolder`
-    - `ENV` serve para declaração de variaveis de ambiente. Para acessar vairáveis dentro do Dockerfile, usar $ + nome da variável.
+    - `ENV` serve para declaração de variaveis de ambiente, podendo ter valor ou ser especificado o valor na hora de rodar o container. Para acessar vairáveis dentro do Dockerfile, usar $ + nome da variável.
         - Ex: Multiplos valores `ENV FOO=bar XPTO="http://xpto.com"`
         - Ex: Sem o uso do igual(=), desencajado `ENV FOO bar`
+    - `ARG` serve para declaração de variaveis de ambiente, podendo ter valor ou ser especificado o valor na hora d0 build da imagem e não ao rodar o container, como é feito usando *ENV*.
+        - Ex: `ARG FOO=bar`
     - `EXPOSE` funciona como uma documentação para qual porta o container estará rodando
         - Ex: `EXPOSE 8080`
         - Este comando não altera a porta do container. Para alterar a porta usada no container, usar a flag **-p**
