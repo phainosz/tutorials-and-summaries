@@ -1,0 +1,1 @@
+# Anotações gerais sobre Kubernetes
