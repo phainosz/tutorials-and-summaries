@@ -436,6 +436,56 @@ func main() {
     fmt.Println(<-channel)//print 42
 }
 ```
+- Um canal quando não é fechado usando `close(channel)`, pode ocorrer o deadlock, que seria quando um canal parou de enviar informação, mas alguém ainda está ouvindo e esperando por algo a ser enviado.
+- Exemplo deadlock:
+```go
+func main() {
+    channel := make(chan int)
+
+    go loop(channel)
+
+    for {
+        number := <-channel
+        fmt.Println(number)
+    }
+    //resultado:
+    // 0
+    // 1
+    // 2
+    // 3
+    // 4
+    // fatal error: all goroutines are asleep - deadlock!
+    //devido ao loop infinito, apos printar os 5 numeros, continuará esperando, gerando o deadlock
+}
+
+func loop(channel chan int) {
+    for i := 0; i < 5; i++ {
+        channel<- i
+    }
+}
+```
+- Para corrigir e não acontecer o deadlock, pode ser verificado se o channel ainda está aberto e fechar quando ele não ser mais necessário
+- Exemplo correção deadlock:
+```go
+func main() {
+    channel := make(chan int)
+
+    go loop(channel)
+
+    for number := range channel {
+        fmt.Println(number)
+    }
+}
+
+func loop(channel chan int) {
+    for i := 0; i < 5; i++ {
+        channel<- i
+    }
+    //fecha o channel apos finalizar a enviar os numeros
+    close(channel)
+}
+```
+
 ### Testes
 - Para criar testes, o Go disponibiliza ferramentas nativas nos seus pacotes
 - Para rodar os testes, pode ser feito no pacote que contem os testes, `go test`
