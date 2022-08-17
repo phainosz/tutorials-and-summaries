@@ -11,20 +11,7 @@
             - `gegit .profile`
             - Adicionar no final `export PATH=$PATH:/usr/local/go/bin`
             - Rodar o comando para atualiar as variáveis `source .profile`
-- GOPATH
-    - bin/ - arquivos executáveis(binarios do código)
-    - pkg/
-    - src/ - arquivos src dos projetos go. Ex:
-        - github.com/phainosz/NOME_PROJETO
-        - github.com/NOME_USUARIO/NOME_PROJETO
-        - gitlab.com/NOME_USUARIO/NOME_PROJETO
-    - GOPATH: onde seus arquivos de trabalho, seu workspace, fica localizado
-    - GOPATH="/home/user/go"
-    - export GOPATH=$HOME/go (.bashrc)
-    - echo $GOPATH
-- Package management
-    - go get LIB
-    - go get -u LIB - baixa o atualização do código, caso houver
+- [Go playground](https://go.dev/play/), usar o go via web.
 
 ### Comandos Go
 - go version
@@ -43,10 +30,10 @@
 
 ### Geral
 - Tipos
-    - Integers e seus derivados, ex: int, uint8, rune
-    - Pontos flutuantes, ex: float32, float64
-    - string
-    - bool
+    - Números Inteiros, ex: int, int8, int16, int32, int64, uint, rune, byte
+    - Números decimais, ex: float32, float64
+    - Texto, ex: string
+    - Booleanos, ex: bool
 - Operador curto (gopher)
     - Usado para atribuir valor e tipo para variáveis, ex:
         ```go
@@ -56,12 +43,21 @@
     - Apenas para variáveis novas
 - Json marshal e unmarshal, necessita do uppercase para funcionar.
 - Tags nos atributos do struct servem para mudar o nome dos atributos.
+- Go tem suporte a declaração simplificada, semelhante ao usado no loop for, onde a variável é criada no bloco e usada apenas no escopo deste bloco, ex:
+```go
+switch day := "monday"; day {
+    case "monday":
+        fmt.Println("today is monday!")
+    case "friday":
+        fmt.Println("today is friday!")
+    default:
+        fmt.Println("day not found!")
+    }
+```
 
-### Modules
-- Go Mod servem para gerenciamento de dependências em projetos Go
-- Modulos são coleções de pacotes indicados dentro do *go.mod*
-- `go mod init <MOD_NAME>` cria um novo modulo
-- `go mod tidy` remove dependências não utilizadas
+### Formatação
+- Existem casos que queremos modificar o valor de uma string usando formatação. Uma das formas seria usando `fmt.Printf("Oi %s", nome)`
+- O **%s** é chamado de verbo de anotação e exitems outros com propósitos diferentes, para saber mais [clique aqui](https://pkg.go.dev/fmt)
 
 ### Variáveis
 - var, const
@@ -69,30 +65,54 @@
 - Inferência usando := ex: `name := "Paulo`
 - Operações em tipos numéricos devem ser do mesmo tipo
 
-### Ponteiros
-- Usar & para apontar para o local em memória de uma variável
-- Exemplo de uso, ponteiro para adicionar valor em variável usando Scan: `fmt.Scan(&myVar)`
-- Quando usado uma variável para apontar para o endereço de memória, para pegar o valor do endereço de memória, usa *, ex:
+### Condições IFs e Switch
+- Seguem o mesmo formato, apenas muda o fato de usar () após o if, ex:
 ```go
-x := 10
-y := &x // & define y com o mesmo endereço de memória de x
-fmt.Println(*y) //ira retornar o valor do endereço de memória de y
-```
-- Ou
-```go
-x int := 10
-y *int := &x // & define y com o mesmo endereço de memória de x
-fmt.Println(*y) //ira retornar o valor do endereço de memória de y
-```
-- Para passar o ponteiro e receber o endereço dentro de uma função, ex:
-```go
-x := 0
-changeNumber(&x)
+if someVariable {
 
-func changeNumber(number *int) {
-    fmt.Println(number) //endereço de memória
-    fmt.Println(*number) // valor do numero recebido
-    *number++ // acrescenta no valor e não apenas no scopo dentro da função
+} else {
+
+}
+```
+- Podendo usar o if compacto, onde declara a variavel e à atesta, sendo acessível apenas dentro do escopo, ex:
+```go
+if number := 10; number > 5 {
+    fmt.Println("Maior que 5")
+}
+```
+- Para o switch, mesma coisa, ex:
+```go
+switch someVariable {
+    case 1:
+        //do something
+    case 2, 3, 4:
+        //do something
+    default:
+        //do default
+}
+```
+- No switch, pode-se utilizar o fallthrough para pular para o próximo case. Será executado o case que satisfez a condição e o próximo na sequência, ex:
+```go
+switch someVariable {
+    case 1:
+        //do something
+        fallthrough
+    case 2, 3, 4:
+        //do something
+    default:
+        //do default
+}
+```
+- Pode-se utilizar expressões em troca da condicional do switch, ex:
+```go
+value := 5
+switch {
+    case (value == 5), (value > 3):
+        //do something
+    case value < 3:
+        //do something
+    default:
+        //do default
 }
 ```
 
@@ -192,50 +212,96 @@ for _, element := range strings {
     fmt.Println(element)
 }
 ```
-### Condições IFs e Switch
-- Seguem o mesmo formato, apenas muda o fato de usar () após o if, ex:
-```go
-if someVariable {
 
-} else {
+### Structs
+- Funciona de forma semelhante do C
+- Usado como forma de definir multiplos tipos de dados
+- Alternativa para classes em Go
+- Os campos da struct seguem o padrão de nomenclatura para export de dados, pascal case para usar fora do pacote.
+- Ex: 
+```go
+type UserData struct {
+	firstName       string
+	lastName        string
+	email           string
+	numberOfTickets uint
+}
+```
+- Como adicionar valores para struct. Primeiro segue como o nome do campo da struct, segundo como o valor, ex:
+```go
+var userData = UserData {
+		firstName:       firstName,
+		lastName:        lastName,
+		email:           email,
+		numberOfTickets: userTickets,
+	}
+```
+- Ou de forma simplificada
+```go
+var userData = UserData {
+		firstName,
+		lastName,
+		email,
+		userTickets,
+	}
+```
+- Ou adicionar apenas no campo como se fosse um set
+```go
+var userData = UserData{}
+	userData.email = "email"
+	userData.firstName = "Name"
+```
+- Structs anônimos são structs que são criados apenas em código, sem poderem ser utilizados em outros trechos de código, ex:
+```go
+func main() {
+    anonymouStruct := struct {
+		name string
+		age  int
+	}{
+		name: "Test",
+		age:  10,
+	}
+}
+```
+- Go não suporta herança da forma que conhecemos, porém tem uma forma similiar para criar structs.
+```go
+type Person struct {
+    Name string
+    Age  int
+}
 
+type Worker struct {
+    Job string
+    Person
+}
+
+func main() {
+    worker := Worker{}
+
+    worker.Name = "Jon"
+    worker.Age = 20
+    worker.Job = "Developer"
 }
 ```
-- Para o switch, mesma coisa, ex:
+- No exemplo acima, a struct contém um campo sem mencionar o tipo, fazendo com que os campos sejam os mesmos da struct original.
+- Em Go podemos fazer o uso de composição, ex:
 ```go
-switch someVariable {
-    case 1:
-        //do something
-    case 2, 3, 4:
-        //do something
-    default:
-        //do default
+type Person struct {
+    Name string
+    Age  int
+}
+
+type Worker struct {
+    Job string
+    Person Person
+}
+
+func main() {
+    person := Person{"Jon", 20}
+    worker := Worker{"Developer", person}
 }
 ```
-- No switch, pode-se utilizar o fallthrough para pular para o próximo case. Será executado o case que satisfez a condição e o próximo na sequência, ex:
-```go
-switch someVariable {
-    case 1:
-        //do something
-        fallthrough
-    case 2, 3, 4:
-        //do something
-    default:
-        //do default
-}
-```
-- Pode-se utilizar expressões em troca da condicional do switch, ex:
-```go
-value := 5
-switch {
-    case (value == 5), (value > 3):
-        //do something
-    case value < 3:
-        //do something
-    default:
-        //do default
-}
-```
+
 ### Funções
 - A nomenclatura usada no Go é func.
 - Funções sem retorno, ex:
@@ -313,6 +379,56 @@ func main() {
 
 }
 ```
+- Podemos usar métodos com a intenção de alterar o valor usando ponteiros, ex:
+```go
+type pessoa struct {
+	name string
+}
+
+func (p *pessoa) changeName(name string) {
+	p.name = name
+}
+
+func main() {
+
+	pessoa := pessoa{"Test"}
+
+	pessoa.changeName("novo teste")
+}
+```
+
+### Ponteiros
+- São variáveis que apontam para um endereço de memória.
+- Um ponteiro declarado mas não dado o valor(`var a *int`), tem valor **nil**
+- Quando queremos passar o endereço de memória de uma variável para um ponteiro, usamos **&**, ex
+```go
+var a int = 1
+var b *int = &a
+```
+- No exemplo acima, b aponta para o endereço de memória de a, se usarmos `fmt.Println(*b)` teremos o valor **1** como output.
+- Quando usado uma variável para apontar para o endereço de memória, para pegar o valor do endereço de memória, usa *, ex:
+```go
+x := 10
+y := &x // & define y com o mesmo endereço de memória de x
+fmt.Println(*y) //ira retornar o valor do endereço de memória de y
+```
+- Ou
+```go
+x int := 10
+y *int := &x // & define y com o mesmo endereço de memória de x
+fmt.Println(*y) //ira retornar o valor do endereço de memória de y
+```
+- Para passar o ponteiro e receber o endereço dentro de uma função, ex:
+```go
+x := 0
+changeNumber(&x)
+
+func changeNumber(number *int) {
+    fmt.Println(number) //endereço de memória
+    fmt.Println(*number) // valor do numero recebido
+    *number++ // acrescenta no valor e não apenas no scopo dentro da função
+}
+```
 
 ### Interfaces
 - Funciona como um contrato, semelhante em orientação a object, mas sem a necessidade de implementar diretamente, ex:
@@ -350,64 +466,10 @@ func main() {
 }
 ```
 
-### Packages
-- O pacote main é o principal como o nome já diz. Podendo ser utilizado com varios arquivos .go neste mesmo pacote, a diferença está na forma de rodar, os arquivos precisam ser declarados no `go run main.go xxx.go yyy.go` ou na raiz `go run .`.
-- Novos pacotes podem ser criado com outras pastas com o nome do pacote.
-- Para fazer o import de uma função ou variáveis de um pacote diferente, basta declarar o nome da função como pascal case.
-
-### Structs
-- Funciona de forma semelhante do C
-- Usado como forma de definir multiplos tipos de dados
-- Alternativa para classes em Go
-- Os campos da struct seguem o padrão de nomenclatura para export de dados, pascal case para usar fora do pacote.
-- Ex: 
-```go
-type UserData struct {
-	firstName       string
-	lastName        string
-	email           string
-	numberOfTickets uint
-}
-```
-- Como adicionar valores para struct. Primeiro segue como o nome do campo da struct, segundo como o valor, ex:
-```go
-var userData = UserData {
-		firstName:       firstName,
-		lastName:        lastName,
-		email:           email,
-		numberOfTickets: userTickets,
-	}
-```
-- Ou de forma simplificada
-```go
-var userData = UserData {
-		firstName,
-		lastName,
-		email,
-		userTickets,
-	}
-```
-- Ou adicionar apenas no campo como se fosse um set
-```go
-var userData = UserData{}
-	userData.email = "email"
-	userData.firstName = "Name"
-```
-- Structs anônimos são structs que são criados apenas em código, sem poderem ser utilizados em outros trechos de código, ex:
-```go
-func main() {
-    anonymouStruct := struct {
-		name string
-		age  int
-	}{
-		name: "Test",
-		age:  10,
-	}
-}
-```
-
 ### Goroutines
-- São semelhantes a threads para executar código simultâneo usando a palavra go, ex:
+- Gouroutines é a forma que Go trabalha com concorrencia usando algo similar a threads, mas mais leves.
+- Deadlock acontece quando todos os processos estão bloqueados enquanto esperam por eles mesmos, fazendo com que o programa não possa continuar.
+- Qualquer função pode se tonar uma goroutine simplesmente usando a palavra chave **go** em frente a função, ex:
 ```go
 func main() {
     go doSomething()
@@ -419,21 +481,63 @@ func doSomething() {
 }
 ```
 
-### Channels
-- Canais são o Jeito Certo de fazer sincronização e código concorrente.
+### Canais (channel)
+- Canais são uma forma de fazer sincronização em código concorrente.
 - Eles nos permitem trasmitir valores entre goroutines.
-- Servem pra coordenar, sincronizar, orquestrar, e buffering.
+- A comunicação é semelhante em um cano, tem uma entrada e uma saída. Elas entram e saem na mesma ordem até o channel ser fechado.
 - Para adicionar e retirar informação de um channel, precisa ser feito de forma concorrente.
     - Não podendo adicionar e retirar em uma mesma goroutine.
-- Para criar um channel, ex: 
-```go 
+- Para criar um channel, tem duas formas, ex:
+```go
 func main() {
-    channel := make(chan int)
-    go func() {
-        channel <- 42 //send channel(envia um valor via channel)
-    }()
-    //<-channel receive channel(recebe um valor via channel)
-    fmt.Println(<-channel)//print 42
+    var ch chan string //podendo ser de qualquer tipo
+    
+    ch2 := make(chan int)
+}
+```
+- Canais enviam e recebem dados, usando **<-**, ex:
+```go
+func main() {
+    ch := make(chan string)
+
+    go speak(ch)
+
+    data := <-ch //recebe
+    //data vai ter o valor de 'Hello World!'
+}
+
+func speak(ch chan string) {
+    ch <- "Hello World!" //envia
+}
+```
+- Canais por padrão são bidirecionais, enviam e recebem dados, porém podemos restringir para fazer apenas uma das funções, ex:
+```go
+func main() {
+    ch := make(chan string)
+
+    go speak(ch)
+
+    data := <-ch //recebe
+    //data vai ter o valor de 'Hello World!'
+}
+
+func speak(ch chan<- string) {
+    //chan<- só é possível enviar dados
+    ch <- "Hello World!" //envia
+}
+```
+- Quando terminamos de usar um canal, este deve ser fechado, usando `close(ch)`
+- Opcionalmente, podemos testar se um canal foi fechado usando um segundo parâmentro como expressão, este parametro indice como um booleano a situação do canal, ex:
+```go
+func main() {
+    ch := make(chan string)
+
+    go speak(ch)
+
+    data, ok := <-ch
+    //ok sera falso pois esta aberto neste momento
+
+    close(ch)
 }
 ```
 - Um canal quando não é fechado usando `close(channel)`, pode ocorrer o deadlock, que seria quando um canal parou de enviar informação, mas alguém ainda está ouvindo e esperando por algo a ser enviado.
@@ -502,3 +606,57 @@ func loop(channel chan int) {
     - Cada teste deve começar com Test antes do nome do método e adicionar o parametro para uso das validacoes
         - ex: TestMetodoXpto(t *testing.T)
     
+### Packages
+- O pacote main é o principal como o nome já diz. Podendo ser utilizado com varios arquivos .go neste mesmo pacote, a diferença está na forma de rodar, os arquivos precisam ser declarados no `go run main.go xxx.go yyy.go` ou na raiz `go run .`.
+- Novos pacotes podem ser criado com outras pastas com o nome do pacote.
+- Para fazer o import de funções ou variáveis de um pacote diferente, basta declarar o nome da função como pascal case.
+- Package management
+    - `go get <LIB>` baixa e faz o build do código
+    - `go get -u <LIB>` baixa o código da lib atualizado, caso houver
+    - `go intall <LIB>` faz a compilação da lib
+
+### Modulos
+- Modulos servem para gerenciamento de dependências em projetos Go
+- Modulos são coleções de pacotes indicados dentro do **go.mod**
+- `go mod init <MOD_NAME>` cria um novo modulo
+- `go mod tidy` remove/adiciona dependências em **go.mod**
+
+### Workspaces
+- Nos permitem trabalhar com multiplos modulos simultaneamente.
+- Funciona de forma similar a modulos.
+- Servem para rodar um projeto local com alterações de um módulo dependente. Quando temos um projeto x, que usa o modulo y, porém fizemos alterações no módulo y e ele n está com estas alterações no repositório remoto.
+- Para criar um workspace, utilizar `go work init ./<MODULE>`
+- Para adicionar mais modulos dentro do workspace, utilizar `go work use ./<MODULE>`
+- Após feito isso, o modulo que dependia do outro pode ser executado normalmente com as alterações que foram feitas locais.
+
+### Erros
+- No Go não temos exceções e sim erros, e dessa forma, os erros são tratados de forma diferente.
+- Podendo usar o pacotes errors para criar seus erros a partir de `errors.New("Deu erro")`
+- Exemplo usando divisão por 0:
+```go
+import (
+    "errors"
+    "fmt"
+)
+
+func main() {
+    result, err := Divide(4, 0)
+
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    fmt.Println(result)
+}
+
+func Divide(a, b int) (int, error) {
+    if b == 0 {
+        return 0, errors.New("cannot divide by zero")
+    }
+
+    return a/b, nil
+}
+```
+- Outra forma de customizar o erros, seria utilizando `fmt.Errorf("cannot divide %d by 0", a)`
+- Existe dentro de Go, **panic** e **recover** que são interfaces internas similares ao **try catch** conhecido em outras linguagens.
