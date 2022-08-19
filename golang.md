@@ -625,9 +625,18 @@ func loop(channel chan int) {
 - Nos permitem trabalhar com multiplos modulos simultaneamente.
 - Funciona de forma similar a modulos.
 - Servem para rodar um projeto local com alterações de um módulo dependente. Quando temos um projeto x, que usa o modulo y, porém fizemos alterações no módulo y e ele n está com estas alterações no repositório remoto.
-- Para criar um workspace, utilizar `go work init ./<MODULE>`
-- Para adicionar mais modulos dentro do workspace, utilizar `go work use ./<MODULE>`
-- Após feito isso, o modulo que dependia do outro pode ser executado normalmente com as alterações que foram feitas locais.
+- Para criar um workspace, criar uma pasta que será utilizda como workspace, inicializar o workspace com `go work init`
+- Para adicionar os modulos dentro do workspace, utilizar `go work use ./<MODULE>`
+- Após feito isso, o modulo será inserido no workspace, os modulos que dependem de outro podem ser executado normalmente com as alterações que foram feitas locais.
+- Um arquivo contendo os modulos e o workspace será criado após rodar `go work init`, com o nome go.work, ex:
+```go
+go 1.18
+
+use(
+    ./module1
+    ./module2
+)
+```
 
 ### Erros
 - No Go não temos exceções e sim erros, e dessa forma, os erros são tratados de forma diferente.
