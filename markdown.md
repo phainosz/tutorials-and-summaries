@@ -1,5 +1,14 @@
 # Anotações gerais sobre Markdown
 
+- [Comandos gerais](#comandos-gerais)
+- [Cabeçalho](#cabeçalho)
+- [Ênfase](#ênfase)
+- [Listas](#listas)
+- [Links](#links)
+- [Quotes](#quotes)
+- [Tarefas](#tarefas)
+- [Código](#código)
+
 ## Comandos gerais
 - Para criar um arquivo md, basta criar o arquivo com extensão .md
 

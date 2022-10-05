@@ -1,5 +1,12 @@
 # Anotações gerais sobre Git
 
+- [Instalação](#instalação)
+- [Comandos gerais](#comandos-gerais)
+- [Commits](#commits)
+- [Branchs](#branchs)
+- [Remote](#remote)
+- [Stash](#stash)
+
 ## Instalação
 - [Git](https://git-scm.com/)
 - Verificar versão com `git version`

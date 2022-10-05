@@ -1,5 +1,28 @@
 # Anotaçẽs gerais sobre Golang
 
+- [Instalação](#instalação)
+- [Comandos Go](#comandos-go)
+- [Primeiros passos](#primeiros-passos)
+- [Geral](#geral)
+- [Formatação](#formatação)
+- [Variáveis](#variáveis)
+- [Condições IFs e Switch](#condições-ifs-e-switch)
+- [Arrays](#arrays)
+- [Slices](#slices)
+- [Maps](#maps)
+- [Loops](#loops)
+- [Structs](#structs)
+- [Funções](#funções)
+- [Métodos](#métodos)
+- [Ponteiros](#ponteiros)
+- [Interfaces](#interfaces)
+- [Goroutines](#goroutines)
+- [Channels](#canais-channel)
+- [Testes](#testes)
+- [Packages](#packages)
+- [Modulos](#modulos)
+- [Workspaces](#workspaces)
+- [Erros](#erros)
 
 ## Instalação
 - [Golang](https://go.dev/doc/install)
