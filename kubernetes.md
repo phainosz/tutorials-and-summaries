@@ -3,6 +3,8 @@
 - [Instalação](#instalação)
 - [Conceitos](#conceitos)
 - [Comandos gerais](#comandos-gerais)
+- [Pod](#pod)
+- [Config Map](#configmap)
 
 ## Instalação
 - Windows
@@ -26,7 +28,62 @@
 - `kubectl get <pod, node, svc, secret, configmap>` gera informações básicas sobre os componentes.
 - `kubectl get <pod, node, svc, secret, configmap> -o wide` gera informações estendidas sobre os componentes.
 - `kubectl describe <pod, node, svc, secret, configmap> <NAME>` gera informação específica sobre o componente informado.
-- `kubectl create -f <FILE_NAME>.yml` para criar o tipo do arquivo definido e rodar as configurações.
+- `kubectl create -f <FILENAME>.yml` para criar o tipo do arquivo definido e rodar as configurações.
     - Este comando usado para criar/configurar um recurso que já exista, irá dar erro.
     - O comando `kubctl create` também pode ser usado para criar o recurso de forma imperativa, criar via linha de comando.
-- `kubectl apply -f <FILE_NAME>.yml` para criar ou atualizar um recurso usando as configurações definidas.
+- `kubectl apply -f <FILENAME>.yml` para criar ou atualizar um recurso usando as configurações definidas.
+- `kubectl delete <pod, node, svc, secret, configmap> <NAME>` deleta o recurso indicando usando o nome do recurso.
+- `kubectl delete -f <FILENAME>.yml` deleta o recurso indicando usando o nome do arquivo.
+
+## Pod
+- São o menor tipo de unidades de criação dentro do kubernetes.
+- Podem ser usados para criar e rodar um simples container usando uma imagem docker por exemplo.
+- Ex usando postgres:
+```yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: postgres
+  labels:
+    tier: db-tier
+spec:
+  containers:
+    - name: postgres
+      image: postgres
+      env:
+        - name: POSTGRES_PASSWORD
+          value: mysecretpassword
+```
+
+## ConfigMap
+- Servem para armazenar dados não confidenciais em formato de *chave* *valor*.
+- São criados separadamente e referenciados na criação de containers usando por exemplo na criação de *Pods*.
+- Ex de criação de **ConfigMap**:
+```yml
+apiVersion: v1
+kind: ConfigMap
+metadata: config-example
+data:
+  #key value example
+  mykey: "myvalue"
+```
+- Ex de como referenciar na criação de containers:
+```yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: postgres
+  labels:
+    tier: db-tier
+spec:
+  containers:
+    - name: postgres
+      image: postgres
+      env:
+        - name: MY_KEY
+          valueFrom:
+            #get value from ConfigMap
+            configMapKeyRef:
+              name: config-example
+              key: mykey
+```
