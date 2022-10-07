@@ -5,6 +5,8 @@
 - [Comandos gerais](#comandos-gerais)
 - [Pod](#pod)
 - [Config Map](#configmap)
+- [Replication Controller e Replica Set](#replication-controller-e-replica-set)
+- [Deployment](#deployment)
 
 ## Instalação
 - Windows
@@ -31,9 +33,10 @@
 - `kubectl create -f <FILENAME>.yml` para criar o tipo do arquivo definido e rodar as configurações.
     - Este comando usado para criar/configurar um recurso que já exista, irá dar erro.
     - O comando `kubctl create` também pode ser usado para criar o recurso de forma imperativa, criar via linha de comando.
-- `kubectl apply -f <FILENAME>.yml` para criar ou atualizar um recurso usando as configurações definidas.
+- `kubectl apply -f <FILENAME>.yml` para criar um recurso usando as configurações definidas.
 - `kubectl delete <pod, node, svc, secret, configmap> <NAME>` deleta o recurso indicando usando o nome do recurso.
 - `kubectl delete -f <FILENAME>.yml` deleta o recurso indicando usando o nome do arquivo.
+- `kubectl replace -f <FILENAME>.yml` substitui um recurso com base em configurações antigas.
 
 ## Pod
 - São o menor tipo de unidades de criação dentro do kubernetes.
@@ -79,6 +82,7 @@ spec:
   containers:
     - name: postgres
       image: postgres
+      #it's possible to use envFrom instead of env. The difference is that envFrom loads all the keys as environment variables.
       env:
         - name: MY_KEY
           valueFrom:
@@ -86,4 +90,37 @@ spec:
             configMapKeyRef:
               name: config-example
               key: mykey
+```
+
+## Replication Controller e Replica Set
+- São recursos com funcionalidades e propósitos iguais, um sendo a versão antiga e o outro a mais recente, sucessivamente.
+- Servem para manter de forma estável *Pods* rodando em qualquer momento e a quantidade especificada.
+- *ReplicaSet* garante que a quantidade de *Pods* configuradas estejam sempre rodando, entretanto, *Deployment* é u recurso de nível acima que gerenciam *ReplicaSet* e provisionam de forma declarativa a criação e atualização de *Pods* e outras configurações úteis. É recomendado o uso de *Deployments* ao invés de *ReplicaSet*.
+- Ex de criação de **ReplicaSet*
+```yml
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-ts
+  labels:
+    app: myapp
+    tier: db-tier
+#specification for ReplicaSet
+spec:
+  #the section template is the same as creating a Pod only without apiVersion and kind section
+  template:
+    metadata:
+      name: postgres
+      labels:
+        tier: db-tier
+    #specification for Pod
+    spec:
+      containers:
+        - name: postgres
+          image: postgres
+  replicas: 3
+  #select is used in ReplicaSet, for ReplicationController the items bellow is not configured
+  selector:
+    matchLabels:
+      tier: db-tier
 ```
