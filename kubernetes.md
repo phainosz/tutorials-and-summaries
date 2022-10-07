@@ -104,7 +104,6 @@ metadata:
   name: myapp-ts
   labels:
     app: myapp
-    tier: db-tier
 #specification for ReplicaSet
 spec:
   #the section template is the same as creating a Pod only without apiVersion and kind section
@@ -112,15 +111,18 @@ spec:
     metadata:
       name: postgres
       labels:
-        tier: db-tier
+        app: myapp
     #specification for Pod
     spec:
       containers:
         - name: postgres
           image: postgres
   replicas: 3
-  #select is used in ReplicaSet, for ReplicationController the items bellow is not configured
+  #selector is used in ReplicaSet, for ReplicationController the items bellow is not configured
   selector:
     matchLabels:
-      tier: db-tier
+      app: myapp
 ```
+
+## Deployment
+- Configura de forma declarativa criação e atualização de *Pods* e *ReplicaSets*.
