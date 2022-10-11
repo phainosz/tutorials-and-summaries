@@ -452,6 +452,9 @@ func changeNumber(number *int) {
     *number++ // acrescenta no valor e não apenas no scopo dentro da função
 }
 ```
+- Usamos **(*)** no tipo da variável quando queremos indicar que é um ponteiro do tipo informado.
+- Usamos **(*)** na variável quando queremos desferenciar um ponteiro.
+- Usamos **(&)** para criar um ponteiro.
 
 ### Interfaces
 - Funciona como um contrato, semelhante em orientação a object, mas sem a necessidade de implementar diretamente, ex:
