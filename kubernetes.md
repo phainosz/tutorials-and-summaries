@@ -27,7 +27,7 @@
     - **metadata** são dados sobre o objeto, como *name*, *labels*, etc.
 
 ## Comandos gerais
-- `kubectl logs <POD>` gera informações de log de um *POD* especificado.
+- `kubectl logs <POD>` gera informações de log de um **Pod** especificado.
 - `kubectl get <RESOURCE>` gera informações básicas sobre os componentes.
 - `kubectl get <RESOURCE> -o wide` gera informações estendidas sobre os componentes.
 - `kubectl describe <RESOURCE> <NAME>` gera informação específica sobre o componente informado.
@@ -43,7 +43,7 @@
 
 ## Pod
 - São o menor tipo de unidades de criação dentro do kubernetes.
-- Podem ser usados para criar e rodar um simples container usando uma imagem docker por exemplo.
+- Podem ser usados para criar e rodar um simples containers usando uma imagem docker por exemplo.
 - Ex usando postgres:
 ```yml
 apiVersion: v1
@@ -63,7 +63,7 @@ spec:
 
 ## ConfigMap
 - Servem para armazenar dados não confidenciais em formato de *chave* *valor*.
-- São criados separadamente e referenciados na criação de containers usando por exemplo na criação de *Pods*.
+- São criados separadamente e referenciados na criação de containers usando por exemplo na criação de **Pods**.
 - Ex de criação de **ConfigMap**:
 ```yml
 apiVersion: v1
@@ -96,12 +96,42 @@ spec:
 ```
 
 ## Secrets
+- Servem para armazenar dados confidenciais em formato de *chave* *valor*.
+- Ex:
+```yml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysecret
+type: Opaque
+data:
+  key: value
+```
+- Ex de como referencia em um **Pod**:
+```yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: postgres
+  labels:
+    tier: db-tier
+spec:
+  containers:
+    - name: postgres
+      image: postgres
+      env:
+        - name: MY_KEY
+          valueFrom:
+            secretKeyRef:
+              name: mysecret
+              key: key
+```
 
 ## Replication Controller e Replica Set
 - São recursos com funcionalidades e propósitos iguais, um sendo a versão antiga e o outro a mais recente, sucessivamente.
-- Servem para manter de forma estável *Pods* rodando em qualquer momento e a quantidade especificada.
-- *ReplicaSet* garante que a quantidade de *Pods* configuradas estejam sempre rodando, entretanto, *Deployment* é u recurso de nível acima que gerenciam *ReplicaSet* e provisionam de forma declarativa a criação e atualização de *Pods* e outras configurações úteis. É recomendado o uso de *Deployments* ao invés de *ReplicaSet*.
-- Ex de criação de **ReplicaSet*
+- Servem para manter de forma estável **Pods** rodando em qualquer momento e a quantidade especificada.
+- **ReplicaSet** garante que a quantidade de **Pods** configuradas estejam sempre rodando, entretanto, **Deployment** é u recurso de nível acima que gerenciam **ReplicaSet** e provisionam de forma declarativa a criação e atualização de **Pods** e outras configurações úteis. É recomendado o uso de **Deployments** ao invés de **ReplicaSet**.
+- Ex de criação de **ReplicaSet**
 ```yml
 apiVersion: apps/v1
 kind: ReplicaSet
@@ -131,8 +161,9 @@ spec:
 ```
 
 ## Deployment
-- Configura de forma declarativa criação e atualização de *Pods* e *ReplicaSets*.
-- Funciona de forma similiar, porém engloba a criação de *ReplicaSet* através da criação do *Deployment*
+- Configura de forma declarativa criação e atualização de **Pods** e **ReplicaSets**.
+- Funciona de forma similiar, porém engloba a criação de **ReplicaSet** através da criação do **Deployment**.
+- A diferença está nas funcionalidades a mais que **Deployment** agrega, como por exemplo, *rollout* e *rollback*.
 - Ex:
 ```yml
 apiVersion: apps/v1
