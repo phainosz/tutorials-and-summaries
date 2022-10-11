@@ -5,6 +5,7 @@
 - [Comandos gerais](#comandos-gerais)
 - [Pod](#pod)
 - [Config Map](#configmap)
+- [Secrets](#secrets)
 - [Replication Controller e Replica Set](#replication-controller-e-replica-set)
 - [Deployment](#deployment)
 
@@ -27,16 +28,18 @@
 
 ## Comandos gerais
 - `kubectl logs <POD>` gera informações de log de um *POD* especificado.
-- `kubectl get <pod, node, svc, secret, configmap>` gera informações básicas sobre os componentes.
-- `kubectl get <pod, node, svc, secret, configmap> -o wide` gera informações estendidas sobre os componentes.
-- `kubectl describe <pod, node, svc, secret, configmap> <NAME>` gera informação específica sobre o componente informado.
+- `kubectl get <RESOURCE>` gera informações básicas sobre os componentes.
+- `kubectl get <RESOURCE> -o wide` gera informações estendidas sobre os componentes.
+- `kubectl describe <RESOURCE> <NAME>` gera informação específica sobre o componente informado.
 - `kubectl create -f <FILENAME>.yml` para criar o tipo do arquivo definido e rodar as configurações.
     - Este comando usado para criar/configurar um recurso que já exista, irá dar erro.
     - O comando `kubctl create` também pode ser usado para criar o recurso de forma imperativa, criar via linha de comando.
 - `kubectl apply -f <FILENAME>.yml` para criar um recurso usando as configurações definidas.
-- `kubectl delete <pod, node, svc, secret, configmap> <NAME>` deleta o recurso indicando usando o nome do recurso.
+- `kubectl delete <RESOURCE> <NAME>` deleta o recurso indicando usando o nome do recurso.
 - `kubectl delete -f <FILENAME>.yml` deleta o recurso indicando usando o nome do arquivo.
 - `kubectl replace -f <FILENAME>.yml` substitui um recurso com base em configurações antigas.
+- `kubectl explain <RESOURCE>` dá uma breve descrição sobre o recurso especificado.
+- `kubectl edit <RESOURCE> <NAME>` usado para editar o arquivo usado para configura este recurso com novas configurações.
 
 ## Pod
 - São o menor tipo de unidades de criação dentro do kubernetes.
@@ -92,6 +95,8 @@ spec:
               key: mykey
 ```
 
+## Secrets
+
 ## Replication Controller e Replica Set
 - São recursos com funcionalidades e propósitos iguais, um sendo a versão antiga e o outro a mais recente, sucessivamente.
 - Servem para manter de forma estável *Pods* rodando em qualquer momento e a quantidade especificada.
@@ -101,7 +106,7 @@ spec:
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-  name: myapp-ts
+  name: myapp-rs
   labels:
     app: myapp
 #specification for ReplicaSet
@@ -120,9 +125,34 @@ spec:
   replicas: 3
   #selector is used in ReplicaSet, for ReplicationController the items bellow is not configured
   selector:
+    #Pod label and matchLabels must be the same
     matchLabels:
       app: myapp
 ```
 
 ## Deployment
 - Configura de forma declarativa criação e atualização de *Pods* e *ReplicaSets*.
+- Funciona de forma similiar, porém engloba a criação de *ReplicaSet* através da criação do *Deployment*
+- Ex:
+```yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  labels:
+    app: myapp
+spec:
+  template:
+    metadata:
+      name: postgres
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: postgres
+          image: postgres
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+```
