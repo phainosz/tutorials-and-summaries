@@ -8,6 +8,7 @@
 - [Secrets](#secrets)
 - [Replication Controller e Replica Set](#replication-controller-e-replica-set)
 - [Deployment](#deployment)
+- [Service](#services)
 
 ## Instalação
 - Windows
@@ -186,4 +187,32 @@ spec:
   selector:
     matchLabels:
       app: myapp
+```
+
+## Services
+- Habilitam conexão entre **Pods** dentro do **Cluster**.
+- Existem 4 *types* na configuração de **Services**: *ClusterIP* (default), *NodePort*, *LoadBalancer* e *ExternalName*.
+- *ClusterIP* o **Service** não é exposto para fora do **Cluster** mas pode ser usado internamente.
+- *NodePort* o **Service** é exposto para fora do **Cluster** e pode ser usado externamente com a porta estática do **Node* mais a porta configurada no *NodePort*, *<NODE_IP>:<NODE_PORT>*.
+- *LoadBalancer* também é exposto para fora do **Cluster** que será usado conforme o *Load Balancer* disponibilizado pelo provedor que for fornecido.
+- *ExternalName* é exposto para fora do **Cluster**, mapeia o **Service** com um *DNS* pré definido. 
+- Ex *NodePort*:
+```yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  type: NodePort
+  #in order to use the targetPort to bind with the Pod, we need to select the Pod labels using selector
+  selector:
+    app: myapp
+  ports:
+      #port is the port of the service
+    - port: 80
+      #targetPort is the port of the container running we want to bind
+      targetPort: 80
+      #nodePort is the port we want to expose outside the cluster
+      #nodePort has a range of 30000-32767
+      nodePort: 30008
 ```
