@@ -198,6 +198,22 @@ spec:
 - *ExternalName* é exposto para fora do **Cluster**, mapeia o **Service** com um *DNS* pré definido. 
 - Ex *NodePort*:
 ```yml
+apiversion: v1
+kind: Pod
+metadata:
+  name: postgres-pod
+  selector:
+    app: postgres-pod
+spec:
+  containers:
+    - name: postgres
+      image: postgres
+      ports:
+        - containerPort: 80
+          name: postgres-port
+
+---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -206,12 +222,13 @@ spec:
   type: NodePort
   #in order to use the targetPort to bind with the Pod, we need to select the Pod labels using selector
   selector:
-    app: myapp
+    app: postgres-pod
   ports:
       #port is the port of the service
     - port: 80
       #targetPort is the port of the container running we want to bind
-      targetPort: 80
+      #targetPort can referece the name defined in a Pord port
+      targetPort: 80 #or targetPort: postgres-port
       #nodePort is the port we want to expose outside the cluster
       #nodePort has a range of 30000-32767
       nodePort: 30008
