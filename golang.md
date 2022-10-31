@@ -77,13 +77,29 @@ switch day := "monday"; day {
         fmt.Println("day not found!")
     }
 ```
-- Usar `go env -w` adicionar/alterar variáveis do go, ex: `go env -w GO111MODULE=on`.
+- Usar `go env -w` adicionar/alterar variáveis do go, ex: `go env -w GO111MODULE=on`. Para remover usar `go env -u GO111MODULE`.
 - Ao trabalhar com repositórios que contenham dependências que estão de forma insegura (casos onde o servidor não possuí certificados ou não faz o uso de https), go fornece uma forma de adicionar hosts que queremos utilizar no nosso código.
     - *GOINSECURE* é definido como uma lista de hosts separados por vírgula, adicionar como variável de sistema.
 - Para adicionar repositórios privados como dependências em projetos go, é possível adicionar como lista os repositórios e as credencias(se necessário).
     - Usar *GOPRIVATE* e adicionar a lista de hosts e credências(se necessário) como variável do sistema.
 - Para fazer build, usar `go build`. Ao usar projetos **Go** com módulos, o nome do módulo será o nome do arquivo gerado após o build.
     - Usar `go build -o <NAME>` para mudar o nome do arquivo gerado no build.
+- Estrutura para projetos **Go**:
+    - *cmd* será onde fica a aplicação *main* do projeto.
+    - *pkg* é usado para adionar código que poderá ser exportado para uso público.
+    - *internal* funciona de forma semelhante ao *pkg*, porém é utilizado como código privado.
+```
+|---cmd
+|---pkg
+|    |---config
+|    |---utils
+|    |---models
+|    |---routes
+|    |---controllers
+|---internal
+|---go.mod
+|---go.sum
+```
 
 ### Formatação
 - Existem casos que queremos modificar o valor de uma string usando formatação. Uma das formas seria usando `fmt.Printf("Oi %s", nome)`
