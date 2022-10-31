@@ -77,6 +77,13 @@ switch day := "monday"; day {
         fmt.Println("day not found!")
     }
 ```
+- Usar `go env -w` adicionar/alterar variáveis do go, ex: `go env -w GO111MODULE=on`.
+- Ao trabalhar com repositórios que contenham dependências que estão de forma insegura (casos onde o servidor não possuí certificados ou não faz o uso de https), go fornece uma forma de adicionar hosts que queremos utilizar no nosso código.
+    - *GOINSECURE* é definido como uma lista de hosts separados por vírgula, adicionar como variável de sistema.
+- Para adicionar repositórios privados como dependências em projetos go, é possível adicionar como lista os repositórios e as credencias(se necessário).
+    - Usar *GOPRIVATE* e adicionar a lista de hosts e credências(se necessário) como variável do sistema.
+- Para fazer build, usar `go build`. Ao usar projetos **Go** com módulos, o nome do módulo será o nome do arquivo gerado após o build.
+    - Usar `go build -o <NAME>` para mudar o nome do arquivo gerado no build.
 
 ### Formatação
 - Existem casos que queremos modificar o valor de uma string usando formatação. Uma das formas seria usando `fmt.Printf("Oi %s", nome)`
@@ -650,8 +657,8 @@ func loop(channel chan int) {
 ### Workspaces
 - Nos permitem trabalhar com multiplos modulos simultaneamente.
 - Funciona de forma similar a modulos.
-- Servem para rodar um projeto local com alterações de um módulo dependente. Quando temos um projeto x, que usa o modulo y, porém fizemos alterações no módulo y e ele n está com estas alterações no repositório remoto.
-- Para criar um workspace, criar uma pasta que será utilizda como workspace, inicializar o workspace com `go work init`
+- Ajudam para rodar um projeto local com alterações de um módulo dependente. Quando temos um projeto x, que usa o modulo y, porém fizemos alterações no módulo y e ele n está com estas alterações no repositório remoto.
+- Para criar um workspace, criar uma pasta que será utilizada como workspace, inicializar o workspace com `go work init`
 - Para adicionar os modulos dentro do workspace, utilizar `go work use ./<MODULE>`
 - Após feito isso, o modulo será inserido no workspace, os modulos que dependem de outro podem ser executado normalmente com as alterações que foram feitas locais.
 - Um arquivo contendo os modulos e o workspace será criado após rodar `go work init`, com o nome go.work, ex:
@@ -663,6 +670,8 @@ use(
     ./module2
 )
 ```
+- Podem ser criados *workspaces* de forma geral e adicionar uma variável de ambiente, cada *módulo* adicioná-lo ao *workspace*. Para fazer isso,
+adicionar *GOWORK* como variável do sistema e indicar o path da pasta. Para verificar o local do *GOWORK, usar `go env GOWORK` no terminal.
 
 ### Erros
 - No Go não temos exceções e sim erros, e dessa forma, os erros são tratados de forma diferente.
