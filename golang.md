@@ -153,6 +153,7 @@ switch someVariable {
 ```go
 value := 5
 switch {
+    //switch without condition evaluate true cases
     case (value == 5), (value > 3):
         //do something
     case value < 3:
