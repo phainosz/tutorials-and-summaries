@@ -37,12 +37,16 @@
 - [Go playground](https://go.dev/play/), usar o go via web.
 
 ### Comandos Go
-- go version
-- go env
-    - lista as variaveis do go
-- go run
-    - go run FILE_NAME - para apenas um package
-    - go run *.go - quando existir mais de um package
+- `go version`
+- `go env` lista as variaveis do go.
+- `go run` para rodar o projeto.
+    - `go run` FILE_NAME - para apenas um package.
+    - `go run *.go` quando existir mais de um package main.
+- `go fmt` formata o código do projeto.
+- `go vet` informa erros de código.
+- `go doc` serve para verificar doc de pacotes e funções go.
+    - `go doc fmt` mostra informações do pacote fmt.
+    - `go doc -src fmt Println` mostra informações do arquivo fonte da função Println do pacote fmt.
 
 ### Primeiros passos
 - Criar o arquivo main.go
@@ -84,6 +88,11 @@ switch day := "monday"; day {
     - Usar *GOPRIVATE* e adicionar a lista de hosts e credências(se necessário) como variável do sistema.
 - Para fazer build, usar `go build`. Ao usar projetos **Go** com módulos, o nome do módulo será o nome do arquivo gerado após o build.
     - Usar `go build -o <NAME>` para mudar o nome do arquivo gerado no build.
+- Ao fazer o build de um projeto, podemos usar a arquitura do sistema atual ou especificar o sistema desejado.
+- Para verificar as arquiteturas suportadas, usar `go tool dist list`.
+- Para trocar a arquitetura e usar uma diferente, usar o seguinte comando:
+    - `GOOS=windows GOARCH=amd64 go build -o app.exe`
+    
 - Estrutura para projetos **Go**:
     - *cmd* será onde fica a aplicação *main* do projeto.
     - *pkg* é usado para adionar código que poderá ser exportado para uso público.
@@ -164,14 +173,17 @@ switch {
 ```
 
 ### Arrays
-- Sintaxe: `var array = [50]string{}` ou `var array [50]string`
-- Para adicionar, é da mesma forma convencional: `array[0] = "String"`
-- Tamanho total do array ex: `len(array)`
+- Sintaxe, `var array [n]T`, *n* é o tamanho e *T* é o tipo.
+    - `var array = [50]string{}`, `var array [50]string` ou `var array [5]int = [5]int{1,2,3,4,5}`.
+- Para adicionar ou alterar, é da mesma forma convencional: `array[0] = "String"`.
+- Tamanho total do array ex: `len(array)`.
+- Arrays são 
 
 ### Slices
-- É uma abstração do array com tamanho dinâmico
-- Criado igual o array mas sem o tamanho do array, ex: `var slice[]string` ou `var slice = []string{}`
-- Para adicionar no próximo elemento do slice, é utilizado append, ex: `slice = append(slice, "Dado")`. Podendo ser passado n elementos como parametros, ex: `slice = append(slice, "Dado", "Dado2")`
+- É uma abstração do array com tamanho dinâmico.
+- Slices são referências de valores, diferente de arrays que são tipos de valores. Isso implica que quando criamos um array e passamos como parametro de uma função, todos os elementos serão copiado, enquanto quando usamos slice, a função recebe a referência em memória do slice.
+- Criado igual o array mas sem o tamanho do array, ex: `var slice[]string` ou `var slice = []string{}`.
+- Para adicionar no próximo elemento do slice, é utilizado append, ex: `slice = append(slice, "Dado")`. Podendo ser passado n elementos como parametros, ex: `slice = append(slice, "Dado", "Dado2")`.
 - Para fazer o slice de um slice, usar os indices desejados, ex: 
 ```go
     slice := []int{1,2,3,4,5}
@@ -203,9 +215,9 @@ switch {
     - cap é a capacidade máxima do array
 - Tomar cuidado com o array subjacente.
 ### Maps
-- É uma collection de chave valor
-- Criado usando chave e valor tipados, ex: `var mymap map[string]string` ou um map vazio `var mymap = make(map[string]string)`
-- Para adicionar no map, é utilizado append, ex: `mymap["key"] = value`
+- É uma collection de chave valor.
+- Criado usando chave e valor tipados, ex: `var mymap map[string]string` ou um map vazio `var mymap = make(map[string]string)`.
+- Para adicionar no map, é utilizado append, ex: `mymap["key"] = value`.
 - O range em maps seria o mesmo de arrays e slices, porém o indice se torna a key, ex:
 ```go
 myMap := map[int]string{1: "Um", 2: "Dois"}
@@ -223,7 +235,7 @@ for key, value := range myMap {
 ```
 
 ### Loops
-- Apenas for existe no Go, while, doWhile não existem
+- Apenas for existe no Go, while, doWhile não existem.
 - O mesmo de C ou Java, ex: 
 ```go
 sum := 0
@@ -261,9 +273,9 @@ for _, element := range strings {
 ```
 
 ### Structs
-- Funciona de forma semelhante do C
-- Usado como forma de definir multiplos tipos de dados
-- Alternativa para classes em Go
+- Funciona de forma semelhante do C.
+- Usado como forma de definir multiplos tipos de dados.
+- Alternativa para classes em Go.
 - Os campos da struct seguem o padrão de nomenclatura para export de dados, pascal case para usar fora do pacote.
 - Ex: 
 ```go
@@ -292,7 +304,7 @@ var userData = UserData {
 		userTickets,
 	}
 ```
-- Ou adicionar apenas no campo como se fosse um set
+- Ou adicionar apenas no campo como se fosse um set.
 ```go
 var userData = UserData{}
 	userData.email = "email"
@@ -370,7 +382,7 @@ func someFunction(param string) {
     //do something
 }
 ```
-- Ou com multiplos parametros, que tenham o mesmo tipo, pode ser simplificado
+- Ou com multiplos parametros, que tenham o mesmo tipo, pode ser simplificado.
 ```go
 func someFunction(param string, param2 string) {
     //do something
@@ -389,7 +401,7 @@ func someFunction() (string, int) {
 - Defer func serve para adiar algo, ele deixa a execução por último.
     - Multiplos defer, funcionam como uma pilha, LIFO.
 - Funções anônimas, usadas para serem chamadas apenas uma vez, sem necessidade de criação e nome.
-    - Podendo ser criadas com invocação imediata ou invocação apenas quando chamada
+    - Podendo ser criadas com invocação imediata ou invocação apenas quando chamada.
 ```go
 func main() {
 
@@ -446,7 +458,10 @@ func main() {
 
 ### Ponteiros
 - São variáveis que apontam para um endereço de memória.
-- Um ponteiro declarado mas não dado o valor(`var a *int`), tem valor **nil**
+- Um ponteiro declarado mas não dado o valor(`var a *int`), tem valor **nil**.
+- Ponteiros são referências de memória. Para lidar com ponteiros, podemos usar dois operadores:
+    - **&** que faz a referência do endereço em memória de uma variável. Chamado de *referencing*
+    - __\*__  que acessa o valor da variável que o ponteiro aponta. Chamado de *dereferencing*
 - Quando queremos passar o endereço de memória de uma variável para um ponteiro, usamos **&**, ex
 ```go
 var a int = 1
@@ -518,7 +533,10 @@ func main() {
 
 ### Goroutines
 - Gouroutines é a forma que Go trabalha com concorrencia usando algo similar a threads, mas mais leves.
-- Deadlock acontece quando todos os processos estão bloqueados enquanto esperam por eles mesmos, fazendo com que o programa não possa continuar.
+- Ao lidar com concorrência, alguns conceitos precisam ser abordados:
+    - *Data race* acontece quando tentamos acessar a mesma. Por exemplo, ler uma variável e escrever ao mesmo tempo.
+    - *Race conditions* acontece quando o tempo ou ordem afeta um pedaço do código.
+    - *Deadlock* acontece quando todos os processos estão bloqueados enquanto esperam por eles mesmos, fazendo com que o programa não possa continuar.
 - Qualquer função pode se tonar uma goroutine simplesmente usando a palavra chave **go** em frente a função, ex:
 ```go
 func main() {
@@ -576,7 +594,7 @@ func speak(ch chan<- string) {
     ch <- "Hello World!" //envia
 }
 ```
-- Quando terminamos de usar um canal, este deve ser fechado, usando `close(ch)`
+- Quando terminamos de usar um canal, este deve ser fechado, usando `close(ch)`.
 - Opcionalmente, podemos testar se um canal foi fechado usando um segundo parâmentro como expressão, este parametro indice como um booleano a situação do canal, ex:
 ```go
 func main() {
@@ -618,7 +636,7 @@ func loop(channel chan int) {
     }
 }
 ```
-- Para corrigir e não acontecer o deadlock, pode ser verificado se o channel ainda está aberto e fechar quando ele não ser mais necessário
+- Para corrigir e não acontecer o deadlock, pode ser verificado se o channel ainda está aberto e fechar quando ele não ser mais necessário.
 - Exemplo correção deadlock:
 ```go
 func main() {
@@ -641,42 +659,68 @@ func loop(channel chan int) {
 ```
 
 ### Testes
-- Para criar testes, o Go disponibiliza ferramentas nativas nos seus pacotes
-- Para rodar os testes, pode ser feito no pacote que contem os testes, `go test`
-- Para rodar todos os testes do projeto, usar `go test ./...`
-- Para rodar com o modo verboso, `go test -v`
-- Para rodar com a cobertura de testes, `go test --cover`
+- Para criar testes, o Go disponibiliza ferramentas nativas nos seus pacotes.
+- Para rodar os testes, pode ser feito no pacote que contem os testes, `go test`.
+- Para rodar todos os testes do projeto, usar `go test ./...`.
+- Para rodar com o modo verboso, `go test -v`.
+- Para rodar com a cobertura de testes, `go test --cover`.
 - Tem um modo que gera um txt com a cobertura de cada pacote. Esse arquivo é gerado e feito a leitura por outro comando Go.
-    - Para gerar o arquivo, `go test --coverprofile NOME_ARQUIVO.txt`
-    - Para visualizar a cobertura por cada pacote no terminal, `go tool cover --func=NOME_ARQUIVO.txt`
-    - Para visualizar a cobertura por cada pacote em html, `go tool cover --html=NOME_ARQUIVO.txt`
+    - Para gerar o arquivo, `go test --coverprofile NOME_ARQUIVO.txt`.
+    - Para visualizar a cobertura por cada pacote no terminal, `go tool cover --func=NOME_ARQUIVO.txt`.
+    - Para visualizar a cobertura por cada pacote em html, `go tool cover --html=NOME_ARQUIVO.txt`.
 - Cada teste deve ter o seguinte formato:
-    - Criar o arquivo .go com o respectivo nome _test.go
-        - ex: Para o main.go, criar o main_test.go no mesmo pacote
-    - Cada teste deve começar com Test antes do nome do método e adicionar o parametro para uso das validacoes
-        - ex: TestMetodoXpto(t *testing.T)
+    - Criar o arquivo .go com o respectivo nome _test.go.
+        - ex: Para o main.go, criar o main_test.go no mesmo pacote.
+    - Cada teste deve começar com Test antes do nome do método e adicionar o parametro para uso das validacoes.
+        - ex: TestMetodoXpto(t *testing.T).
     
 ### Packages
 - O pacote main é o principal como o nome já diz. Podendo ser utilizado com varios arquivos .go neste mesmo pacote, a diferença está na forma de rodar, os arquivos precisam ser declarados no `go run main.go xxx.go yyy.go` ou na raiz `go run .`.
-- Novos pacotes podem ser criado com outras pastas com o nome do pacote.
+- Novos pacotes podem ser criados com outras pastas com o nome do pacote.
+    - Ex:
+```go
+//go mod init example
+//---go.mod---
+module example
+
+go 1.18
+
+//---main.go--
+package main
+
+import "example/printing"
+
+func main() {
+	printing.PrintText("Hello World!")
+}
+
+//---print.go---
+package printing
+
+import "fmt"
+
+func PrintText(text string) {
+	fmt.Println(text)
+}
+```
 - Para fazer o import de funções ou variáveis de um pacote diferente, basta declarar o nome da função como pascal case.
 - Package management
-    - `go get <LIB>` baixa e faz o build do código
-    - `go get -u <LIB>` baixa o código da lib atualizado, caso houver
-    - `go intall <LIB>` faz a compilação da lib
+    - `go get <LIB>` baixa e faz o build do código.
+    - `go get -u <LIB>` baixa o código da lib atualizado, caso houver.
+    - `go intall <LIB>` faz a compilação da lib.
 
 ### Modulos
-- Modulos servem para gerenciamento de dependências em projetos Go
-- Modulos são coleções de pacotes indicados dentro do **go.mod**
-- `go mod init <MOD_NAME>` cria um novo modulo
-- `go mod tidy` remove/adiciona dependências em **go.mod**
+- Modulos servem para gerenciamento de dependências em projetos Go.
+- Modulos são coleções de pacotes indicados dentro do **go.mod**.
+- `go mod init <MOD_NAME>` cria um novo modulo.
+- `go mod tidy` remove/adiciona dependências em **go.mod**.
 
 ### Workspaces
 - Nos permitem trabalhar com multiplos modulos simultaneamente.
 - Funciona de forma similar a modulos.
 - Ajudam para rodar um projeto local com alterações de um módulo dependente. Quando temos um projeto x, que usa o modulo y, porém fizemos alterações no módulo y e ele n está com estas alterações no repositório remoto.
-- Para criar um workspace, criar uma pasta que será utilizada como workspace, inicializar o workspace com `go work init`
-- Para adicionar os modulos dentro do workspace, utilizar `go work use ./<MODULE>`
+- Para criar um workspace, criar uma pasta que será utilizada como workspace, inicializar o workspace com `go work init`.
+- Para adicionar os modulos dentro do workspace, utilizar `go work use ./<MODULE>`.
 - Após feito isso, o modulo será inserido no workspace, os modulos que dependem de outro podem ser executado normalmente com as alterações que foram feitas locais.
 - Um arquivo contendo os modulos e o workspace será criado após rodar `go work init`, com o nome go.work, ex:
 ```go
@@ -692,7 +736,7 @@ adicionar *GOWORK* como variável do sistema e indicar o path da pasta. Para ver
 
 ### Erros
 - No Go não temos exceções e sim erros, e dessa forma, os erros são tratados de forma diferente.
-- Podendo usar o pacotes errors para criar seus erros a partir de `errors.New("Deu erro")`
+- Podendo usar o pacotes errors para criar seus erros a partir de `errors.New("Deu erro")`.
 - Exemplo usando divisão por 0:
 ```go
 import (
@@ -719,5 +763,34 @@ func Divide(a, b int) (int, error) {
     return a/b, nil
 }
 ```
-- Outra forma de customizar o erros, seria utilizando `fmt.Errorf("cannot divide %d by 0", a)`
+- Outra forma de customizar o erros, seria utilizando `fmt.Errorf("cannot divide %d by 0", a)`.
+- Podemos criar erros e usar em pontos de códigos específicos.
+    - Para verificar um erro, o pacote *erros* tem uma função para isso.
+    - Ex:
+```go
+var ErrDivideByZero = errors.New("cannot divide by zero")
+
+func main() {
+	result, err := Divide(4, 0)
+
+	if err != nil {
+		switch {
+		case errors.Is(err, ErrDivideByZero):
+			fmt.Println(err)
+		// Do something with the error
+		default:
+			fmt.Println("no idea!")
+		}
+		return
+	}
+	fmt.Println(result)
+}
+
+func Divide(a, b int) (int, error) {
+	if b == 0 {
+		return 0, ErrDivideByZero
+	}
+	return a / b, nil
+}
+```
 - Existe dentro de Go, **panic** e **recover** que são interfaces internas similares ao **try catch** conhecido em outras linguagens.
