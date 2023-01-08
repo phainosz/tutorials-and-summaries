@@ -5,6 +5,7 @@
 - [Conceitos Gerais](#conceitos-gerais)
 - [Variáveis](#variáveis)
 - [Funções](#funções)
+- [Loops](#loops)
 - [Métodos](#métodos)
 - [Structs](#structs)
 - [Tuplas](#tuplas)
@@ -18,37 +19,47 @@
 
 ## Instalação
 - [Site oficial](https://www.rust-lang.org/tools/install)
+- [Rust playground](https://play.rust-lang.org/)
 - Windows
     - Necessário a instalação do Microsoft C++ Build Tools ou Visual Studio.
+- Linux
+    - Instalar **rustup** seguindo os passos indicados no site oficial.
+        - **rustup** faz a instalação e gerenciamento da linguagem **rust**.
+        - Para atulizar a versão do **rust**, usar o comando `rustup update`.
+        - Para atulizar a versão do **rustup**, usar o comando `rustup self update`.
 - Usando VSCode, instalar as extensões:
     - *rust-analyzer*
     - *crates*
     - *Better TOML*
 
 ## Comandos Rust
-- `cargo init <NAME>` para criar um projeto.
+- `cargo init <NAME_PROJETO>` ou `cargo new <NAME_PROJETO>` para criar um projeto.
 - `cargo run` para rodar um projeto.
 - `rustc --version` para verificar versão do **Rust** instalada.
 
 ## Conceitos Gerais
 - Gerenciador de pacotes do **Rust** é o **cargo**.
 - **Rust** usa o padrão *snake case*.
-- `rustc` é o copilador do **Rust**.
+- **rustc** é o copilador do **Rust**.
 - *match* são expressões similares ao *if* e *switch*, porém eles devem cobrir todas as possiblidades da expressão testada.
+    - Se alguma possibilidade for adicionado, o compilador irá informar o erro ao não cobrir esta nova possibilidade.
     - Quando não quiser testar todas as possibilidades, usar *_* como se fosse o *default* do *switch*.
     - Ex:
 ```rust
 fn main() {
     let some_bool = true;
     match some_bool {
-        true => println!("true");
-        false => println!("false");
+        true => println!("true"),//used , instead of ; because expression is ended with , and a statement is ended with ;
+        false => println!("false"),
+        //use _ as a default value (not recomended when need all possibilities to be covered)
     }
 }
 ```
+- *Cargo.toml* é o arquivo que contém metadados do seu projeto rust, assim como suas dependências.
 
 ## Variáveis
 - Em **Rust** criação de variáveis e constantes são possíveis usando *let* ou *const*.
+- Variáveis em **Rust** são imutáveis por padrão.
 - Para variáveis, existe o conceito de mutabilidade, uma variável definida usando *let* pode ser reescrita, porém com algumas ressalvas.
 ```rust
 fn main() {
@@ -80,7 +91,7 @@ fn multiply(x: f32, y: u16) {
 
 ## Funções
 - A declaração de funções em **Rust** usa-se *fn* como palavra chave.
-- Para declarar uma função com retorno, usar *->* e indicar qual o tipo de retorno.
+- Para declarar uma função com retorno, usar `->` e indicar qual o tipo de retorno.
 - Ex:
 ```rust
 fn my_function() {
@@ -96,6 +107,46 @@ fn main() {
     my_function();
 }
 ```
+
+## Loops
+- Usados para fazer iterações.
+- *loop*, *while* e *for* são os tipos de loops em **rust**.
+- *loop* é infinito, podendo ser parado com *break*. Ex:
+```rust
+fn main() {
+    let mut value = 1;
+    loop {
+        if value > 3 {
+            println!("end");
+            break;
+        }
+        println!("looping");
+        value = value + 1;
+    }
+}
+```
+- *while* segue o mesmo padrão de outras linguagens. Ex:
+```rust
+fn main() {
+    let mut value = 1;
+    while value <= 3 {
+        println!("looping");
+        value = value + 1;
+    }
+    println!("end");
+}
+```
+- *for* pode ser usado com *iterators* ou com um *range*. Ex:
+```rust
+fn main() {
+    for i in 1..11 {
+        println!("{i}");
+        //1 is inclusive and 11 is exclusive
+        //use 1..=11 for a range that is inclusive on both ends
+    }
+}
+```
+
 
 ## Métodos
 - Em *Rust* o conceito de métodos existe e é utilizado usando *impl* e o tipo.
@@ -219,7 +270,7 @@ enum Direction {
 - Uma boa forma de acessar e verificar um *enum* é usando *match*.
 
 ## Macros
-- *macros* são similares a funções, porém eles expandem para outras execuções além da função.
+- *macros* são similares a funções, porém eles expandem para execuções de códigos além da função.
 - Para identificar que uma função é um *macro*, ao final da função terá uma *!*, `println!(...)`.
 
 ## Atributos
