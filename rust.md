@@ -270,6 +270,12 @@ fn main() {
     for year in years {
         println!("Year {}", year);
     }
+
+    //using macros to create a vector
+    let years = vec![2020,2021,2022];//vec! will expand the code to do similar as Vec::new and push items
+    for year in years {
+        println!("Year {}", year);
+    }
 }
 ```
 
