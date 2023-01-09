@@ -308,9 +308,9 @@ fn get_years(years: Vec<i32>) {
     for year in years {
         println!("Year {}", year)
     }
-}//dealoc(years)
+}//years is cleaned from memory
 ```
-- Para estes tipos de problemas, **Rust** tem uma forma de solucionar isso, conceito chamado de *References & Borrowing*.
+- Para estas situações, **Rust** apresenta o conceito chamado de *References & Borrowing*.
 - *References & Borrowing*:
     - Funciona de forma que o valor da variável é emprestado para ser usado em outro escopo sem que seja limpo ao perder o escopo que ela estava.
     - O dono é o responsável por fazer a limpeza assim que perde o escopo.
