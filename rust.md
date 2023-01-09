@@ -149,10 +149,23 @@ fn main() {
 
 
 ## Métodos
-- Em *Rust* o conceito de métodos existe e é utilizado usando *impl* e o tipo.
-- Ex com *mutable*, *self* e a combinação dos dois:
+- Em *Rust* o conceito de métodos é um pouco diferente, implementar funcionalidades em tipos utilizado usando *impl*.
+- Ex:
 ```rust
+struct Book {
+    pages: i32,
+    rating: i32,
+}
+
 impl Book {
+    fn new() -> Self {
+        //Self is the sabe as Book or in other cases the type that is implementing
+        Self {
+            pages: 100,
+            rating: 8,
+        }
+    }
+
     fn show_pages(book: &Book) {
         println!("Number of pages {}", book.pages);
     }
@@ -171,11 +184,15 @@ fn main() {
         pages: 900,
         rating: 5,
     };
+    
+    let book2 = Book::new();
 
     Book::show_pages(&book);
     book.show_ratings();
     book.modify_ratings();
-    book.show_ratings();
+    
+    Book::show_pages(&book2);
+    book2.show_ratings();
 }
 ```
 
