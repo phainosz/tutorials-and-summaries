@@ -266,8 +266,17 @@ enum Direction {
     Left,
     Right
 }
+
+fn main() {
+    let go = Direction::Up;
+    match go {
+        Direction::Up => println!("Up"),
+        Direction::Down => println!("Down"),
+        Direction::Left => println!("Left"),
+        Direction::Right => println!("Right"),
+    }
+}
 ```
-- Uma boa forma de acessar e verificar um *enum* é usando *match*.
 
 ## Macros
 - *macros* são similares a funções, porém eles expandem para execuções de códigos além da função.
