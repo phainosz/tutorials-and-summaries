@@ -225,13 +225,35 @@ struct Box {
     depth: i32,
 }
 
-pub fn main() {
+fn main() {
     let a = Box {
         width: 1,
         height: 2,
         depth: 3,
     };
     println!("Box depth {}", a.width);
+}
+```
+- *Structs* podem ser usados com *match* para verificar valores.
+- Ex:
+```rust
+struct Box {
+    width: i32,
+    height: i32,
+    depth: i32,
+}
+
+fn main() {
+    let box1 = Box {
+        width: 1,
+        height: 2,
+        depth: 3,
+    };
+    
+    match box1 {
+        Box {width: 1, height, depth} => println!("width of 1 and height is {0:?} and depth {1:?}", height, depth),//width: 1 verify width with value 1
+        Box {width, ..} => println!("width of the box is {:?}", width),//.. the dots is to ignore other atributes
+    }
 }
 ```
 
