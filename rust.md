@@ -319,6 +319,24 @@ fn main() {
     }
 }
 ```
+- Enum podem ser usados com dados adicionais e receber parâmetros como informações.
+- Ex:
+```rust
+enum Discount {
+    Percent(i32),
+    Flat(i32),
+}
+
+fn main() {
+    let flat = Discount::Flat(2);
+    
+    match flat {
+        Discount::Flat(2) => println!("flat discount 2"),
+        Discount::Flat(ammount) => println!("flat discount of {:?}", ammount),
+        Discount::Percent(another_discount) => println!("another value {:}", another_discount),//could change Discount::Percent(another_discount) by _
+    }
+}
+```
 
 ## Macros
 - *macros* são similares a funções, porém eles expandem para execuções de códigos além da função.
