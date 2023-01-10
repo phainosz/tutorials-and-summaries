@@ -325,6 +325,26 @@ fn main() {
 - Para identificar que uma função é um *macro*, ao final da função terá uma *!*, `println!(...)`.
 
 ## Atributos
+- *Atributos* em **Rust** são pequenos pedaços de código que fornecem informações para o compilador.
+- Syntax, `#[attribute]` para atributos externos e `#![attribute]`para atributos internos.
+- Ex:
+```rust
+//Inner attributes
+//remove warning for dead code and unused variables
+#![allow(dead_code)]
+#![allow(unused_variables)]
+
+struct Struct1 {}
+struct Struct2 {}
+struct Struct3 {}
+
+fn main() {
+    let char1 = 'ん'; // variables unused
+    let char2 = ';';
+    let some_str = "I'm just a regular &str";
+    let some_vec = vec!["I", "am", "just", "a", "vec"];
+}
+```
 
 ## Modulos
 - **Rust** disponibiliza um sistema de *módulos* que separam o código de forma lógica e gerenciam a visibilidade de forma hierarquica.
