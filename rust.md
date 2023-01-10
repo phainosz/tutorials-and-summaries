@@ -4,6 +4,7 @@
 - [Comandos Rust](#comandos-rust)
 - [Conceitos Gerais](#conceitos-gerais)
 - [Variáveis](#variáveis)
+- [Strings](#strings)
 - [Funções](#funções)
 - [Loops](#loops)
 - [Métodos](#métodos)
@@ -86,6 +87,24 @@ fn main() {
 
 fn multiply(x: f32, y: u16) {
     println!("{}", x as f64 * y as f64);
+}
+```
+
+## Strings
+- Em **Rust** exitem alguns tipos de *strings*, sendo a mais comuns **String** e **&str**.
+- **String** é um valor é *owned*, enquanto o **&str** é *borrowed*.
+- Ex:
+```rust
+fn print(data: &str) {
+    println!("{:?}", data);
+}
+
+fn main() {
+    print("a string of &str");
+    let owned_string = "owned string".to_owned();
+    let another_owned = String::from("another owned");
+    print(&owned_string);
+    print(&another_owned);
 }
 ```
 
