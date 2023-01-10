@@ -7,6 +7,7 @@
 - [Remote](#remote)
 - [Stash](#stash)
 - [Reverter alterações](#reverter-alterações)
+- [SSH](#ssh)
 
 ## Instalação
 - [Git](https://git-scm.com/)
@@ -85,3 +86,18 @@
         - Com isso, as mudanças saem de *staged* e voltam para *modified*.
 - Para remover mudanças que foram feito o *commit*, usar:
     - `git reset --soft HEAD~1`, voltam as mudaças do último *commit* para *staged*.
+
+## SSH
+- Para conectar com repositórios remotos usando o ssh, são necessários alguns passos.
+- Github:
+    - Linux
+        - Checar se existe uma chave SSH presente. No terminal digitar: `ls -al ~/.ssh`.
+        - Se alguns do arquivos estiver presente, *id_rsa.pub*, *id_ecdsa.pub* ou *id_ed25519.pub*, já existe uma chave SSH.
+        - Se o passo anterior falhar ou não existir os arquivos, gerar uma nova chave SSH:
+            - Usar o comando `ssh-keygen -t ed25519 -C "your_email@example.com`.
+            - Em seguida, iniciar o ssh-agent em segundo plano `eval "$(ssh-agent -s)"`.
+            - Adicionar a chave SSH no ssh-agent `ssh-add ~/.ssh/id_ed25519`.
+        - Para adicionar uma chave SSH existente ou uma nova:
+            - Copiar o conteúdo da chave SSH mostrado com o comando `cat ~/.ssh/id_ed25519.pub`.
+            - No site do github, abrir configurações > SSH GPG > nova > adicionar título e chave e salvar.
+        - Testar conexão com o github, usar o comando `ssh -T git@github.com`.
