@@ -57,6 +57,57 @@ fn main() {
 }
 ```
 - *Cargo.toml* é o arquivo que contém metadados do seu projeto rust, assim como suas dependências.
+- Documentação em **Rust** é gerado com *///* e a descrição. Para gerar a documentação, usar o comando `cargo doc`ou `cargo doc --open`para visualizar
+- Exitem alguns formatos de retorno no **Rust** que ajudam a representar dados.
+    - *Option*, usado quando pode existir ou não o dado retornado.
+        - Pode ser usado *match* para verificar qual foi o retorno.
+        -Ex:
+        ```rust
+        enum Option<T> {
+            None,
+            Some(T),
+        }
+        ```        
+    - *Result* usado para retornar dados ou erros esperados que possam ser tratados.
+        - Ex:
+        ```rust
+        enum Result<T, E> {
+            Ok(T),
+            Err(E),
+        }
+        ```
+- Existe o operador *?* no **Rust**, ele é utilizado para retornar dados dos tipos *Result* e *Option* de forma simplificada.
+    - Ex:
+        ```rust
+        #[derive(Debug)]
+        enum Direction {
+            Up,
+            Down,
+        }
+
+        fn get_direction(value: &str) -> Result<Direction, String> {
+            match value {
+                "up" => Ok(Direction::Up),
+                "down" => Ok(Direction::Down),
+                _ => Err("direction invalid!".to_owned()),
+            }
+        }
+
+        fn print_direction(dir: &Direction) {
+            println!("picked direction {:?}", dir);
+        }
+
+        fn pick_direction(input: &str) -> Result<(), String> {
+            let dir = get_direction(input)?;//? operator, if Err it will return from this line, if Ok the code will continue
+            print_direction(&dir);
+            Ok(())//return statement wihtou return and ;
+        }
+
+        fn main() {
+            let dir = pick_direction("up");
+            println!("{:?}", dir);
+        }
+        ```
 
 ## Variáveis
 - Em **Rust** criação de variáveis e constantes são possíveis usando *let* ou *const*.
