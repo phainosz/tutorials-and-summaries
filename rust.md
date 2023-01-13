@@ -453,6 +453,23 @@ fn main() {
 ## Modulos
 - **Rust** disponibiliza um sistema de *módulos* que separam o código de forma lógica e gerenciam a visibilidade de forma hierarquica.
 - *Módulos* podem ser *públicos* ou *privados*, privado como valor padrão, para alterar, usar *pub* em frente para torná-lo público.
+- *Módulos* podem ser internos e externos.
+- Por padrão, a acessibilidade em **Rust** é dada como private, para tornar público, precisa especificar com *pub*.
+- Exemplo *módulo* interno:
+```rust
+mod math {
+    //the function is private without pub modifier
+    pub fn sum(a: i32, b: i32) -> i32{
+        a + b
+    }
+}
+
+fn main() {
+    let sum_result = math::sum(1,2);
+    println!("result of the sum {:?}", sum_result);
+}
+```
+
 
 ## Gerenciamento de Memória
 - **Rust** não possui um *garbage collector*.
