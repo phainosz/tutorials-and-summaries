@@ -177,6 +177,19 @@ fn main() {
     my_function();
 }
 ```
+- Funções anônimas ou *closures* são funções sem nome que podem ser usadas como argumentos de outras funções ou como execução de função invocada.
+- Ex:
+```rust
+fn main() {
+    let add = |a: i32, b: i32| -> i32 {
+        a + b
+    };
+    //or
+    let add = |a, b| a + b;
+    let sum = add(1, 1);
+    println!("{sum}");
+}
+```
 
 ## Loops
 - Usados para fazer iterações.
