@@ -34,9 +34,17 @@
     - *Better TOML*
 
 ## Comandos Rust
-- `cargo init <NAME_PROJETO>` ou `cargo new <NAME_PROJETO>` para criar um projeto.
+- `cargo init` cria um novo projeto em uma pasta existente.
+- `cargo new <NAME_PROJETO>` cria projeto com o nome informado.
 - `cargo run` para rodar um projeto.
 - `rustc --version` para verificar versão do **Rust** instalada.
+- `rustc <FILE>.rs`para fazer o build de um arquivo **Rust*.
+- `cargo check` verifica se o código irá compilar sem gerar um executável.
+_ `cargo build` para fazer o build de um projeto criado com o cargo.
+    - Podendo usar a flag *release*, `cargo build --release`, que fará otimizações para o código rodar melhor.
+- `cargo test` irá rodar os testes criados.
+- `cargo clean` remove os artefatos gerados no *build*.
+- `cargo tree` traz a lista completa de depências do projeto.
 
 ## Conceitos Gerais
 - Gerenciador de pacotes do **Rust** é o **cargo**.
@@ -108,6 +116,9 @@ fn main() {
             println!("{:?}", dir);
         }
         ```
+- *Crates* em **Rust** são como libs externas que são adicionados e utilizadas nos projetos.
+    - Usando *cargo*, elas ficam no arquivo em *Cargo.toml*.
+    - [crates.io](https://crates.io/) é o site oficial do **Rust** para crates.
 
 ## Variáveis
 - Em **Rust** criação de variáveis e constantes são possíveis usando *let* ou *const*.
