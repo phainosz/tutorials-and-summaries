@@ -15,6 +15,7 @@
 - [Enum](#enum)
 - [Macros](#macros)
 - [Atributos](#atributos)
+- [Packages e Crates](#packages-e-crates)
 - [Módulos](#modulos)
 - [Gerenciamento de Memória](#gerenciamento-de-memória)
 
@@ -460,6 +461,14 @@ fn main() {
     let some_vec = vec!["I", "am", "just", "a", "vec"];
 }
 ```
+
+## Packages e Crates
+- *Crates* é a menor parte do código em **Rust**, quando compilado um arquivo *.rs*, o compilador considera este arquivo como um *crate*.
+- *Crates* podem ser criado de duas formas: *binário* ou *biblioteca*.
+    - *Binário* são programas compilados para executáveis e devem possuir uma função *main*.
+    - *Biblioteca* não possuem função *main* e não compilam para executáveis; São usados como funcionaldiades para serem compartilhadas com outros projetos.
+- *Package* é um agrupamento de um ou mais *crates*.
+- *Package* contém um arquivo `Cargo.toml` que descreve como fazer o build dos *crates*.
 
 ## Modulos
 - **Rust** disponibiliza um sistema de *módulos* que separam o código de forma lógica e gerenciam a visibilidade de forma hierarquica.
