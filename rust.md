@@ -17,6 +17,7 @@
 - [Atributos](#atributos)
 - [Packages e Crates](#packages-e-crates)
 - [Módulos](#modulos)
+- [Traits](#traits)
 - [Gerenciamento de Memória](#gerenciamento-de-memória)
 
 ## Instalação
@@ -490,6 +491,52 @@ fn main() {
 }
 ```
 
+## Traits
+- *Traits* servem para definir funcionalidades para certos tipos em **Rust**.
+- Ex:
+```rust
+trait Printer {
+    fn print(&self);
+}
+
+struct Console;
+
+impl Printer for Console {
+    fn print(&self) {
+        println!("printing with console");
+    }
+}
+
+fn print(printer: impl Printer) {
+    printer.print();
+}
+
+fn main() {
+    print(Console{});
+    //or
+    let console = Console{};
+    console.print();
+}
+```
+- Podemos ter um comportamento padrão em alguns casos com *trait*.
+- O padrão pode ou não ser sobreescrito, vai ser utilizado de acordo com o código escrito.
+- Ex:
+```rust
+trait Printer {
+    fn print(&self) {
+        println!("default printing");
+    }
+}
+
+struct Console;
+
+impl Printer for Console {}
+
+fn main() {
+    let console = Console{};
+    console.print();
+}
+```
 
 ## Gerenciamento de Memória
 - **Rust** não possui um *garbage collector*.
