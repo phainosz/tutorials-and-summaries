@@ -18,6 +18,7 @@
 - [Packages e Crates](#packages-e-crates)
 - [Módulos](#modulos)
 - [Traits](#traits)
+- [Lifetime](#lifetime)
 - [Gerenciamento de Memória](#gerenciamento-de-memória)
 
 ## Instalação
@@ -156,7 +157,7 @@ fn multiply(x: f32, y: u16) {
 
 ## Strings
 - Em **Rust** exitem alguns tipos de *strings*, sendo a mais comuns **String** e **&str**.
-- **String** é um valor é *owned*, enquanto o **&str** é *borrowed*.
+- **String** o valor é *owned*, enquanto o **&str** é *borrowed*.
 - Ex:
 ```rust
 fn print(data: &str) {
@@ -535,6 +536,60 @@ impl Printer for Console {}
 fn main() {
     let console = Console{};
     console.print();
+}
+```
+
+## Lifetime
+- É algo semelhante a *generics*.
+- Servem para garantir o que a referência de um tipo é válida no tempo que é necessário.
+- Toda referência em **Rust** tem um *lifetime* válido de forma implicita.
+- As anotações para *lifetime* possuem uma sintaxe simples que é possível identificar ao encontrar **'** e geralmente uma letra na sequência, `&'a ...`.
+- Ex 1:
+```rust
+fn main() {
+    let my_string = get_string();
+    println!("{}", my_string);
+}
+
+//expected lifetime in return parameter
+//consider using fn get_string() -> &'static str
+fn get_string() -> &str {//missing lifetime specifier, this function's return type contains a borrowed value, but there is no value for it to be borrowed from
+    "string"
+}//at the end of this function, the value "string" will be dealocated
+```
+- Ex 2 com a correção do exemplo 1:
+```rust
+fn main() {
+    let my_string = get_string();
+    println!("{}", my_string);
+}
+
+fn get_string<'a>() -> &'a str {
+    "string"
+}
+```
+- Ex 3 usando *static* *lifetime*:
+```rust
+fn main() {
+    let my_string = get_string();
+    println!("{}", my_string);
+}
+
+fn get_string() -> &'static str {
+    "string"
+}
+```
+- *static lifetime* é um tipo especial de *lifetime* que dura por todo o tempo que a aplicação durar.
+- Quando temos mais de um parâmetro, podemos ter mais de um *lifetime* e especificar cada um em seus parametros e no retorno.
+- Ex:
+```rust
+fn main() {
+    let my_string = get_string("first", "second");
+    println!("{}", my_string);
+}
+
+fn get_string<'a, 'b>(x: &'a str, y: &'b str) -> &'a str {
+    x
 }
 ```
 
