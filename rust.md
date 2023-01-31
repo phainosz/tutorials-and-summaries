@@ -441,6 +441,13 @@ fn main() {
 ## Macros
 - *macros* são similares a funções, porém eles expandem para execuções de códigos além da função.
 - Para identificar que uma função é um *macro*, ao final da função terá uma *!*, `println!(...)`.
+- Exemplo de *macros*:
+    - `dbg!(...)` usado para inspecionar códigos durante desenvolvimento.
+    - `format!(...)` faz interpeloação de strings. Usado de forma similar ao `println!(...)` porém retorna o valor como string.
+    - `incluse_str!(...)` insere dados de um arquivo para o código. O arquivo usa o src como diretório de partida.
+    - `env!(...)` configura uma variável de ambiente para o código.
+    - `todo!(...)` código que falta ser finalizado.
+    - `unreachable!(...)` indica que um ponto do código não deverá ser executado.
 
 ## Atributos
 - *Atributos* em **Rust** são pequenos pedaços de código que fornecem informações para o compilador.
