@@ -33,6 +33,17 @@
         - Para atulizar a versão do **rustup**, usar o comando `rustup self update`.
 - Usando VSCode, instalar as extensões:
     - *rust-analyzer*
+        - Dica: usar configurações do vscode para o projeto.
+        - Criar um arquivo *json*, usar `Ctrl + Shift + p` e buscar por *Workspace Setting (json)* do vscode.
+        - Adicionar no arquivo *settings.json* a seguinte configuração:
+        ```json
+        {
+            "[rust]": {
+                "editor.formatOnSave": true,
+                "editor.defaultFormatter": "rust-lang.rust-analyzer"
+            },
+        }
+        ```
     - *crates*
     - *Better TOML*
 
@@ -122,6 +133,9 @@ fn main() {
 - *Crates* em **Rust** são como libs externas que são adicionados e utilizadas nos projetos.
     - Usando *cargo*, elas ficam no arquivo em *Cargo.toml*.
     - [crates.io](https://crates.io/) é o site oficial do **Rust** para crates.
+- Usar **Clippy** como ferramenta de *lint* para os projetos **Rust**.
+    - Para adicionar *clippy* usar o comando: `rustup component add clippy`.
+    - Verificar o projeto com `cargo clippy`, similar ao `cargo check`.
 
 ## Variáveis
 - Em **Rust** criação de variáveis e constantes são possíveis usando *let* ou *const*.
@@ -256,7 +270,7 @@ struct Book {
 
 impl Book {
     fn new() -> Self {
-        //Self is the sabe as Book or in other cases the type that is implementing
+        //Self is the same as Book or in other cases the type that is implementing
         Self {
             pages: 100,
             rating: 8,
