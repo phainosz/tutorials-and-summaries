@@ -559,6 +559,35 @@ fn main() {
     console.print();
 }
 ```
+- *Traits* podem ser usadas como parâmetro de *funções*.
+- Ex:
+```rust
+struct Person {
+    name: String,
+}
+
+trait Printer {
+    fn print(&self);
+}
+
+impl Printer for Person {
+    fn print(&self) {
+        println!("Hello {}", self.name);
+    }
+}
+
+//print using Printer trait
+//if more traits is necessary to use here, the function can be like this: 
+//fn print_anything<T: Printer + AnotherTrait>(printer: &T)
+fn print_anything<T: Printer>(printer: &T) {
+    printer.print();
+}
+
+fn main() {
+    let person = Person{name: "Jhon".to_owned(),};
+    print_anything(&person);
+}
+```
 
 ## Lifetime
 - É algo semelhante a *generics*.
