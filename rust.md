@@ -25,13 +25,34 @@
 - [Site oficial](https://www.rust-lang.org/tools/install)
 - [Rust playground](https://play.rust-lang.org/)
 - Windows
-    - Necessário a instalação do Microsoft C++ Build Tools ou Visual Studio.
+    - Para o windows é necessário a instalação de algumas ferramentas de compilação.
+        - Instalação usando Microsoft C++ Build Tools com Visual Studio.
+        - Instalação usando [msys2](https://www.msys2.org/).
+            - Baixar e instalar o **msys2**.
+            - Executar os comanados:
+                - `pacman -S mingw-w64-x86_64-toolchain` para adicionar o *cc linker*.
+                - `pacman -S base-devel` para adicioanr *base-devel*.
+            - Após finalizar a etapa do **msys2**, instalar o rust:
+                - Executar o instalador e selecionar a opção 2.
+                - Selecionar yes.
+                - Selecionar opção 2, para instalação customizada.
+                    - Informar o campo *Default host tiple?*
+                        - `x86_64-pc-windows-gnu`
+            - Após instalação do **rust**:
+                - Localizar o arquivo *.cargo* em "C:\\Users\\<USER>\\.cargo"
+                - Criar um arquivo com o nome de *config*
+                - Adicionar como conteúdo e salvar:
+                ```
+                [target.x86_64-pc-windows-gnu]
+                linker = "C:\\msys2\\mingw64\\bin\\gcc.exe"
+                ar = "C:\\msys2\\mingw64\\bin\\ar.exe"
+                ```
 - Linux
     - Instalar **rustup** seguindo os passos indicados no site oficial.
         - **rustup** faz a instalação e gerenciamento da linguagem **rust**.
         - Para atulizar a versão do **rust**, usar o comando `rustup update`.
         - Para atulizar a versão do **rustup**, usar o comando `rustup self update`.
-- Usando VSCode, instalar as extensões:
+- Para o VSCode, instalar as extensões:
     - *rust-analyzer*
         - Dica: usar configurações do vscode para o projeto.
         - Criar um arquivo *json*, usar `Ctrl + Shift + p` e buscar por *Workspace Setting (json)* do vscode.
