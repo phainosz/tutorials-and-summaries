@@ -95,6 +95,18 @@
         - `-f` para forçar a limpeza.
         - `-n` para mostrar o que será removido, mas não faz a remoção, podendo ser usado para ver previamente os arquivos a serem removidos.
 
+## Tag
+- Tags são marcações a serem usadas para identificar um ponto específico do seu software.
+- `git tag` é o comando para listar todas as *tags* do seu repositório.
+- `git tag -n` lista todas as tags com o nome e descrição da *tag*.
+- `git tag <NAME>` para criar uma nova *tag* com o nome informado.
+- `git tag -a <NAME>` para criar uma nova *tag* com informações de data, e do usuário que criou a tag.
+- `git tag <NAME> -m "<DESCRIPTION>"` para criar uma *tag* com uma descrição.
+- Tags assim como as branchs, precisam ser enviadas para o repositório remoto.
+    - Usar `git push origin <NAME_TAG>` para enviar a tag local para o remoto.
+    - Usar `git push origin --tags` para enviar todas as tags local para o remoto.
+- Para remover uma tag local, usar `git tag -d <NAME> `.
+
 ## SSH
 - Para conectar com repositórios remotos usando o ssh, são necessários alguns passos.
 - Github:
