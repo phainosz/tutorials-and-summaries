@@ -45,9 +45,11 @@
     - NOME_REMOTE indica o nome do repositório remote, podendo ser encontrado através de `git remote -v`.
     - NOME seria o nome da branch remota.
 - Deletar branch local `git branch -D <NAME>`.
+- Deletar mais de uma branch com filtro para manter branchs `git branch | grep -v "<NAME_BRANCH_TO_KEEP> | grep -v "<NAME_BRANCH_TO_KEEP> | xargs git branch -D`.
 - Deletar branch remota `git branch <NAME_REMOTE> --delete <NAME>`.
 - Alterar o nome da branch local. mudar para a branch que quer mudar e fazer `git branch -m <NEW_NAME>`.
 - Alterar o nome da branch remota `git push <NAME_REMOTE> <OLD_BRANCH> <NEW_BRANCH>`.
+- Comparar duas branch usando `git diff <BRANCH_1>..<BRANCH_2>`.
 
 ## Remote
 - Para verificar os repositórios remotos mapeados `git remote -v`.
@@ -86,6 +88,12 @@
         - Com isso, as mudanças saem de *staged* e voltam para *modified*.
 - Para remover mudanças que foram feito o *commit*, usar:
     - `git reset --soft HEAD~1`, voltam as mudaças do último *commit* para *staged*.
+- Para remover arquivos novos que foram criado, usar:
+    - `git clean`, remove novos arquivos que não serão mais usados.
+    - Podendo usar as flags:
+        - `-d` para remover de forma recursiva nas pastas e subpastas.
+        - `-f` para forçar a limpeza.
+        - `-n` para mostrar o que será removido, mas não faz a remoção, podendo ser usado para ver previamente os arquivos a serem removidos.
 
 ## SSH
 - Para conectar com repositórios remotos usando o ssh, são necessários alguns passos.
