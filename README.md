@@ -6,3 +6,4 @@
 - [Markdown](markdown.md)
 - [Kubernetes](kubernetes.md)
 - [Rust](rust.md)
+- [Vim](neovim.md)
