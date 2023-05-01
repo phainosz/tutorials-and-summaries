@@ -508,22 +508,23 @@ fn main() {
 
 ## Packages e Crates
 - *Crates* é a menor parte do código em **Rust**, quando compilado um arquivo *.rs*, o compilador considera este arquivo como um *crate*.
-- *Crates* podem ser criado de duas formas: *binário* ou *biblioteca*.
-    - *Binário* são programas compilados para executáveis e devem possuir uma função *main*.
-    - *Biblioteca* não possuem função *main* e não compilam para executáveis; São usados como funcionaldiades para serem compartilhadas com outros projetos.
+- *Crates* podem ser criado de duas formas: *binário* ou *biblioteca*:
+    - *Binário* são programas que podem ser compilados e rodados, devem possuir uma função *main* que define o que será executado.
+    - Um pacote pode ter múltiplas *crates* do tipo *binário* dentro de *src/bin*.
+- *Biblioteca* não possuem função *main* e não compilam para executáveis. São usados como funcionaldiades para serem compartilhadas com outros projetos.
 - *Package* é um agrupamento de um ou mais *crates*.
 - *Package* contém um arquivo `Cargo.toml` que descreve como fazer o build dos *crates*.
 
 ## Modulos
 - **Rust** disponibiliza um sistema de *módulos* que separam o código de forma lógica e gerenciam a visibilidade de forma hierarquica.
-- *Módulos* podem ser *públicos* ou *privados*, privado como valor padrão, para alterar, usar *pub* em frente para torná-lo público.
-- *Módulos* podem ser internos e externos.
+- *Módulos* podem ser *públicos* ou *privados*.
 - Por padrão, a acessibilidade em **Rust** é dada como private, para tornar público, precisa especificar com *pub*.
+- *Módulos* podem ser internos e externos.
 - Exemplo *módulo* interno:
 ```rust
 mod math {
     //the function is private without pub modifier
-    pub fn sum(a: i32, b: i32) -> i32{
+    pub fn sum(a: i32, b: i32) -> i32 {
         a + b
     }
 }
@@ -533,6 +534,36 @@ fn main() {
     println!("result of the sum {:?}", sum_result);
 }
 ```
+- Exemplo *módulo* externo:
+- Arquivo `main.rs`
+```rust
+mod math;
+
+fn main() {
+    let sum_result = math::add(1, 2);
+    println!("result is {:?}", sum_result);
+}
+```
+- Arquivo `math.rs`
+```rust
+pub fn add(first:i32, second:i32) -> i32 {
+  first + second
+}
+```
+- Se um *módulo* tiver outros *módulos* dentro, o formato fica um pouco diferente:
+
+```
+|---main.rs
+|---math.rs
+|---math
+|    |---add.rs
+```
+
+- No arquivo `main.rs` teríamos a declaração do *módulo* `mod math;`
+- No arquivo `math.rs` teríamos a declaração do *módulo* `mod add;`
+- Na pasta `math.rs` teríamos os *módulos* que estão dentro do *módulo* **math**.
+- Cada arquivo dentro da pasta **math** seria um *módulo* e precisaria ser declarado em `math.rs`
+
 
 ## Traits
 - *Traits* servem para definir funcionalidades para certos tipos em **Rust**.
