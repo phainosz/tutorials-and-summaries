@@ -57,6 +57,8 @@
   - Pressionar enter.
   - `n` para mover para a próxima ocorrência.
   - `N` para voltar para ocorrência anterior.
+- `x` deleta a letra em que o cursor está.
+- `X` deleta a letra anterior em que o cursor está.
 
 ### Insert Mode
 - `esc` para sair do mode e ir para *Normal mode*.
