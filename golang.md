@@ -23,6 +23,7 @@
 - [Modulos](#modulos)
 - [Workspaces](#workspaces)
 - [Erros](#erros)
+- [Generics](#generics)
 
 ## Instalação
 - [Golang](https://go.dev/doc/install)
@@ -31,7 +32,7 @@
             - `sudo rm -rf /usr/local/go && tar -C /usr/local -xzf ZIP_FILE_GO.tar.gz`
         - Testar com `go version` ou `go env`
         - Talvez precise adicionar o caminho do bin para variaveis de ambientes
-            - `gegit .profile`
+            - `nano .profile`
             - Adicionar no final `export PATH=$PATH:/usr/local/go/bin`
             - Rodar o comando para atualiar as variáveis `source .profile`
 - [Go playground](https://go.dev/play/), usar o go via web.
@@ -57,7 +58,7 @@
 
 ### Geral
 - Tipos
-    - Números Inteiros, ex: int, int8, int16, int32, int64, uint, rune, byte
+    - Números Inteiros, ex: int, int8, int16, int32, int64, uint, rune, byte(alias uint8)
     - Números decimais, ex: float32, float64
     - Texto, ex: string
     - Booleanos, ex: bool
@@ -794,3 +795,60 @@ func Divide(a, b int) (int, error) {
 }
 ```
 - Existe dentro de Go, **panic** e **recover** que são interfaces internas similares ao **try catch** conhecido em outras linguagens.
+
+### Generics
+- Generics possibilitam o uso de chamadas sem tipagem.
+- Ex sem generics:
+    ```go
+        package main
+
+        import "fmt"
+
+        func main() {
+            fmt.Println(sumInt(1, 1))
+            fmt.Println(sumFloat(1.1, 1.1))
+        }
+
+        func sumInt(a int32, b int32) int32 {
+            return a + b
+        }
+
+        func sumFloat(a float32, b float32) float32 {
+            return a + b
+        }
+    ```
+- Ex generics:
+    ```go
+        package main
+
+        import "fmt"
+
+        func main() {
+            fmt.Println(sum[int32](1, 1))//inferind type when called
+            fmt.Println(sum(1.1, 1.1))//let compiler infer the type
+        }
+
+        func sum[T int32 | float64](a T, b T) T {
+            return a + b
+        }
+    ```
+- Ex generics com constraint:
+    ```go
+        package main
+
+        import "fmt"
+
+        type number interface {
+            int | int32 | float32 | float64 | uint | uint8 //and so on
+        }
+
+        func main() {
+            fmt.Println(sum(1, 1))
+            fmt.Println(sum(1.1, 1.1))
+        }
+
+        func sum[T number](a T, b T) T {
+            return a + b
+        }
+    ```
+    - Podendo também fazer o uso de `"golang.org/x/exp/constraints"`. Contém constraints prontas para uso de generics.
