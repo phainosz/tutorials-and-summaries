@@ -63,7 +63,7 @@
 ### Insert Mode
 - `esc` para sair do mode e ir para *Normal mode*.
 
-## Visual Mode
+### Visual Mode
 - `d` para deletar o que foi selecionado.
 - `y` copia o que foi selecionado, termo usado é chamado de *yanking*.
   - `p` para colar o que foi copiado no final o que foi copiado usanod `v`.
