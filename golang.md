@@ -17,7 +17,7 @@
 - [Ponteiros](#ponteiros)
 - [Interfaces](#interfaces)
 - [Goroutines](#goroutines)
-- [Channels](#canais-channel)
+- [Channels](#channels)
 - [Testes](#testes)
 - [Packages](#packages)
 - [Modulos](#modulos)
@@ -43,14 +43,14 @@
 - `go run` para rodar o projeto.
     - `go run` FILE_NAME - para apenas um package.
     - `go run *.go` quando existir mais de um package main.
-- `go fmt` formata o código do projeto.
+- `gofmt` formata o código do projeto.
 - `go vet` informa erros de código.
 - `go doc` serve para verificar doc de pacotes e funções go.
     - `go doc fmt` mostra informações do pacote fmt.
     - `go doc -src fmt Println` mostra informações do arquivo fonte da função Println do pacote fmt.
 
 ### Primeiros passos
-- Criar o arquivo main.go
+- Criar o arquivo `main.go`
 - Criar o módulo para a aplicação: `go mod init MODULE_NAME`
 - Adicionar o pacote: `package main`
 - Criar a função principal: `func main()`
@@ -58,35 +58,44 @@
 
 ### Geral
 - Tipos
-    - Números Inteiros, ex: int, int8, int16, int32, int64, uint, rune, byte(alias uint8)
-    - Números decimais, ex: float32, float64
-    - Texto, ex: string
-    - Booleanos, ex: bool
-- Operador curto (gopher)
+    - Números Inteiros, ex: `int, int8, int16, int32, int64, uint, rune, byte(alias uint8)`
+    - Números decimais, ex: `float32, float64`
+    - Texto, ex: `string`
+    - Booleanos, ex: `bool`
+- Operador curto (*gopher*)
     - Usado para atribuir valor e tipo para variáveis, ex:
         ```go
             name := "A randon name"
         ```
     - Só funciona dentro de codeblocks
     - Apenas para variáveis novas
-- Json marshal e unmarshal, necessita do uppercase para funcionar.
-- Tags nos atributos do struct servem para mudar o nome dos atributos.
+- Tags nos atributos do struct servem para mudar o nome dos atributos. Ex:
+    ```go
+        type user struct {
+            Id       int    `json:"id"`
+            Name     string `json:"name"`
+            Username string `json:"username"`
+            Phone    string `json:"phone"`
+        }
+    ```
 - Go tem suporte a declaração simplificada, semelhante ao usado no loop for, onde a variável é criada no bloco e usada apenas no escopo deste bloco, ex:
-```go
-switch day := "monday"; day {
-    case "monday":
-        fmt.Println("today is monday!")
-    case "friday":
-        fmt.Println("today is friday!")
-    default:
-        fmt.Println("day not found!")
-    }
-```
+    ```go
+        switch day := "monday"; day {
+            case "monday":
+                fmt.Println("today is monday!")
+            case "friday":
+                fmt.Println("today is friday!")
+            default:
+                fmt.Println("day not found!")
+            }
+    ```
 - Usar `go env -w` adicionar/alterar variáveis do go, ex: `go env -w GO111MODULE=on`. Para remover usar `go env -u GO111MODULE`.
 - Ao trabalhar com repositórios que contenham dependências que estão de forma insegura (casos onde o servidor não possuí certificados ou não faz o uso de https), go fornece uma forma de adicionar hosts que queremos utilizar no nosso código.
     - *GOINSECURE* é definido como uma lista de hosts separados por vírgula, adicionar como variável de sistema.
+    - Ex: `go env -w GOINSECURE=github.com,golang.org` habilita download de pacotes inseguros dos hosts informados.
 - Para adicionar repositórios privados como dependências em projetos go, é possível adicionar como lista os repositórios e as credencias(se necessário).
     - Usar *GOPRIVATE* e adicionar a lista de hosts e credências(se necessário) como variável do sistema.
+    - Ex: `go env -w GOPRIVATE=github.com/company/*` habilita download de pacotes privados dos hosts informados.
 - Para fazer build, usar `go build`. Ao usar projetos **Go** com módulos, o nome do módulo será o nome do arquivo gerado após o build.
     - Usar `go build -o <NAME>` para mudar o nome do arquivo gerado no build.
 - Ao fazer o build de um projeto, podemos usar a arquitura do sistema atual ou especificar o sistema desejado.
@@ -113,349 +122,356 @@ switch day := "monday"; day {
 
 ### Formatação
 - Existem casos que queremos modificar o valor de uma string usando formatação. Uma das formas seria usando `fmt.Printf("Oi %s", nome)`
-- O **%s** é chamado de verbo de anotação e exitems outros com propósitos diferentes, para saber mais [clique aqui](https://pkg.go.dev/fmt)
+- O **%s** é chamado de verbo de anotação e existem outros com propósitos diferentes.
+    - `%v` valor no formato padrão.
+    - `%t` para booleano, *true* ou *false*.
+    - `%f` valor decimal.
+    - `%s` para strings.
+    - `%p` endereço de memória do tipo. Adendo: ao usar em *slice* pega o endereço de memória do primeiro elemento do slice.
+        ```go
+            sliceExample := []int{1,2,3}
+            fmt.Printf("first element address: %p", sliceExample)//memory address of 0th element (1)
+            fmt.Printf("slice adress: %p", &sliceExample)//memory address of slice
+        ```
+    - [clique aqui](https://pkg.go.dev/fmt) para saber mais.
 
 ### Variáveis
-- var, const
-- tipos int, int8, uint, string, float ...
-- Inferência usando := ex: `name := "Paulo`
-- Operações em tipos numéricos devem ser do mesmo tipo
+- `var` e `const`
+- Inferência usando **:=** ex: `name := "Foo`
+- Operações em tipos numéricos devem ser do mesmo tipo.
 
 ### Condições IFs e Switch
-- Seguem o mesmo formato, apenas muda o fato de usar () após o if, ex:
-```go
-if someVariable {
+- Seguem o formato a seguir, ex:
+    ```go
+        if someVariable {
 
-} else {
+        } else {
 
-}
-```
+        }
+    ```
 - Podendo usar o if compacto, onde declara a variavel e à atesta, sendo acessível apenas dentro do escopo, ex:
-```go
-if number := 10; number > 5 {
-    fmt.Println("Maior que 5")
-}
-```
+    ```go
+        if number := 10; number > 5 {
+            fmt.Println("Maior que 5")
+        }
+    ```
 - Para o switch, mesma coisa, ex:
-```go
-switch someVariable {
-    case 1:
-        //do something
-    case 2, 3, 4:
-        //do something
-    default:
-        //do default
-}
-```
+    ```go
+        switch someVariable {
+            case 1:
+                //do something
+            case 2, 3, 4:
+                //do something
+            default:
+                //do default
+        }
+    ```
 - No switch, pode-se utilizar o fallthrough para pular para o próximo case. Será executado o case que satisfez a condição e o próximo na sequência, ex:
-```go
-switch someVariable {
-    case 1:
-        //do something
-        fallthrough
-    case 2, 3, 4:
-        //do something
-    default:
-        //do default
-}
-```
+    ```go
+        switch someVariable {
+            case 1:
+                //do something
+                fallthrough
+            case 2, 3, 4:
+                //do something
+            default:
+                //do default
+        }
+    ```
 - Pode-se utilizar expressões em troca da condicional do switch, ex:
-```go
-value := 5
-switch {
-    //switch without condition evaluate true cases
-    case (value == 5), (value > 3):
-        //do something
-    case value < 3:
-        //do something
-    default:
-        //do default
-}
-```
+    ```go
+        value := 5
+        switch {
+            //switch without condition evaluate true cases
+            case (value == 5), (value > 3):
+                //do something
+            case value < 3:
+                //do something
+            default:
+                //do default
+        }
+    ```
 
 ### Arrays
 - Sintaxe, `var array [n]T`, *n* é o tamanho e *T* é o tipo.
     - `var array = [50]string{}`, `var array [50]string` ou `var array [5]int = [5]int{1,2,3,4,5}`.
 - Para adicionar ou alterar, é da mesma forma convencional: `array[0] = "String"`.
 - Tamanho total do array ex: `len(array)`.
-- Arrays são 
 
 ### Slices
 - É uma abstração do array com tamanho dinâmico.
-- Slices são referências de valores, diferente de arrays que são tipos de valores. Isso implica que quando criamos um array e passamos como parametro de uma função, todos os elementos serão copiado, enquanto quando usamos slice, a função recebe a referência em memória do slice.
+- Slices são referências de valores, diferente de arrays que são tipos de valores. Isso implica que quando criamos um array e passamos como parametro de uma função, todos os elementos serão copiados, enquanto quando usamos slice, a função recebe a referência em memória do slice.
 - Criado igual o array mas sem o tamanho do array, ex: `var slice[]string` ou `var slice = []string{}`.
 - Para adicionar no próximo elemento do slice, é utilizado append, ex: `slice = append(slice, "Dado")`. Podendo ser passado n elementos como parametros, ex: `slice = append(slice, "Dado", "Dado2")`.
 - Para fazer o slice de um slice, usar os indices desejados, ex: 
-```go
-    slice := []int{1,2,3,4,5}
-    slice2 := slice[0:3]
-    //ira retornar: [1 2 3]
-```
+    ```go
+        slice := []int{1,2,3,4,5}
+        slice2 := slice[0:3]
+        //slice2: [1 2 3]
+    ```
 - O slice pode ser simplificado na passagem do indices, ex:
-```go
-    slice := []int{1,2,3,4,5}
-    slice2 := slice[:3]
-    //ira retornar: [1 2 3]
-```
+    ```go
+        slice := []int{1,2,3,4,5}
+        slice2 := slice[:3]
+        //slice2: [1 2 3]
+    ```
 - ou
-```go
-    slice := []int{1,2,3,4,5}
-    slice2 := slice[:]
-    //ira retornar: [1,2,3,4,5]
-```
-- Para remover itens de um splice, usar a função append() para criar um novo slice a partir dos indices, ex:
-```go
-    slice := []int{1,2,3,4,5}
-    slice2 := append(slice[:2], slice[3:]...) 
-    //... é usado pois o append espera elemento do mesmo tipo do slice, semelhante ao spread do javascript
-    //ira retornar: [1 2 4 5]
-```
+    ```go
+        slice := []int{1,2,3,4,5}
+        slice2 := slice[:]
+        //slice2: [1,2,3,4,5]
+    ```
+- Para remover itens de um slice, usar a função `append()` para criar um novo slice a partir dos indices, ex:
+    ```go
+        slice := []int{1,2,3,4,5}
+        slice2 := append(slice[:2], slice[3:]...)//slice[:2] (1,2), slice[3:] (4,5) -> get 1,2 and append with 4,5
+        //... the dots is used because append uses only elements of the same type, it's similar to javascript spread operator
+        //slice2: [1 2 4 5]
+    ```
 - O slice pode ser criado de outra forma, usando o make([]T, length, cap), ex: `slice := make([]int, 5, 10)`
     - []T é a declaração do tipo do array, ex: `[]int`
-    - length é o tamanho inicial do array
-    - cap é a capacidade máxima do array
+    - length é o tamanho inicial do array.
+    - cap é a capacidade máxima do array.
 - Tomar cuidado com o array subjacente.
 ### Maps
 - É uma collection de chave valor.
 - Criado usando chave e valor tipados, ex: `var mymap map[string]string` ou um map vazio `var mymap = make(map[string]string)`.
-- Para adicionar no map, é utilizado append, ex: `mymap["key"] = value`.
+- Para adicionar no map, ex: `mymap["key"] = value`.
 - O range em maps seria o mesmo de arrays e slices, porém o indice se torna a key, ex:
-```go
-myMap := map[int]string{1: "Um", 2: "Dois"}
-for key, value := range myMap {
-    fmt.Println(key, value)
-}
-```
+    ```go
+        myMap := map[int]string{1: "Um", 2: "Dois"}
+        for key, value := range myMap {
+            fmt.Println(key, value)
+        }
+    ```
 - Para deletar elementos do map, usar delete usando a chave, ex:
-```go
-myMap := map[int]string{1: "Um", 2: "Dois", 3: "Tres"}
-delete(myMap, 2)
-for key, value := range myMap {
-    fmt.Println(key, value)
-}
-```
+    ```go
+        myMap := map[int]string{1: "Um", 2: "Dois", 3: "Tres"}
+        delete(myMap, 2)
+    ```
 
 ### Loops
-- Apenas for existe no Go, while, doWhile não existem.
+- Existe apenas *for* em **GO**, *while* e *doWhile* não existem.
 - O mesmo de C ou Java, ex: 
-```go
-sum := 0
-for i := 1; i < 5; i++ {
-    sum += i
-}
-```
+    ```go
+        sum := 0
+        for i := 1; i < 5; i++ {
+            sum += i
+        }
+    ```
 - Maneira que se assemelha ao while, ex: 
-```go
-n := 1
-for n < 5 {
-    n *= 2
-}
-```
+    ```go
+        n := 1
+        for n < 5 {
+            n *= 2
+        }
+    ```
 - Loop infinito, ex:
-```go
-sum := 0
-for {
-    sum++ 
-}
-```
+    ```go
+        sum := 0
+        for {
+            sum++ 
+        }
+    ```
 - ForEach range loop, ex:
-```go
-strings := []string{"hello", "world"}
-for index, element := range strings {
-    fmt.Println(index, element)
-}
-```
+    ```go
+        strings := []string{"hello", "world"}
+        for index, element := range strings {
+            fmt.Println(index, element)
+        }
+    ```
 - Em casos onde o index do ForEach não é necessário, pode utilizar _ para ignorar o indice, ex:
-```go
-strings := []string{"hello", "world"}
-for _, element := range strings {
-    fmt.Println(element)
-}
-```
+    ```go
+        strings := []string{"hello", "world"}
+        for _, element := range strings {
+            fmt.Println(element)
+        }
+    ```
 
 ### Structs
 - Funciona de forma semelhante do C.
 - Usado como forma de definir multiplos tipos de dados.
 - Alternativa para classes em Go.
-- Os campos da struct seguem o padrão de nomenclatura para export de dados, pascal case para usar fora do pacote.
-- Ex: 
-```go
-type UserData struct {
-	firstName       string
-	lastName        string
-	email           string
-	numberOfTickets uint
-}
-```
+- Os campos da struct seguem o padrão de nomenclatura para export de dados, pascal case para usar fora do pacote:
+    ```go
+        type UserData struct {
+            firstName       string
+            lastName        string
+            email           string
+            numberOfTickets uint
+        }
+    ```
 - Como adicionar valores para struct. Primeiro segue como o nome do campo da struct, segundo como o valor, ex:
-```go
-var userData = UserData {
-		firstName:       firstName,
-		lastName:        lastName,
-		email:           email,
-		numberOfTickets: userTickets,
-	}
-```
-- Ou de forma simplificada
-```go
-var userData = UserData {
-		firstName,
-		lastName,
-		email,
-		userTickets,
-	}
-```
-- Ou adicionar apenas no campo como se fosse um set.
-```go
-var userData = UserData{}
-	userData.email = "email"
-	userData.firstName = "Name"
-```
-- Structs anônimos são structs que são criados apenas em código, sem poderem ser utilizados em outros trechos de código, ex:
-```go
-func main() {
-    anonymouStruct := struct {
-		name string
-		age  int
-	}{
-		name: "Test",
-		age:  10,
-	}
-}
-```
+    ```go
+        var userData = UserData {
+                firstName:       firstName,
+                lastName:        lastName,
+                email:           email,
+                numberOfTickets: userTickets,
+            }
+    ```
+- Ou de forma simplificada quando o nome do campo é o mesmo do nome da variável:
+    ```go
+        var userData = UserData {
+                firstName,
+                lastName,
+                email,
+                userTickets,
+            }
+    ```
+- Ou adicionar apenas no campo como se fosse um set:
+    ```go
+        var userData = UserData{}
+        userData.email = "email"
+        userData.firstName = "Name"
+    ```
+- Structs anônimos são structs que são criados apenas no escopo do código, mudando de escopos já não são mais utilizáveis:
+    ```go
+        func main() {
+            anonymouStruct := struct {
+                name string
+                age  int
+            }{
+                name: "Test",
+                age:  10,
+            }
+        }
+    ```
 - Go não suporta herança da forma que conhecemos, porém tem uma forma similiar para criar structs.
-```go
-type Person struct {
-    Name string
-    Age  int
-}
+    ```go
+        type Person struct {
+            Name string
+            Age  int
+        }
 
-type Worker struct {
-    Job string
-    Person
-}
+        type Worker struct {
+            Job string
+            Person
+        }
 
-func main() {
-    worker := Worker{}
+        func main() {
+            worker := Worker{}
 
-    worker.Name = "Jon"
-    worker.Age = 20
-    worker.Job = "Developer"
-}
-```
+            worker.Name = "Jon"
+            worker.Age = 20
+            worker.Job = "Developer"
+        }
+    ```
 - No exemplo acima, a struct contém um campo sem mencionar o tipo, fazendo com que os campos sejam os mesmos da struct original.
 - Em Go podemos fazer o uso de composição, ex:
-```go
-type Person struct {
-    Name string
-    Age  int
-}
+    ```go
+        type Person struct {
+            Name string
+            Age  int
+        }
 
-type Worker struct {
-    Job string
-    Person Person
-}
+        type Worker struct {
+            Job string
+            Person Person
+        }
 
-func main() {
-    person := Person{"Jon", 20}
-    worker := Worker{"Developer", person}
-}
-```
+        func main() {
+            person := Person{"Jon", 20}
+            worker := Worker{"Developer", person}
+        }
+    ```
 
 ### Funções
-- A nomenclatura usada no Go é func.
+- A nomenclatura usada no Go é *func*.
+- Por padrão parâmetros em Go são *pass by value* o que signifa é que todo parâmetro de função é uma cópia.
+- Em casos que não queremos fazer uma cópia do parâmetro, são usados [ponteiros](#ponteiros)
 - Funções sem retorno, ex:
-```go
-func someFunction() {
-    //do something
-}
-```
+    ```go
+        func someFunction() {
+            //do something
+        }
+    ```
 - Funções com retorno, ex:
-```go
-func someFunction() string {
-    //do something
-    return someString
-}
-```
+    ```go
+        func someFunction() string {
+            //do something
+            return someString
+        }
+    ```
 - Funções com parametros, ex:
-```go
-func someFunction(param string) {
-    //do something
-}
-```
+    ```go
+        func someFunction(param string) {
+            //do something
+        }
+    ```
 - Ou com multiplos parametros, que tenham o mesmo tipo, pode ser simplificado.
-```go
-func someFunction(param string, param2 string) {
-    //do something
-}
-func someFunction2(param, param2 string) {
-    //do something
-}
-```
+    ```go
+        func someFunction(param string, param2 string) {
+            //do something
+        }
+        func someFunction2(param, param2 string) {
+            //do something
+        }
+    ```
 - No Golang, pode ser retornado múltiplos valores, ex:
-```go
-func someFunction() (string, int) {
-    //do something
-    return someString, someInt
-}
-```
+    ```go
+        func someFunction() (string, int) {
+            //do something
+            return someString, someInt
+        }
+    ```
 - Defer func serve para adiar algo, ele deixa a execução por último.
     - Multiplos defer, funcionam como uma pilha, LIFO.
 - Funções anônimas, usadas para serem chamadas apenas uma vez, sem necessidade de criação e nome.
     - Podendo ser criadas com invocação imediata ou invocação apenas quando chamada.
-```go
-func main() {
+    ```go
+        func main() {
 
-    x := 123
+            x := 123
 
-    func(x int) {
-        fmt.Println(x*2)
-    }(x)
+            func(x int) {
+                fmt.Println(x*2)
+            }(x)
 
-    y := func(x int) {
-        fmt.Println(x42)
-    }
-    
-    y(x)
-}
-```
+            y := func(x int) {
+                fmt.Println(x42)
+            }
+            
+            y(x)
+        }
+    ```
 
 ### Métodos
 - São funções especificas de um tipo. Podendo ser acessadas apenas por esse tipo, ex:
-```go
-type pessoa struct {
-	name string
-}
+    ```go
+        type person struct {
+            name string
+        }
 
-func (p pessoa) printName() {
-	fmt.Print(p.name)
-}
+        func (p person) printName() {
+            fmt.Print(p.name)
+        }
 
-func main() {
+        func main() {
 
-	pessoa := pessoa{"Test"}
+            person := person{"Test"}
 
-	pessoa.printName()
+            person.printName()
 
-}
-```
+        }
+    ```
 - Podemos usar métodos com a intenção de alterar o valor usando ponteiros, ex:
-```go
-type pessoa struct {
-	name string
-}
+    ```go
+        type person struct {
+            name string
+        }
 
-func (p *pessoa) changeName(name string) {
-	p.name = name
-}
+        func (p *person) changeName(name string) {
+            p.name = name
+        }
 
-func main() {
+        func main() {
 
-	pessoa := pessoa{"Test"}
+            person := person{"Foo"}
 
-	pessoa.changeName("novo teste")
-}
-```
+            person.changeName("Bar")
+        }
+    ```
 
 ### Ponteiros
 - São variáveis que apontam para um endereço de memória.
@@ -464,200 +480,204 @@ func main() {
     - **&** que faz a referência do endereço em memória de uma variável. Chamado de *referencing*
     - __\*__  que acessa o valor da variável que o ponteiro aponta. Chamado de *dereferencing*
 - Quando queremos passar o endereço de memória de uma variável para um ponteiro, usamos **&**, ex
-```go
-var a int = 1
-var b *int = &a
-```
+    ```go
+        var a int = 1
+        var b *int = &a
+    ```
 - No exemplo acima, b aponta para o endereço de memória de a, se usarmos `fmt.Println(*b)` teremos o valor **1** como output.
 - Quando usado uma variável para apontar para o endereço de memória, para pegar o valor do endereço de memória, usa *, ex:
-```go
-x := 10
-y := &x // & define y com o mesmo endereço de memória de x
-fmt.Println(*y) //ira retornar o valor do endereço de memória de y
-```
+    ```go
+        x := 10
+        y := &x //& define y with same memory address as x
+        fmt.Println(*y) //print y memory address
+    ```
 - Ou
-```go
-x int := 10
-y *int := &x // & define y com o mesmo endereço de memória de x
-fmt.Println(*y) //ira retornar o valor do endereço de memória de y
-```
+    ```go
+        x int := 10
+        y *int := &x //& define y with same memory address as x
+        fmt.Println(*y) //print y memory address
+    ```
 - Para passar o ponteiro e receber o endereço dentro de uma função, ex:
-```go
-x := 0
-changeNumber(&x)
+    ```go
+        x := 0
+        changeNumber(&x)
 
-func changeNumber(number *int) {
-    fmt.Println(number) //endereço de memória
-    fmt.Println(*number) // valor do numero recebido
-    *number++ // acrescenta no valor e não apenas no scopo dentro da função
-}
-```
-- Usamos **(*)** no tipo da variável quando queremos indicar que é um ponteiro do tipo informado.
-- Usamos **(*)** na variável quando queremos desferenciar um ponteiro.
-- Usamos **(&)** para criar um ponteiro.
+        func changeNumber(number *int) {
+            fmt.Println(number) //print memory address
+            fmt.Println(*number) //print value
+            *number++ //increase value not only local but all variables that points to same memory adress
+        }
+    ```
 
 ### Interfaces
 - Funciona como um contrato, semelhante em orientação a object, mas sem a necessidade de implementar diretamente, ex:
-```go
-type printer interface {
-	print()
-}
+    ```go
+        package main
 
-type person struct {
-	name string
-}
+        import (
+            "fmt"
+            "math"
+        )
 
-func (p person) print() {
-	fmt.Println(p.name)
-}
+        func main() {
+            square := Square{width: 2.0, height: 3.0}
+            circle := Circle{radius: 2}
+            calculateArea(square)
+            calculateArea(circle)
+        }
 
-type dog struct {
-	name string
-}
+        func calculateArea(shape Shape) {
+            fmt.Println(shape.area())
+        }
 
-func (d dog) print() {
-	fmt.Println("Au au")
-}
+        type Shape interface {
+            area() float64
+        }
 
-func print(p printer) {
-	p.print()
-}
+        type Square struct {
+            width  float64
+            height float64
+        }
 
-func main() {
-	person := person{"Carlos"}
-	print(person)
+        func (square Square) area() float64 {
+            return square.width * square.height
+        }
 
-	dog := dog{"Carlos"}
-	print(dog)
-}
-```
+        type Circle struct {
+            radius float64
+        }
+
+        func (circle Circle) area() float64 {
+            return math.Pi * math.Pow(circle.radius, 2)
+        }
+    ```
 
 ### Goroutines
 - Gouroutines é a forma que Go trabalha com concorrencia usando algo similar a threads, mas mais leves.
 - Ao lidar com concorrência, alguns conceitos precisam ser abordados:
-    - *Data race* acontece quando tentamos acessar a mesma. Por exemplo, ler uma variável e escrever ao mesmo tempo.
+    - *Data race* acontece quando tentamos acessar a mesma variável. Por exemplo, duas threads acessam a mesma variável, uma tenta ler e outra escrever.
     - *Race conditions* acontece quando o tempo ou ordem afeta um pedaço do código.
-    - *Deadlock* acontece quando todos os processos estão bloqueados enquanto esperam por eles mesmos, fazendo com que o programa não possa continuar.
+    - *Deadlock* acontece quando *goroutines* estão esperando e não conseguem prosseguir na execução do código.
 - Qualquer função pode se tonar uma goroutine simplesmente usando a palavra chave **go** em frente a função, ex:
-```go
-func main() {
-    go doSomething()
-    doSomething2()
-}
+    ```go
+        func main() {
+            go doSomething()
+            doSomething2()
+        }
 
-func doSomething() {
-    // do something
-}
-```
+        func doSomething() {
+            // do something
+        }
+    ```
 
-### Canais (channel)
-- Canais são uma forma de fazer sincronização em código concorrente.
+### Channels
+- *Channels* são uma forma de fazer sincronização em código concorrente.
 - Eles nos permitem trasmitir valores entre goroutines.
 - A comunicação é semelhante em um cano, tem uma entrada e uma saída. Elas entram e saem na mesma ordem até o channel ser fechado.
 - Para adicionar e retirar informação de um channel, precisa ser feito de forma concorrente.
     - Não podendo adicionar e retirar em uma mesma goroutine.
 - Para criar um channel, tem duas formas, ex:
-```go
-func main() {
-    var ch chan string //podendo ser de qualquer tipo
-    
-    ch2 := make(chan int)
-}
-```
-- Canais enviam e recebem dados, usando **<-**, ex:
-```go
-func main() {
-    ch := make(chan string)
+    ```go
+        func main() {
+            var ch chan string //accepts any type
+            
+            ch2 := make(chan int)
+        }
+    ```
+- *Channels* enviam e recebem dados, usando **<-**, ex:
+    ```go
+        func main() {
+            ch := make(chan string)
 
-    go speak(ch)
+            go speak(ch)
 
-    data := <-ch //recebe
-    //data vai ter o valor de 'Hello World!'
-}
+            data := <-ch //receive
+            //data: 'Hello World!'
+        }
 
-func speak(ch chan string) {
-    ch <- "Hello World!" //envia
-}
-```
-- Canais por padrão são bidirecionais, enviam e recebem dados, porém podemos restringir para fazer apenas uma das funções, ex:
-```go
-func main() {
-    ch := make(chan string)
+        func speak(ch chan string) {
+            ch <- "Hello World!" //sends
+        }
+    ```
+- *Channels* por padrão são bidirecionais, enviam e recebem dados, porém podemos restringir para fazer apenas uma das funções, ex:
+    ```go
+        func main() {
+            ch := make(chan string)
 
-    go speak(ch)
+            go speak(ch)
 
-    data := <-ch //recebe
-    //data vai ter o valor de 'Hello World!'
-}
+            data := <-ch //receive
+            //data: 'Hello World!'
+        }
 
-func speak(ch chan<- string) {
-    //chan<- só é possível enviar dados
-    ch <- "Hello World!" //envia
-}
-```
+        func speak(ch chan<- string) {
+            //chan<- only sends data
+            ch <- "Hello World!" //send
+        }
+    ```
 - Quando terminamos de usar um canal, este deve ser fechado, usando `close(ch)`.
-- Opcionalmente, podemos testar se um canal foi fechado usando um segundo parâmentro como expressão, este parametro indice como um booleano a situação do canal, ex:
-```go
-func main() {
-    ch := make(chan string)
+- Opcionalmente, podemos testar se um canal foi fechado usando um segundo parâmentro como expressão, booleano que indica a situação do canal, ex:
+    ```go
+        func main() {
+            ch := make(chan string)
 
-    go speak(ch)
+            go speak(ch)
 
-    data, ok := <-ch
-    //ok sera falso pois esta aberto neste momento
+            data, ok := <-ch
+            //ok is false because channel is oppen
 
-    close(ch)
-}
-```
+            close(ch)
+        }
+    ```
 - Um canal quando não é fechado usando `close(channel)`, pode ocorrer o deadlock, que seria quando um canal parou de enviar informação, mas alguém ainda está ouvindo e esperando por algo a ser enviado.
 - Exemplo deadlock:
-```go
-func main() {
-    channel := make(chan int)
+    ```go
+        func main() {
+            channel := make(chan int)
 
-    go loop(channel)
+            go loop(channel)
 
-    for {
-        number := <-channel
-        fmt.Println(number)
-    }
-    //resultado:
-    // 0
-    // 1
-    // 2
-    // 3
-    // 4
-    // fatal error: all goroutines are asleep - deadlock!
-    //devido ao loop infinito, apos printar os 5 numeros, continuará esperando, gerando o deadlock
-}
+            for {
+                number := <-channel
+                fmt.Println(number)
+            }
+            //prints:
+            // 0
+            // 1
+            // 2
+            // 3
+            // 4
+            // fatal error: all goroutines are asleep - deadlock!
+            //due to infinte loop, will keep waiting for values, leading to deadlock
+        }
 
-func loop(channel chan int) {
-    for i := 0; i < 5; i++ {
-        channel<- i
-    }
-}
-```
+        func loop(channel chan int) {
+            for i := 0; i < 5; i++ {
+                channel<- i
+            }
+        }
+    ```
 - Para corrigir e não acontecer o deadlock, pode ser verificado se o channel ainda está aberto e fechar quando ele não ser mais necessário.
 - Exemplo correção deadlock:
-```go
-func main() {
-    channel := make(chan int)
+    ```go
+        func main() {
+            channel := make(chan int)
 
-    go loop(channel)
+            go loop(channel)
 
-    for number := range channel {
-        fmt.Println(number)
-    }
-}
+            for number := range channel {
+                fmt.Println(number)
+            }
+        }
 
-func loop(channel chan int) {
-    for i := 0; i < 5; i++ {
-        channel<- i
-    }
-    //fecha o channel apos finalizar a enviar os numeros
-    close(channel)
-}
-```
+        func loop(channel chan int) {
+            for i := 0; i < 5; i++ {
+                channel<- i
+            }
+            //close channel after sending all values
+            close(channel)
+        }
+    ```
 
 ### Testes
 - Para criar testes, o Go disponibiliza ferramentas nativas nos seus pacotes.
@@ -679,33 +699,33 @@ func loop(channel chan int) {
 - O pacote main é o principal como o nome já diz. Podendo ser utilizado com varios arquivos .go neste mesmo pacote, a diferença está na forma de rodar, os arquivos precisam ser declarados no `go run main.go xxx.go yyy.go` ou na raiz `go run .`.
 - Novos pacotes podem ser criados com outras pastas com o nome do pacote.
     - Ex:
-```go
-//go mod init example
-//---go.mod---
-module example
+    ```go
+        //go mod init example
+        //---go.mod---
+        module example
 
-go 1.18
+        go 1.18
 
-//---main.go--
-package main
+        //---main.go--
+        package main
 
-import "example/printing"
+        import "example/printing"
 
-func main() {
-	printing.PrintText("Hello World!")
-}
+        func main() {
+            printing.PrintText("Hello World!")
+        }
 
-//---print.go---
-package printing
+        //---print.go---
+        package printing
 
-import "fmt"
+        import "fmt"
 
-func PrintText(text string) {
-	fmt.Println(text)
-}
-```
+        func PrintText(text string) {
+            fmt.Println(text)
+        }
+    ```
 - Para fazer o import de funções ou variáveis de um pacote diferente, basta declarar o nome da função como pascal case.
-- Package management
+- Package management:
     - `go get <LIB>` baixa e faz o build do código.
     - `go get -u <LIB>` baixa o código da lib atualizado, caso houver.
     - `go intall <LIB>` faz a compilação da lib.
@@ -724,76 +744,76 @@ func PrintText(text string) {
 - Para adicionar os modulos dentro do workspace, utilizar `go work use ./<MODULE>`.
 - Após feito isso, o modulo será inserido no workspace, os modulos que dependem de outro podem ser executado normalmente com as alterações que foram feitas locais.
 - Um arquivo contendo os modulos e o workspace será criado após rodar `go work init`, com o nome go.work, ex:
-```go
-go 1.18
+    ```go
+        go 1.18
 
-use(
-    ./module1
-    ./module2
-)
-```
+        use(
+            ./module1
+            ./module2
+        )
+    ```
 - Podem ser criados *workspaces* de forma geral e adicionar uma variável de ambiente, cada *módulo* adicioná-lo ao *workspace*. Para fazer isso,
-adicionar *GOWORK* como variável do sistema e indicar o path da pasta. Para verificar o local do *GOWORK, usar `go env GOWORK` no terminal.
+adicionar *GOWORK* como variável do sistema e indicar o path da pasta. Para verificar o local do *GOWORK*, usar `go env GOWORK` no terminal.
 
 ### Erros
 - No Go não temos exceções e sim erros, e dessa forma, os erros são tratados de forma diferente.
-- Podendo usar o pacotes errors para criar seus erros a partir de `errors.New("Deu erro")`.
+- Podendo usar o pacotes errors para criar seus erros a partir de `errors.New("Error")`.
 - Exemplo usando divisão por 0:
-```go
-import (
-    "errors"
-    "fmt"
-)
+    ```go
+        import (
+            "errors"
+            "fmt"
+        )
 
-func main() {
-    result, err := Divide(4, 0)
+        func main() {
+            result, err := Divide(4, 0)
 
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
+            if err != nil {
+                fmt.Println(err)
+                return
+            }
 
-    fmt.Println(result)
-}
+            fmt.Println(result)
+        }
 
-func Divide(a, b int) (int, error) {
-    if b == 0 {
-        return 0, errors.New("cannot divide by zero")
-    }
+        func Divide(a, b int) (int, error) {
+            if b == 0 {
+                return 0, errors.New("cannot divide by zero")
+            }
 
-    return a/b, nil
-}
-```
+            return a/b, nil
+        }
+    ```
 - Outra forma de customizar o erros, seria utilizando `fmt.Errorf("cannot divide %d by 0", a)`.
 - Podemos criar erros e usar em pontos de códigos específicos.
     - Para verificar um erro, o pacote *erros* tem uma função para isso.
     - Ex:
-```go
-var ErrDivideByZero = errors.New("cannot divide by zero")
+    ```go
+        var ErrDivideByZero = errors.New("cannot divide by zero")
 
-func main() {
-	result, err := Divide(4, 0)
+        func main() {
+            result, err := Divide(4, 0)
 
-	if err != nil {
-		switch {
-		case errors.Is(err, ErrDivideByZero):
-			fmt.Println(err)
-		// Do something with the error
-		default:
-			fmt.Println("no idea!")
-		}
-		return
-	}
-	fmt.Println(result)
-}
+            if err != nil {
+                switch {
+                case errors.Is(err, ErrDivideByZero):
+                    fmt.Println(err)
+                // Do something with the error
+                default:
+                    fmt.Println("no idea!")
+                }
+                return
+            }
+            fmt.Println(result)
+        }
 
-func Divide(a, b int) (int, error) {
-	if b == 0 {
-		return 0, ErrDivideByZero
-	}
-	return a / b, nil
-}
-```
+        func Divide(a, b int) (int, error) {
+            if b == 0 {
+                return 0, ErrDivideByZero
+            }
+            return a / b, nil
+        }
+    ```
 - Existe dentro de Go, **panic** e **recover** que são interfaces internas similares ao **try catch** conhecido em outras linguagens.
 
 ### Generics
@@ -824,7 +844,7 @@ func Divide(a, b int) (int, error) {
         import "fmt"
 
         func main() {
-            fmt.Println(sum[int32](1, 1))//inferind type when called
+            fmt.Println(sum[int32](1, 1))//inference type when called
             fmt.Println(sum(1.1, 1.1))//let compiler infer the type
         }
 
