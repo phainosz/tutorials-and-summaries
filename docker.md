@@ -65,8 +65,8 @@
         - Ex: `COPY foo/bar.txt /containerFolder`
     - `ENV` serve para declaração de variaveis de ambiente, podendo ter valor ou ser especificado o valor na hora de rodar o container. Para acessar vairáveis dentro do Dockerfile, usar $ + nome da variável.
         - Ex: Multiplos valores `ENV FOO=bar XPTO="http://xpto.com"`
-        - Ex: Sem o uso do igual(=), desencajado `ENV FOO bar`
-    - `ARG` serve para declaração de variaveis de ambiente, podendo ter valor ou ser especificado o valor na hora d0 build da imagem e não ao rodar o container, como é feito usando *ENV*.
+        - Ex: Sem o uso do igual(=), desencorajado `ENV FOO bar`
+    - `ARG` serve para declaração de variaveis de ambiente, podendo ter valor ou ser especificado o valor na hora do build da imagem e não ao rodar o container, como é feito usando *ENV*.
         - Ex: `ARG FOO=bar`
     - `EXPOSE` funciona como uma documentação para qual porta o container estará rodando
         - Ex: `EXPOSE 8080`
@@ -95,12 +95,12 @@
 ## Docker Compose
 - Docker compose é uma ferramenta para definir vários containers e rodar com apenas um comando usando arquivo yaml
 - Especificação e lista de comandos [The Compose Specification](https://github.com/compose-spec/compose-spec/blob/master/spec.md)
-- Para verificar a versão do docker compose, usar `docker-compose -v`
+- Para verificar a versão do docker compose, usar `docker compose version`
 - **version** é a versão do docker-compose.yaml, ver mais em [Compose versioning](https://docs.docker.com/compose/compose-file/compose-versioning/)
 - **build** se informado, usa um arquivo Dockerfile para criar a imagem
 - **services** é uma seção para a definição de cada container usado no docker-compose
 - **ports** é usado para mapear a porta do container para a porta do host
-- **volumes** serve para criar ou definir volume, usado da mesmma forma como na CLI usando o *-v* ou *--volume*
+- **volumes** serve para criar ou definir volume, usado da mesma forma como na CLI usando o *-v* ou *--volume*
 - **image** será a imagem usada para o container
 - **networks** para criar ou utilizar uma network no container
 - **depends_on** informa que um container precisa de outro para subir, o valor usado é o nome dado ao container que ele necessita
