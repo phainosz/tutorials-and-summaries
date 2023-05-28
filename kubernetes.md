@@ -12,8 +12,18 @@
 
 ## Instalação
 - Windows
- - Usando docker, instalar docker.
- - Ir em configurações -> Kubernetes -> marcar para ativar kubernetes.
+  - Usando docker, instalar docker:
+    - Ir em configurações -> Kubernetes -> marcar para ativar kubernetes.
+  - [Minikube](https://minikube.sigs.k8s.io/docs/start/]):
+    - `winget install minikube`
+    - Minikube facilita no processo de instalação e uso local.
+- Linux
+  - [Minikube](https://minikube.sigs.k8s.io/docs/start/]):
+    ``` 
+      curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 
+      sudo install minikube-linux-amd64 /usr/local/bin/minikube
+    ```
+
 
 ## Conceitos
 - **Node** é uma máquina física ou virtual onde o kubernetes é instalado para rodar os containers.
@@ -131,7 +141,7 @@ spec:
 ## Replication Controller e Replica Set
 - São recursos com funcionalidades e propósitos iguais, um sendo a versão antiga e o outro a mais recente, sucessivamente.
 - Servem para manter de forma estável **Pods** rodando em qualquer momento e a quantidade especificada.
-- **ReplicaSet** garante que a quantidade de **Pods** configuradas estejam sempre rodando, entretanto, **Deployment** é u recurso de nível acima que gerenciam **ReplicaSet** e provisionam de forma declarativa a criação e atualização de **Pods** e outras configurações úteis. É recomendado o uso de **Deployments** ao invés de **ReplicaSet**.
+- **ReplicaSet** garante que a quantidade de **Pods** configuradas estejam sempre rodando, entretanto, **Deployment** é um recurso de nível acima que gerenciam **ReplicaSet** e provisionam de forma declarativa a criação e atualização de **Pods** e outras configurações úteis. É recomendado o uso de **Deployments** ao invés de **ReplicaSet**.
 - Ex de criação de **ReplicaSet**
 ```yml
 apiVersion: apps/v1
@@ -193,7 +203,7 @@ spec:
 - Habilitam conexão entre **Pods** dentro do **Cluster**.
 - Existem 4 *types* na configuração de **Services**: *ClusterIP* (default), *NodePort*, *LoadBalancer* e *ExternalName*.
 - *ClusterIP* o **Service** não é exposto para fora do **Cluster** mas pode ser usado internamente.
-- *NodePort* o **Service** é exposto para fora do **Cluster** e pode ser usado externamente com a porta estática do **Node* mais a porta configurada no *NodePort*, *<NODE_IP>:<NODE_PORT>*.
+- *NodePort* o **Service** é exposto para fora do **Cluster** e pode ser usado externamente com a porta estática do *Node* mais a porta configurada no *NodePort*, *<NODE_IP>:<NODE_PORT>*.
 - *LoadBalancer* também é exposto para fora do **Cluster** que será usado conforme o *Load Balancer* disponibilizado pelo provedor que for fornecido.
 - *ExternalName* é exposto para fora do **Cluster**, mapeia o **Service** com um *DNS* pré definido. 
 - Ex *NodePort*:
@@ -227,7 +237,7 @@ spec:
       #port is the port of the service
     - port: 80
       #targetPort is the port of the container running we want to bind
-      #targetPort can referece the name defined in a Pord port
+      #targetPort can referece the name defined in a Pod port
       targetPort: 80 #or targetPort: postgres-port
       #nodePort is the port we want to expose outside the cluster
       #nodePort has a range of 30000-32767
