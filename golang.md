@@ -35,6 +35,7 @@
             - `nano .profile`
             - Adicionar no final `export PATH=$PATH:/usr/local/go/bin`
             - Rodar o comando para atualiar as variáveis `source .profile`
+        - VSCode instalar plugin *Go* e configurar VSCode caso necessário, apertar *Ctrl Shift p*, Go: Install/Update Tools, selecionar todos.
 - [Go playground](https://go.dev/play/), usar o go via web.
 
 ### Comandos Go
