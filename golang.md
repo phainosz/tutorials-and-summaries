@@ -592,12 +592,12 @@
 
             go speak(ch)
 
-            data := <-ch //receive
+            data := <-ch //read
             //data: 'Hello World!'
         }
 
         func speak(ch chan string) {
-            ch <- "Hello World!" //sends
+            ch <- "Hello World!" //write
         }
     ```
 - *Channels* por padrão são bidirecionais, enviam e recebem dados, porém podemos restringir para fazer apenas uma das funções, ex:
@@ -607,13 +607,13 @@
 
             go speak(ch)
 
-            data := <-ch //receive
+            data := <-ch //read data from channel
             //data: 'Hello World!'
         }
 
         func speak(ch chan<- string) {
             //chan<- only sends data
-            ch <- "Hello World!" //send
+            ch <- "Hello World!"//write danta into channel
         }
     ```
 - Quando terminamos de usar um canal, este deve ser fechado, usando `close(ch)`.
@@ -630,7 +630,7 @@
             close(ch)
         }
     ```
-- Um canal quando não é fechado usando `close(channel)`, pode ocorrer o deadlock, que seria quando um canal parou de enviar informação, mas alguém ainda está ouvindo e esperando por algo a ser enviado.
+- Quando um channel não é fechado usando `close(channel)`, pode ocorrer o deadlock, que seria quando um canal parou de enviar informação, mas alguém ainda está ouvindo e esperando por algo a ser enviado.
 - Exemplo deadlock:
     ```go
         func main() {
@@ -677,6 +677,85 @@
             }
             //close channel after sending all values
             close(channel)
+        }
+    ```
+- Channels podem ser criados de forma a limitar a quantidade de informação que enviam/recebem dados, chamados de *buffered channels*. Uma vantagem em se fazer isso, seria para não bloquear a thread, um channel só seria bloqueado se o limite de dados enviados chegar no limite do *buffer* ou o channel que lê dados estiver vazio.
+    - Para criar um *buffered channel*, usar `channel := make(chan int, 1)` que terá o limite de *buffer* como 1.
+- Channels são bidirecionais por padrão, porém podemos usá-los de forma unidirecional. Ex:
+    ```go
+        package main
+
+        import (
+            "fmt"
+            "time"
+        )
+
+        func main() {
+            ch := make(chan int)
+	        writerChannel(ch)
+	        readerChannel(ch)
+
+            time.Sleep(time.Second * 1)
+        }
+
+        //function that receives a only reader channel and consume all data
+        //ch is a only reader channel
+        func readerChannel(ch <-chan int) {
+            go func() {
+                for {
+                    val, ok := <-ch
+                    if !ok {
+                        fmt.Println("Channel closed!")
+                        break
+                    }
+                    fmt.Println(val)
+                }
+            }()
+        }
+
+        //function that receives a only writer channel and write data
+        func writerChannel(ch chan<- int) {
+            go func() {
+                defer close(ch)
+                i := 0
+                for i < 10 {
+                    ch <- i
+                    i++
+                }
+            }()
+        }
+    ```
+- Para fazer a leitura de múltiplos channels, existe um formato que pode ser usado, *select*. Usando *select*, o primeiro channel que enviar valor será feito a leitura.
+    ```go
+        package main
+
+        import (
+            "fmt"
+            "time"
+        )
+
+        func main() {
+
+            c1 := make(chan string)
+            c2 := make(chan string)
+
+            go func() {
+                time.Sleep(1 * time.Second)
+                c1 <- "one"
+            }()
+            go func() {
+                time.Sleep(2 * time.Second)
+                c2 <- "two"
+            }()
+
+            for i := 0; i < 2; i++ {
+                select {
+                case msg1 := <-c1:
+                    fmt.Println("received", msg1)
+                case msg2 := <-c2:
+                    fmt.Println("received", msg2)
+                }
+            }
         }
     ```
 
