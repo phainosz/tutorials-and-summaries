@@ -106,20 +106,34 @@
     
 - Estrutura para projetos **Go**:
     - *cmd* será onde fica a aplicação *main* do projeto.
-    - *pkg* é usado para adionar código que poderá ser exportado para uso público.
-    - *internal* funciona de forma semelhante ao *pkg*, porém é utilizado como código privado.
-```
-|---cmd
-|---pkg
-|    |---config
-|    |---utils
-|    |---models
-|    |---routes
-|    |---controllers
-|---internal
-|---go.mod
-|---go.sum
-```
+    - *pkg* é usado para adionar código que poderá ser exportado para uso público. Garanta que tudo está funcionando corretamente neste pacote, pois outros projetos podem importar o seu projeto e fazer o uso do conteúdo de *pkg*.
+    - *internal* a estrutura é a mesma que *pkg*, porém é utilizado como código privado, que exportar o seu projeto usando **Go**, não terá acesso.
+    - *api* é onde adicionamos definições e especificações para **OpenAPI/Swagger**.
+    - *web* componentes específicos de aplicações web, arquivos estáticos como **css** ou **html**.
+    - *scripts* diretório com scripts e instruções para construção, instalação, etc.
+    - *tests* testes para o projeto.
+    - Mais informações [clique aqui](https://github.com/golang-standards/project-layout/blob/master/README_ptBR.md).
+    ```
+    |---cmd
+    |   |---main.go
+    |---pkg
+    |   |---config
+    |   |---utils
+    |   |---models
+    |   |---routes
+    |   |---controllers
+    |   |---repositories
+    |---internal
+    |---api
+    |---web
+    |   |---index.html
+    |   |---css.css
+    |---scripts
+    |   |---init.sql
+    |---tests
+    |---go.mod
+    |---go.sum
+    ```
 
 ### Formatação
 - Existem casos que queremos modificar o valor de uma string usando formatação. Uma das formas seria usando `fmt.Printf("Oi %s", nome)`
@@ -770,10 +784,10 @@
     - Para visualizar a cobertura por cada pacote no terminal, `go tool cover --func=NOME_ARQUIVO.txt`.
     - Para visualizar a cobertura por cada pacote em html, `go tool cover --html=NOME_ARQUIVO.txt`.
 - Cada teste deve ter o seguinte formato:
-    - Criar o arquivo .go com o respectivo nome _test.go.
-        - ex: Para o main.go, criar o main_test.go no mesmo pacote.
-    - Cada teste deve começar com Test antes do nome do método e adicionar o parametro para uso das validacoes.
-        - ex: TestMetodoXpto(t *testing.T).
+    - Criar o arquivo .go com o respectivo nome `_test.go`.
+        - ex: Para o main.go, criar o `main_test.go` no mesmo pacote.
+    - Cada teste deve começar com **Test** antes do nome do método e adicionar o parametro para uso das validacoes.
+        - ex: `TestMetodoXpto(t *testing.T)`.
     
 ### Packages
 - O pacote main é o principal como o nome já diz. Podendo ser utilizado com varios arquivos .go neste mesmo pacote, a diferença está na forma de rodar, os arquivos precisam ser declarados no `go run main.go xxx.go yyy.go` ou na raiz `go run .`.
