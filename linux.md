@@ -50,6 +50,14 @@
 - `alias` serve para criar apelidos para comandos.
   - `alias la="ls -al` cria apelido para comando indicado.
   - `alias` no terminal n é permante, para tornar permanente, adicionar em **~/.bashrc**.
+- `xrandr` para mostrar informações dos monitores.
+- Para adicionar variáveis de ambiente, usar:
+  - `export VARIABLE_NAME=VARIABLE_VALUE`, dessa forma é adicionado mas o valor não fica salvo após encerrar a sessão.
+  - Para salvar na sessão do usuário:
+    - Abrir o arquivo em modo de edição: `nano ~/.bash_profile`
+    - Inserir a variável: `export VARIABLE_NAME=VARIABLE_VALUE`
+    - Aplicar as mudanças: `souce ~/.bash_profile`
+- Usar `sudo passwd USER_NAME` para mudar a senha do usuário informado.
 
 ## Geral
 - O diretório que contém as informações de comando do linux se encontra em: **/bin**.
