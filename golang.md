@@ -139,10 +139,13 @@
 - Existem casos que queremos modificar o valor de uma string usando formatação. Uma das formas seria usando `fmt.Printf("Oi %s", nome)`
 - O **%s** é chamado de verbo de anotação e existem outros com propósitos diferentes.
     - `%v` valor no formato padrão.
+    - `%T` usado para verificar o tipo da variável.
     - `%t` para booleano, *true* ou *false*.
-    - `%f` valor decimal.
+    - `%b` para valor inteiro base 2(0 ou 1).
+    - `%d` para valor inteiro base 10(0-9).
+    - `%f` para valor decimal.
     - `%s` para strings.
-    - `%p` endereço de memória do tipo. Adendo: ao usar em *slice* pega o endereço de memória do primeiro elemento do slice.
+    - `%p` endereço de memória do tipo. **Observação: ao usar em *slice* pega o endereço de memória do primeiro elemento do slice.**
         ```go
             sliceExample := []int{1,2,3}
             fmt.Printf("first element address: %p", sliceExample)//memory address of 0th element (1)
