@@ -90,27 +90,27 @@
 - Caso queira criar um script universal, para verificar qual o gerenciador de pacotes, buscar em */etc/*, exemplos: */etc/dnf*, */etc/apt/*.
 - Para ler entrada de dados do terminal:
   ```bash
-    #!/bin/bash
+      #!/bin/bash
 
-    echo "Enter your name:"
-    read name
-    echo "Your name is $name."
+      echo "Enter your name:"
+      read name
+      echo "Your name is $name."
   ```
 - *Subshell* são comandos realizados de forma apartada. Ex:
   ```bash
-    #!/bin/bash
+      #!/bin/bash
 
-    number=1
-    
-    #commands inside parentheses run as subshell
-    (
-      number=2
-      echo "subshell number: $number"
-    )
-    echo "number: $number"
-    #will echo
-    #subshell number: 2
-    #number: 1
+      number=1
+      
+      #commands inside parentheses run as subshell
+      (
+        number=2
+        echo "subshell number: $number"
+      )
+      echo "number: $number"
+      #will echo
+      #subshell number: 2
+      #number: 1
   ```
 - **Variables**: 
   - Variáveis dentro do código:
@@ -140,24 +140,24 @@
     - Multiplicação: `expr 10 \* 10`
 - **If statements**:
   ```bash
-    #!/bin/bash
-    
-    mynum=200
+      #!/bin/bash
+      
+      mynum=200
 
-    #eq - equal
-    #ne - not equal
-    #gt - greater tha
-    #lt - less than
-    #ge - greater than or equal
-    #le - less than or equal
-    #more conditions check man test
-    if [$mynum -eq 200]
-    then
-      echo "Condition is true."
-    else
-      echo "Condition is false."
-    fi
-    #fi end if statement
+      #eq - equal
+      #ne - not equal
+      #gt - greater tha
+      #lt - less than
+      #ge - greater than or equal
+      #le - less than or equal
+      #more conditions check man test
+      if [$mynum -eq 200]
+      then
+        echo "Condition is true."
+      else
+        echo "Condition is false."
+      fi
+      #fi end if statement
   ```
   - Para verificar se um arquivo existe em um diretório: `if [-f ~/file]`
 - **Exit codes**:
@@ -166,56 +166,56 @@
   - Ex: `sudo dnf install notexist` e depois `echo $?`. Em caso de sucesso, o retorno será 0, qualquer erro terá o código diferente de 0.
 - **While**:
   ```bash
-    #!/bin/bash
+      #!/bin/bash
 
-    myvar=1
-    while [ $myvar -le 10]
-    do
-      echo $myvar
-      myvar=$(($myvar + 1))
-      sleep 0.5
-    done
+      myvar=1
+      while [ $myvar -le 10]
+      do
+        echo $myvar
+        myvar=$(($myvar + 1))
+        sleep 0.5
+      done
   ```
 - **For**:
   ```bash
-    #!/bin/bash
+      #!/bin/bash
 
-    #for i in 1 2 3 4 5
-    #for file in ~/Documents/*
-    for i in {1..5}
-    do
-      echo $i
-      sleep 1
-    done
+      #for i in 1 2 3 4 5
+      #for file in ~/Documents/*
+      for i in {1..5}
+      do
+        echo $i
+        sleep 1
+      done
   ```
 - **Functions**
   ```bash
-    #!/bin/bash
+      #!/bin/bash
 
-    function hello_world() {
-      echo "Hello World!"
-    }
+      function hello_world() {
+        echo "Hello World!"
+      }
 
-    hello_word
+      hello_word
   ```
 - **Case staments**:
   ```bash
-    #!/bin/bash
+      #!/bin/bash
 
-    read option
+      read option
 
-    case $option in
-      1) echo "Option $option";;
-      2) echo "Option $option";;
-      3) echo "Option $option";;
-      *) echo "Option $option"
-    esac
+      case $option in
+        1) echo "Option $option";;
+        2) echo "Option $option";;
+        3) echo "Option $option";;
+        *) echo "Option $option"
+      esac
   ```
 - **Arguments**:
   ```bash
-    #!/bin/bash
+      #!/bin/bash
 
-    #./script.sh first
-    #echo Entered argument: first
-    echo "Entered argument: $1"
+      #./script.sh first
+      #echo Entered argument: first
+      echo "Entered argument: $1"
   ```
