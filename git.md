@@ -28,26 +28,26 @@
     - Arquivos em staged são os que farão parte do próximo commit.
     - Arquivos modificados que não estão na área de staged são chamados de 'Untracked files'.
 - Para fazer um commit `git commit -m "<MESSAGE>"`.
-    - -m Serve para adicionar a mensage.
+    - -m Serve para adicionar a mensagem.
     - Quando precisar alterar a mensagem do último commit sem ter feito o envio para o repositório, utilizar amend.
         - Ex: `git commit --amend -m "<NEW_MESSAGE>"`.
-    - Também é possível altera o último commit com mais arquivos usando o amend, basta adicionar com o add e depois fazer o amend.
-    - Quando o commit for com todos os arquivos alterado, pode-se utilizar add + commit `git commit -am "<MESSAGE>"`.
+    - Também é possível alterar o último commit com mais arquivos usando o amend, basta adicionar com o add e depois fazer o amend.
+    - Quando o commit for com todos os arquivos alterados, pode-se utilizar add + commit `git commit -am "<MESSAGE>"`.
 - Após fazer o commit, fazer o envio para o repositório remote com `git push`.
 
 ## Branchs
-- Criar nova branch `git checkout -b <NAME>`.
+- Criar nova branch `git checkout -b <NAME>` ou `git switch -c <NAME>`.
 - Listar todas as branchs local `git branch`.
 - Listar todas as branchs remotas `git branch -r`.
 - Listar todas as branchs `git branch -a`.
-- Mudar de branch `git checkout <NAME>`.
+- Mudar de branch `git checkout <NAME>` ou `git switch <NAME>`.
 - Mudar de branch para uma branch remota fazendo o tracking local com remota `git checkout -t <NAME_REMOTE>/<NAME>`.
-    - NOME_REMOTE indica o nome do repositório remote, podendo ser encontrado através de `git remote -v`.
-    - NOME seria o nome da branch remota.
+    - NAME_REMOTE indica o nome da branch no repositório remoto, podendo ser encontrado através de `git remote -v`.
+    - NAME seria o nome da branch local.
 - Deletar branch local `git branch -D <NAME>`.
 - Deletar mais de uma branch com filtro para manter branchs `git branch | grep -v "<NAME_BRANCH_TO_KEEP> | grep -v "<NAME_BRANCH_TO_KEEP> | xargs git branch -D`.
 - Deletar branch remota `git branch <NAME_REMOTE> --delete <NAME>`.
-- Alterar o nome da branch local. mudar para a branch que quer mudar e fazer `git branch -m <NEW_NAME>`.
+- Alterar o nome da branch local, ir para a branch que quer mudar e usar `git branch -m <NEW_NAME>`.
 - Alterar o nome da branch remota `git push <NAME_REMOTE> <OLD_BRANCH> <NEW_BRANCH>`.
 - Comparar duas branch usando `git diff <BRANCH_1>..<BRANCH_2>`.
 
@@ -59,7 +59,7 @@
 - Alterar o endereco remoto `git remote set-url <NAME> <URL>.git`.
 
 ## Stash
-- É como um arquivo temporário das alterações feitas localmente. Funciona como uma pilha LIFO..
+- É como um arquivo temporário das alterações feitas localmente. Funciona como uma pilha LIFO.
 - Para adicionar no stash `git stash`.
 - Para adicionar ao stash com nome `git stash push -m <NAME>`.
 - Para listar itens do stash `git stash list`.
@@ -77,12 +77,12 @@
     - *Untracked* os arquivos foram criados mas ainda não foram adicionados para o controle do git.
     - *Unmodified* os arquivos não sofreram mudanças.
     - *Modified* é quando houve mudanças no arquivo.
-    - *Staged* acontece quando nossas mudanças foram adicionadas ao git com o comando `git add`. Podendo serem verificadas com `git status`.
-    - *Commit* é o final do ciclo e é onde as mudanças são aplicadas ao git com `git commit` e prontas para serem enviadas para o repositóro remoto.
+    - *Staged* acontece quando nossas mudanças foram adicionadas ao git com o comando `git add`, podendo ser verificadas com `git status`.
+    - *Commit* é o final do ciclo e é onde as mudanças são aplicadas com `git commit` e prontas para serem enviadas para o repositóro remoto.
 - Entendendo dos **stages** do **git**, podemos entender como reverter alterações dependendo do **stage** em que essas mudanças se encontram.
 - Para remover mudanças que estão como *modified*, usar:
-    - `git checkout <FILE>` remove apenas mudanças no arquivo informado.
-    - `git checkout .`, remove tudo.
+    - `git checkout <FILE>` ou `git restore <FILE>` remove apenas mudanças no arquivo informado.
+    - `git checkout .` ou `git restore .`, remove tudo.
 - Para remover mudanças que apenas foram adiciondas em *staged* com o comando `git add`, podemos usar:
     - `git reset HEAD <FILE>`, remove apenas mudanças no arquivo informado de *staged*.
         - Com isso, as mudanças saem de *staged* e voltam para *modified*.
@@ -112,7 +112,7 @@
 - Github:
     - Linux
         - Checar se existe uma chave SSH presente. No terminal digitar: `ls -al ~/.ssh`.
-        - Se alguns do arquivos estiver presente, *id_rsa.pub*, *id_ecdsa.pub* ou *id_ed25519.pub*, já existe uma chave SSH.
+        - Se algum dos arquivos estiverem presente, *id_rsa.pub*, *id_ecdsa.pub* ou *id_ed25519.pub*, já existe uma chave SSH.
         - Se o passo anterior falhar ou não existir os arquivos, gerar uma nova chave SSH:
             - Usar o comando `ssh-keygen -t ed25519 -C "your_email@example.com`.
             - Em seguida, iniciar o ssh-agent em segundo plano `eval "$(ssh-agent -s)"`.
