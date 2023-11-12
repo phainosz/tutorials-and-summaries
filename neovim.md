@@ -11,17 +11,17 @@
 - `k` move o cursor para a cima.
 - `l` move o cursor para a direita.
 - `:` execução de comandos.
-- `i` entra em *Insert mode* no local onde o cursos está.
+- `i` entra em *Insert mode* no local onde o cursor está.
 - `:w` para salvar o arquivo sem sair.
 - `:wq` para salvar e sair do arquivo.
-- `a` entra em *Insert mode* no final da palavra onde o cursos está.
+- `a` entra em *Insert mode* no final da palavra onde o cursor está.
 - `o` entra em *Insert mode* na próxima linha onde o cursor está.
-- `I` entra em *Insert mode* no início da linha onde o cursos está.
-- `O` entra em *Insert mode* na linha acima onde o cursos está.
-- `A` entra en *Insert mode* no final da linha onde o cursos está.
+- `I` entra em *Insert mode* no início da linha onde o cursor está.
+- `O` entra em *Insert mode* na linha acima onde o cursor está.
+- `A` entra en *Insert mode* no final da linha onde o cursor está.
 - `u` desfaz o que foi feito.
 - `r` volta o que foi desfeito. 
-- `0` move o cursos para o início da linha.
+- `0` move o cursor para o início da linha.
 - `$` move o cursor para o fim da linha.
 - `v` entra no *Visual mode* e seleciona um caractere.
   - podendo combinar com os movimentos usando `h`,`j`,`k` ou `l`.
