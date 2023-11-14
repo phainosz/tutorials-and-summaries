@@ -134,6 +134,11 @@
   - Se usarmos `sed s/unix/linux/2 file.txt` irá substituir a segunda palavra de cada linha que tiver *unix* por *linux*.
   - Se usarmos `sed s/unix/linux/g file.txt` irá substituir todas as palavras *unix* por *linux*.
   - Se usarmos `sed s/unix/linux/g file.txt > file2.txt` irá criar um outro arquivo e substituir todas as palavras *unix* por *linux*.
+- `awk` é usado para extrar e printar conteúdos específicos de arquivos.
+  - `awk '{print $0}' /etc/passwd` imprimi todo o conteúdo do arquivo, igual ao `cat /etc/passwd`
+  - `awk -F: '{ print $1 }' /etc/passwd` imprimi a primeira coluna de cada linha. 
+    - `-F` especifica o separador que queira usar por cada coluna, no exemplo `-F:` irá separar cada coluna por **:**.
+  - `awk -F: '{ print $1 $7 }' /etc/passwd` imprimi a primeira e sétima coluna de cada linha.
 
 ## WSL
 - No windows 10 ou mais atual podemos rodar e instalar uma versão de linux sem precisar de uma máquina virtual.
