@@ -139,6 +139,9 @@
   - `awk -F: '{ print $1 }' /etc/passwd` imprimi a primeira coluna de cada linha. 
     - `-F` especifica o separador que queira usar por cada coluna, no exemplo `-F:` irá separar cada coluna por **:**.
   - `awk -F: '{ print $1 $7 }' /etc/passwd` imprimi a primeira e sétima coluna de cada linha.
+- `sort` é usado para fazer a organização das linhas de um texto de forma ordenada.
+  - `sort file.txt` irá ordenar de forma ascendente. 
+  - `sort -r file.txt` irá ordenar de forma revertida.
 
 ## WSL
 - No windows 10 ou mais atual podemos rodar e instalar uma versão de linux sem precisar de uma máquina virtual.
