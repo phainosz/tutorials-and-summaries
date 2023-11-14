@@ -129,6 +129,11 @@
     - *v* mostra uma descrição do progresso de compactação.
     - *f* nome do arquivo.
     - *z* adiciona o formato de compressão/descompressão **gzip**, usado em arquivo com extensão **.tar.gz**.
+- `sed` (stream editor) é um comando usado para modificar o conteúdo de um arquivo ou texto, geralmente adicionando o novo conteúdo em um novo arquivo.
+  - Se usarmos `sed s/unix/linux file.txt` irá substituir a primeira palavra de cada linha que tiver *unix* por *linux*.
+  - Se usarmos `sed s/unix/linux/2 file.txt` irá substituir a segunda palavra de cada linha que tiver *unix* por *linux*.
+  - Se usarmos `sed s/unix/linux/g file.txt` irá substituir todas as palavras *unix* por *linux*.
+  - Se usarmos `sed s/unix/linux/g file.txt > file2.txt` irá criar um outro arquivo e substituir todas as palavras *unix* por *linux*.
 
 ## WSL
 - No windows 10 ou mais atual podemos rodar e instalar uma versão de linux sem precisar de uma máquina virtual.
