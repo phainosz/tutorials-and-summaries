@@ -146,6 +146,8 @@
   - `grep root /etc/passwd` irá buscar em */etc/passwd* usando o texto *root*.
   - `grep -i root /etc/passwd` irá buscar em */etc/passwd* usando o texto *root* ignorando palavras maiísculas de minúsculas.
   - `grep -c root /etc/passwd` irá contar quantas vezes *root* aparece em */etc/passwd*.
+- `strings` é usado para localizar textos legíveis em arquivos binarios, como planilhas do excel, pdf, etc.
+  - `string file.xlsx` irá retornar as palavras legíveis para humanos encontradas no arquivo passado.
 
 ## WSL
 - No windows 10 ou mais atual podemos rodar e instalar uma versão de linux sem precisar de uma máquina virtual.
