@@ -104,6 +104,7 @@
   - `cat ~/.profile | grep -v export` mostra o conteúdo do arquivo que não tenha a palvra *export* dentro do arquivo.
   - `cat ~/.profile | grep -n export` busca a palavra *export* dentro do arquivo enumerando a linha que se encontra a palavra.
   - `cat ~/.profile | grep -i export` busca a palavra *export* dentro do arquivo de forma a ignorar palavra maiúscula de minúscula.
+  - `cat ~/.profile | grep -c export` conta quantas vezes a palavra *export* dentro do arquivo.
   - `cat ~/ | grep -r export` busca a palavra *export* dentro do arquivo de forma recursiva que entre nas subpastas.
 - `wget` é usado para fazer download usando links.
 - `curl` (client url) usado para fazer diferentes tipos de chamdas (http, ftp).
@@ -142,10 +143,6 @@
 - `sort` é usado para fazer a organização das linhas de um texto de forma ordenada.
   - `sort file.txt` irá ordenar de forma ascendente. 
   - `sort -r file.txt` irá ordenar de forma revertida.
-- `grep` é usado como uma ferramenta de busca em textos.
-  - `grep root /etc/passwd` irá buscar em */etc/passwd* usando o texto *root*.
-  - `grep -i root /etc/passwd` irá buscar em */etc/passwd* usando o texto *root* ignorando palavras maiísculas de minúsculas.
-  - `grep -c root /etc/passwd` irá contar quantas vezes *root* aparece em */etc/passwd*.
 - `strings` é usado para localizar textos legíveis em arquivos binarios, como planilhas do excel, pdf, etc.
   - `string file.xlsx` irá retornar as palavras legíveis para humanos encontradas no arquivo passado.
 - `wc` (word count) serve para contas linhas, palavras e characteres de arquivos.
