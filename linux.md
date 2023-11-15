@@ -150,6 +150,8 @@
   - `wc -l file.txt` irá contar o número de linhas.
   - `wc -c file.txt` irá contar o número de bytes.
   - `wc -w file.txt` irá contar o número de palavras.
+- `traceroute` é usado para inspecionar a rota que o pacote de dados da internet pega até chegar no *host*
+  - `traceroute www.google.com` irá mostrar a rota de dados até o host do google.
 
 ## WSL
 - No windows 10 ou mais atual podemos rodar e instalar uma versão de linux sem precisar de uma máquina virtual.
