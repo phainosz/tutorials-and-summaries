@@ -148,6 +148,10 @@
   - `grep -c root /etc/passwd` irá contar quantas vezes *root* aparece em */etc/passwd*.
 - `strings` é usado para localizar textos legíveis em arquivos binarios, como planilhas do excel, pdf, etc.
   - `string file.xlsx` irá retornar as palavras legíveis para humanos encontradas no arquivo passado.
+- `wc` (word count) serve para contas linhas, palavras e characteres de arquivos.
+  - `wc -l file.txt` irá contar o número de linhas.
+  - `wc -c file.txt` irá contar o número de bytes.
+  - `wc -w file.txt` irá contar o número de palavras.
 
 ## WSL
 - No windows 10 ou mais atual podemos rodar e instalar uma versão de linux sem precisar de uma máquina virtual.
