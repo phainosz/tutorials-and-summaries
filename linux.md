@@ -142,6 +142,10 @@
 - `sort` é usado para fazer a organização das linhas de um texto de forma ordenada.
   - `sort file.txt` irá ordenar de forma ascendente. 
   - `sort -r file.txt` irá ordenar de forma revertida.
+- `grep` é usado como uma ferramenta de busca em textos.
+  - `grep root /etc/passwd` irá buscar em */etc/passwd* usando o texto *root*.
+  - `grep -i root /etc/passwd` irá buscar em */etc/passwd* usando o texto *root* ignorando palavras maiísculas de minúsculas.
+  - `grep -c root /etc/passwd` irá contar quantas vezes *root* aparece em */etc/passwd*.
 
 ## WSL
 - No windows 10 ou mais atual podemos rodar e instalar uma versão de linux sem precisar de uma máquina virtual.
