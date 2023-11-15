@@ -149,6 +149,7 @@
 - `strings` é usado para localizar textos legíveis em arquivos binarios, como planilhas do excel, pdf, etc.
   - `string file.xlsx` irá retornar as palavras legíveis para humanos encontradas no arquivo passado.
 - `wc` (word count) serve para contas linhas, palavras e characteres de arquivos.
+  - `wc file.txt` irá contar linhas, palavras e bytes.
   - `wc -l file.txt` irá contar o número de linhas.
   - `wc -c file.txt` irá contar o número de bytes.
   - `wc -w file.txt` irá contar o número de palavras.
