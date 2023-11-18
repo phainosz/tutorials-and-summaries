@@ -52,6 +52,8 @@
 - `whoami` mostra quem é o usuário logado.
 - `clear`  limpa o terminal.
 - `cat` serve para mostrar o conteúdo de um arquivo.
+  - Uma outra forma de usar `cat` seria para criar um arquivo usando **>**.
+    - `cat > another.txt` irá habilitar entrada de texto no terminal, podendo digitar e ir para próxima linha com *enter*. Para finalizar e salvar no arquivo, apertar *Ctrl + d*.
 - `head` serve para mostrar as primeiras linhas de um arquivo.
 - `tail` serve para mostrar as ultimas linhas de um arquivo.
 - `cp` (copy) copiar um arquivo.
@@ -97,7 +99,7 @@
     - `find ~ -name *.rs -exec cat {} \;` irá encontrar todos os arquivos que tenham extensão .rs e ler o conteúdo dos arquivos encontrados.
       - `-exec` é o que faz executar um comando.
       - Após o `-exec` foi passado o comando `cat`.
-      - Os **{}** server como uma lista e recebem/adicionam todos os arquivos encontrados nela.
+      - Os **{}** servem como uma lista e recebem/adicionam todos os arquivos encontrados nela.
       - Precisa ter o **\;** ou **';'** para finalizar a expressão.
 - `grep` (global regular expression print) serve para procurar por textos.
   - `cat ~/.profile | grep export` busca a palavra *export* dentro do arquivo.
@@ -135,7 +137,7 @@
   - Se usarmos `sed s/unix/linux/2 file.txt` irá substituir a segunda palavra de cada linha que tiver *unix* por *linux*.
   - Se usarmos `sed s/unix/linux/g file.txt` irá substituir todas as palavras *unix* por *linux*.
   - Se usarmos `sed s/unix/linux/g file.txt > file2.txt` irá criar um outro arquivo e substituir todas as palavras *unix* por *linux*.
-- `awk` é usado para extrar e printar conteúdos específicos de arquivos.
+- `awk` é usado para extrair e printar conteúdos específicos de arquivos.
   - `awk '{print $0}' /etc/passwd` imprimi todo o conteúdo do arquivo, igual ao `cat /etc/passwd`
   - `awk -F: '{ print $1 }' /etc/passwd` imprimi a primeira coluna de cada linha. 
     - `-F` especifica o separador que queira usar por cada coluna, no exemplo `-F:` irá separar cada coluna por **:**.
@@ -170,6 +172,16 @@
 ## Bash
 - *Shell* é uma ferramenta que nos permite executar comandos no terminal.
 - *Bash* significa, born again shell.
+- Caracteres especiais usados no **bash**:
+  - **#** usado para criar comentários
+  - **\** usado no final da linha para indicar continuação na próxima linha ou para indicar que o próximo caractere precisa ser interpretado literalmente, `\$` irá usar o *$* como caractere.
+  - **;** usado para interpretar que o que segue a partir dele será um novo comando a ser executado:
+    - `mkdir newDir; cd newDir; pwd`, diferente de `mkdir newDir && cd newDir ** pwd`, usando *&&* o próximo comando só irá executar se o atual não falhar.
+  - **$** indica que o depois dele é uma variável.
+  - **>** redirecionamento de saída, é o processo de enviar a saída de dados de um comando para um arquivo.
+  - **>>** concatenação de saída, é o processo de concatenar a saída de dados de um comando para um arquivo.
+  - **<** redirecionamento de entrada, ao contrário do de saída, o conteúdo de um arquivo é redirecionado para um comando.
+  - **|** usado para combinar o resultado do comando atual para o próximo comando.
 - `env` para listar variáveis do sistema.
 - `echo $SHELL` mostra qual *shel* está configurado como padrão.
 - `which bash` mostra a localização do *bash*.
