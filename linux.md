@@ -172,16 +172,30 @@
 ## Bash
 - *Shell* é uma ferramenta que nos permite executar comandos no terminal.
 - *Bash* significa, born again shell.
+- `#!/bin/bash` chamado de *shebang*, usado na primeira linha para identificar que o script é do tipo bash script.
 - Caracteres especiais usados no **bash**:
   - **#** usado para criar comentários
   - **\** usado no final da linha para indicar continuação na próxima linha ou para indicar que o próximo caractere precisa ser interpretado literalmente, `\$` irá usar o *$* como caractere.
   - **;** usado para interpretar que o que segue a partir dele será um novo comando a ser executado:
-    - `mkdir newDir; cd newDir; pwd`, diferente de `mkdir newDir && cd newDir ** pwd`, usando *&&* o próximo comando só irá executar se o atual não falhar.
+    - `mkdir newDir ; cd newDir ; pwd`, diferente de `mkdir newDir && cd newDir ** pwd`, usando *&&* o próximo comando só irá executar se o atual não falhar.
   - **$** indica que o depois dele é uma variável.
   - **>** redirecionamento de saída, é o processo de enviar a saída de dados de um comando para um arquivo.
   - **>>** concatenação de saída, é o processo de concatenar a saída de dados de um comando para um arquivo.
   - **<** redirecionamento de entrada, ao contrário do de saída, o conteúdo de um arquivo é redirecionado para um comando.
   - **|** usado para combinar o resultado do comando atual para o próximo comando.
+- Em *bash* podemos passar parâmetros ao rodar o sistema, esses parâmetros são acessados da seguinte forma:
+  - **$0** para o nome do arquivo *bash*.
+  - **$1**, **$2** e assim por diente para os próximos parâmetros.
+  - **$\*** para acessar todos os parêmtros.
+  ```bash
+      #!/bin/bash
+
+      #runing as ./script.sh first
+      echo "Entered argument: $1"
+      #echo will print: Entered argument: first
+  ```
+- Podemos usar comandos para serem adicionados em variáveis ou como parte de outros comandos. Para isso usamos **$()**.
+  - Ex: `ls /lib/modules/$(uname -r)/`, `uname -r` irá retornal algo como *6.2.4* e será inserido como argumento no comando `ls`.
 - `env` para listar variáveis do sistema.
 - `echo $SHELL` mostra qual *shel* está configurado como padrão.
 - `which bash` mostra a localização do *bash*.
@@ -195,8 +209,17 @@
     - 4 para ler.
     - `chmod 111 file` dá permissões para executar o arquivos nos 3 grupos(**u,g e o**).
     - Podendo combinar/somar cada um, `chmod 765 file`, usuário pode ler,escrever e executar, grupo pode ler e escrever, outros pode ler e executar.
-- `#!/bin/bash` chamado de *shebang*, usado na primeira linha para identificar que o script é do tipo bash script.
+- Para verificar se um comando foi bem sucedido, temos no bash *exit codes*.
+  - São uma forma de verificar se o último comando foi executado com sucesso.
+  - Se eu rodar qualquer comando, para verificar se ele teve sucesso, verificar o valor de `$?`
+  - Ex: `sudo dnf install notexist` e depois `echo $?`. Em caso de sucesso, o retorno será 0, qualquer erro terá o código diferente de 0.
+  - Ao usarmos **exit 1** no script, ele irá encerrar a partir dele e não rodas as linhas seguintes.
 - Caso queira criar um script universal, para verificar qual o gerenciador de pacotes, buscar em */etc/*, exemplos: */etc/dnf*, */etc/apt/*.
+- Existem algumas maneiras de manipular *string* em bash.
+  - Usar `length=${#string}` para pegar o tamanho da *string*.
+  - Usar `name="Test string"; echo ${name:0:4}`, irá fazer o print de *Test*.
+    - `${name:0:4}`, o *0* é qual a posição da *string* iremos começar e o *4* são quantos caracteres queremos pegar a partir da posição que indicamos.
+- Temos como rodar o script habilitando uma forma de debug. Usando `bash -x ./script.sh` irá habilitar o modo debug.
 - Para ler entrada de dados do terminal:
   ```bash
       #!/bin/bash
@@ -226,9 +249,10 @@
     ```bash
       #!/bin/bash
 
+      #variable declaration
       name="Fulano"
 
-      #has to be double quotes ("). Single quotes would print the name of the variable and not the value.
+      #using double quotes will print variable value, single quotes will print literals
       echo "Hello $name"
     ```
   - Variáveis inseridas através de comandos:
@@ -242,37 +266,69 @@
     ```
 - **Math**:
   - Bash usa expressões matemáticas de forma diferente.
-  - Para fazer cálculos em bash, usar: `expr`
-    - Soma: `expr 10 + 10`
-    - Subtração: `expr 10 - 10`
-    - Divisão: `expr 10 / 10`
-    - Multiplicação: `expr 10 \* 10`
+  - Para fazer cálculos em bash, usar: `$(())`, os espaços são importantes.
+    - Soma: `$(( 1 + 2 ))`
+    - Subtração: `$(( 2 - 1 ))`
+    - Divisão: `$(( 2 / 2 ))`
+    - Multiplicação: `$(( 2 * 2 ))`
+  - Existe uma outra forma, porém deprecada usando `expr`.
+    - Soma: `expr 8 + 8`
+    - Subtração: `expr 8 - 8`
+    - Divisão: `expr 8 / 8`
+    - Multiplicação: `expr 8 * 8`
+  - Para adicionar o resultado em uma variável, usar: `a=$(( 8 + 8 )) ; echo $a` ou `let x=( 8 + 8 ) ; echo $x`.
 - **If statements**:
   ```bash
       #!/bin/bash
       
       mynum=200
 
-      #eq - equal
-      #ne - not equal
-      #gt - greater tha
-      #lt - less than
-      #ge - greater than or equal
-      #le - less than or equal
+      #numerical tests
+        #eq - equal
+        #ne - not equal
+        #gt - greater tha
+        #lt - less than
+        #ge - greater than or equal
+        #le - less than or equal
+      #string test use ==
       #more conditions check man test
-      if [$mynum -eq 200]
+      #use brackets to delineate the test condition and space after and before each bracket
+      if [ $mynum -eq 200 ]
       then
-        echo "Condition is true."
+        echo Number is 200
+      elif [ $mynum -lt 200 ] ; then
+        echo Number is less than 200
+      elif [ $mynum -gt 200 ] ; then
+        echo Number is greater than 200
       else
-        echo "Condition is false."
+        echo Not a number
       fi
       #fi end if statement
   ```
-  - Para verificar se um arquivo existe em um diretório: `if [-f ~/file]`
-- **Exit codes**:
-  - São uma forma de verificar se o u último comando foi executado com sucesso.
-  - Se eu rodar qualquer comando, para verificar se ele teve sucesso, verificar o valor de `$?`
-  - Ex: `sudo dnf install notexist` e depois `echo $?`. Em caso de sucesso, o retorno será 0, qualquer erro terá o código diferente de 0.
+  - Existem várias condições nativas que podemos usar com **if**.
+    - `-e file` para checar se o arquivo existe.
+    - `-d file` para checar se o arquivo é um diretório.
+    - `-f file` para checar 
+    - `-r file` para checar se o arquivo pode ser lido.
+    - `-w file` para checar se o arquivo pode ser escrito.
+    - `-x file` para checar se o arquivo é um executável.
+    - `-n string` para checar se a *string* não tem tamanho zero.
+    - `-z string` para checar se a *string* tem tamanho zero.
+    - Podemos fazer o uso de **[[ ]]** para testar condições de *string*, pois assim ele evita erros como *string* vazia.
+    - Para checar a lista completa, usar `man 1 test`.
+- **Case staments**:
+  ```bash
+      #!/bin/bash
+
+      read option
+
+      case $option in
+        1) echo "Option $option" ;;
+        2) echo "Option $option" ;;
+        3) echo "Option $option" ;;
+        *) echo "Option $option" ;;
+      esac
+  ```
 - **While**:
   ```bash
       #!/bin/bash
@@ -307,24 +363,14 @@
 
       hello_word
   ```
-- **Case staments**:
-  ```bash
+  - *Functions* podem receber argumentos também, o primeiro argumento pode ser acesso através do **$1**. Ex:
+    ```bash
       #!/bin/bash
 
-      read option
+      function hello() {
+        echo "Hello $1!"
+      }
 
-      case $option in
-        1) echo "Option $option";;
-        2) echo "Option $option";;
-        3) echo "Option $option";;
-        *) echo "Option $option"
-      esac
-  ```
-- **Arguments**:
-  ```bash
-      #!/bin/bash
-
-      #./script.sh first
-      #echo Entered argument: first
-      echo "Entered argument: $1"
-  ```
+      hello world
+      hello Jhon
+    ```
