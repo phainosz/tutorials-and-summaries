@@ -3,6 +3,12 @@
 ## Instalação
 - [Neovim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
+
+## Geral
+- `nvim file.txt` abre *file.txt* e se não existir cria o arquivo.
+- Para executar comandos bash no neovim, entrar em *command mode* e digitar `! <COMMAND>`.
+  - Ex: `! ls $HOME`
+
 ## Motions
 
 ### Normal Mode
@@ -20,7 +26,7 @@
 - `O` entra em *Insert mode* na linha acima onde o cursor está.
 - `A` entra en *Insert mode* no final da linha onde o cursor está.
 - `u` desfaz o que foi feito.
-- `r` volta o que foi desfeito. 
+- `R` volta o que foi desfeito. 
 - `0` move o cursor para o início da linha.
 - `$` move o cursor para o fim da linha.
 - `v` entra no *Visual mode* e seleciona um caractere.
@@ -36,6 +42,9 @@
 - `W` movimenta o cursor para frente pulando por palavras considerando apenas espaço como pulo.
 - `b` movimenta o cursor para trás pulando por palavras.
 - `B` movimenta o cursor para trás pulando por palavras considerando apenas espaço como pulo.
+- `H` move o curso para o topo da tela.
+- `M` move o curso para o meio da tela.
+- `L` move o curso para o final da tela.
 - `dw` deleta a próxima palavra.
 - `d2w` deleta as duas próximas palavras.
 - `diw` deleta a palavra em que o cursor está em cima.
@@ -51,14 +60,22 @@
 - `gg` vai para o começo do arquivo.
 - `G` vai para o final do arquivo.
   - Podendo combinar linhas com `G` para ir para a linha específica,
+  - Exemplo: `10G` vai para a linha 10.
 - `==` identa a linha que o cursor está.
+- `x` deleta a letra em que o cursor está.
+- `X` deleta a letra anterior em que o cursor está.
+- `Shift + Ctrl + c` para copiar o texto selecionado usando *visual mode*.
+- `Shift + Ctrl + v` para colar o texto normal.
+
+### Command Mode
 - `/` é o comando para buscar algo no arquivo.
   - Combinar com o que quer ser buscado.
   - Pressionar enter.
   - `n` para mover para a próxima ocorrência.
   - `N` para voltar para ocorrência anterior.
-- `x` deleta a letra em que o cursor está.
-- `X` deleta a letra anterior em que o cursor está.
+- Alterar palavra usando o *command mode*.
+  - Digitar `:%s/word/word2` irá alterar word para word2.
+- `map <C-a> ggVG` mapeia um comando para um atalho desejado. No exemplo, vai para o ínicio do arquivo, entra em *modo visual* e vai para o fim do arquivo, mapeia para *Ctrl a*.
 
 ### Insert Mode
 - `esc` para sair do mode e ir para *Normal mode*.
@@ -70,3 +87,9 @@
   - `P` para colar no início da linha o que foi copiado usanod `v`.
 - `c` deleta a palavra selecionada e entra em *Insert mode*.
 - `=` identa toda o conteúdo selecionado.
+- Selecionar um texto e apertar `u` irá alterar a seleção para minúsculo.
+- Selecionar um texto e apertar `U` irá alterar a seleção para maiúculo.
+
+### Visual Mode Block
+- Para entrar em neste modo, usar `Ctrl + v`.
+- Usado para realizar ações em múltiplas linhas.
