@@ -26,7 +26,7 @@
 - `O` entra em *Insert mode* na linha acima onde o cursor está.
 - `A` entra en *Insert mode* no final da linha onde o cursor está.
 - `u` desfaz o que foi feito.
-- `R` volta o que foi desfeito. 
+- `Ctrl + R` volta o que foi desfeito. 
 - `0` move o cursor para o início da linha.
 - `$` move o cursor para o fim da linha.
 - `v` entra no *Visual mode* e seleciona um caractere.
@@ -64,6 +64,19 @@
 - `==` identa a linha que o cursor está.
 - `x` deleta a letra em que o cursor está.
 - `X` deleta a letra anterior em que o cursor está.
+- `J` junta a próxima linha com a atual.
+- `cc` ou `S`. deleta linha inteira e entra em *insert mode*
+- `}` vai para o próximo paragráfo.
+- `{` vai para o paragráfo anterior.
+- `zz` para centralizar o cursor.
+- `zt` para posicionar o cursor no topo da tela.
+- `zb` para posicionar o cursor no final da tela.
+- `>>` identar linha para direita.
+- `<<` identar linha para esquerda.
+- `Ctrl + e` para mover a tela uma linha para baixo.
+- `Ctrl + y` para mover a tela uma linha para cima.
+- `Ctrl + b` para mover a tela uma página para baixo.
+- `Ctrl + f` para mover a tela uma página para cima.
 - `Shift + Ctrl + c` para copiar o texto selecionado usando *visual mode*.
 - `Shift + Ctrl + v` para colar o texto normal.
 
@@ -89,6 +102,10 @@
 - `=` identa toda o conteúdo selecionado.
 - Selecionar um texto e apertar `u` irá alterar a seleção para minúsculo.
 - Selecionar um texto e apertar `U` irá alterar a seleção para maiúculo.
+- `aw` selecionar uma palavra.
+- `a(` selecionar bloco entre *()*.
+- `a{` selecionar bloco entre *{}*
+- `at` selecionar bloco entre *<>*. 
 
 ### Visual Mode Block
 - Para entrar em neste modo, usar `Ctrl + v`.
