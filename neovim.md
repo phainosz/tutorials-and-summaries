@@ -28,6 +28,7 @@
 - `u` desfaz o que foi feito.
 - `Ctrl + R` volta o que foi desfeito. 
 - `0` move o cursor para o início da linha.
+- `_` move o cursor para o início do texto na linha.
 - `$` move o cursor para o fim da linha.
 - `v` entra no *Visual mode* e seleciona um caractere.
   - podendo combinar com os movimentos usando `h`,`j`,`k` ou `l`.
@@ -56,7 +57,9 @@
 - `t` move o cursor para trás antes da palvra/símbolo buscado. 
 - `f` move o cursor para frente na palvra/símbolo buscado.
   - Ex: `f*` move o cursor para no * encontrado.
-- `f` move o cursor para trás na palvra/símbolo buscado.
+  - `;` vai para o próximo símbolo encontrado na linha.
+  - `,` vai para o símbolo anterior encontrado na linha.
+  - Usando `F` vai para o sentido contrário.
 - `gg` vai para o começo do arquivo.
 - `G` vai para o final do arquivo.
   - Podendo combinar linhas com `G` para ir para a linha específica,
@@ -73,6 +76,8 @@
 - `zb` para posicionar o cursor no final da tela.
 - `>>` identar linha para direita.
 - `<<` identar linha para esquerda.
+- `1k` sobe uma linha. Podendo ser trocado o número com a quantidade de linhas desejadas.
+- `1j` desce uma linha. Podendo ser trocado o número com a quantidade de linhas desejadas.
 - `Ctrl + e` para mover a tela uma linha para baixo.
 - `Ctrl + y` para mover a tela uma linha para cima.
 - `Ctrl + b` para mover a tela uma página para baixo.

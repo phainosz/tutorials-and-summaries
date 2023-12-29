@@ -7,4 +7,4 @@
 - [Kubernetes](kubernetes.md)
 - [Rust](rust.md)
 - [Linux](linux.md)
-- [Vim](neovim.md)
+- [Neovim](neovim.md)
