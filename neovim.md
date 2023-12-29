@@ -16,10 +16,7 @@
 - `j` move o cursor para a baixo.
 - `k` move o cursor para a cima.
 - `l` move o cursor para a direita.
-- `:` execução de comandos.
 - `i` entra em *Insert mode* no local onde o cursor está.
-- `:w` para salvar o arquivo sem sair.
-- `:wq` para salvar e sair do arquivo.
 - `a` entra em *Insert mode* no final da palavra onde o cursor está.
 - `o` entra em *Insert mode* na próxima linha onde o cursor está.
 - `I` entra em *Insert mode* no início da linha onde o cursor está.
@@ -36,6 +33,9 @@
 - `yy` copia a linha inteira.
 - `p` para colar o que foi copiado. Quando copia a linha inteira
 - `P` para copiar o que foi copiado na linha acima do cursor.
+- `cw` delete próxima palavra e entra em *insert mode*.
+  - Podendo ser combinado com outros movimentos horizontais.
+  - `cb` deleta palavra anterior do cursor e entra em *insert mode*.
 - `cc` deleta tudo da linha mas mantém a linha e entra em *Insert mode*.
 - `D` deleta o que está para a frente do cursor.
 - `C` deleta o que está para a frente do cursor e entra em *Insert mode*.
@@ -78,14 +78,15 @@
 - `<<` identar linha para esquerda.
 - `1k` sobe uma linha. Podendo ser trocado o número com a quantidade de linhas desejadas.
 - `1j` desce uma linha. Podendo ser trocado o número com a quantidade de linhas desejadas.
-- `Ctrl + e` para mover a tela uma linha para baixo.
-- `Ctrl + y` para mover a tela uma linha para cima.
-- `Ctrl + b` para mover a tela uma página para baixo.
-- `Ctrl + f` para mover a tela uma página para cima.
+- `Ctrl + d` para mover a tela meia página para baixo.
+- `Ctrl + u` para mover a tela meia página para cima.
 - `Shift + Ctrl + c` para copiar o texto selecionado usando *visual mode*.
 - `Shift + Ctrl + v` para colar o texto normal.
 
 ### Command Mode
+- `:` execução de comandos.
+- `:w` para salvar o arquivo sem sair.
+- `:wq` para salvar e sair do arquivo.
 - `/` é o comando para buscar algo no arquivo.
   - Combinar com o que quer ser buscado.
   - Pressionar enter.
