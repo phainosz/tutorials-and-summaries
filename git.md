@@ -34,6 +34,18 @@
     - Também é possível alterar o último commit com mais arquivos usando o amend, basta adicionar com o add e depois fazer o amend.
     - Quando o commit for com todos os arquivos alterados, pode-se utilizar add + commit `git commit -am "<MESSAGE>"`.
 - Após fazer o commit, fazer o envio para o repositório remote com `git push`.
+- Para melhorar e facilitar o entendimento e manutenção de código foram criados *commits semânticos*, são formas de padronização de commits em um projeto.
+    - Tipos de *commits*:
+        - *build*, alterações que afetam dependências e construção do sistema.
+        - *ci*, para alterações em arquivos de configuração de ci.
+        - *docs*. ajustes em arquivos de documentação.
+        - *feat*, novas funcionalidades adicionadas.
+        - *fix*, correções de bugs.
+        - *perf*, para melhorias de desempenho.
+        - *refactor*. mudanças de código mas que não afetam a funcionalidade final.
+        - *style*, alterações que não afetam o significado do código, como formatação de código.
+        - *test*, usado em testes.
+        - *env*, usado em arquivos de configuração.
 
 ## Branchs
 - Criar nova branch `git checkout -b <NAME>` ou `git switch -c <NAME>`.
