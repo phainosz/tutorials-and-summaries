@@ -124,6 +124,10 @@
   - `sort -r file.txt` irá ordenar de forma revertida.
 - `strings` é usado para localizar textos legíveis em arquivos binarios, como planilhas do excel, pdf, etc.
   - `string file.xlsx` irá retornar as palavras legíveis para humanos encontradas no arquivo informado.
+- `ln` server para criar links de arquivos e diretórios no sistema. Podendo ser usado para ter um mesmo arquivo em um local diferente de acesso.
+    - Exemplo de uso nas configurações do neovim com link para o repositório do git.
+    - `ln -s ~/Documents/projects/dotfiles/nvim ~/.config/nvim` irá criar um link com as configurações do git para a pasta de config do neovim.
+    - Para remover o *symlink* usar `unlink ~/.config/nvim`
 - `adduser` adiciona um novo usuário.
 - `which` para encontrar onde um comando se encontra.
   - `which ls` mostra onde se encontra o comando ls.
