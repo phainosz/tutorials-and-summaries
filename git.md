@@ -46,6 +46,9 @@
         - *style*, alterações que não afetam o significado do código, como formatação de código.
         - *test*, usado em testes.
         - *env*, usado em arquivos de configuração.
+- Para desfazer commits que foram enviados para o repositório remoto:
+    - `git reset --hard HEAD~1` irá voltar para o último commit, podendo alterar o valor para a quantidade de commits anteriores desejado.
+    - `git push origin HEAD --force` irá enviar para o repositório remoto as alterações locais que foram feitas.
 
 ## Branchs
 - Criar nova branch `git checkout -b <NAME>` ou `git switch -c <NAME>`.
