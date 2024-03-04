@@ -56,9 +56,9 @@
 - Listar todas as branchs remotas `git branch -r`.
 - Listar todas as branchs `git branch -a`.
 - Mudar de branch `git checkout <NAME>` ou `git switch <NAME>`.
-- Mudar de branch para uma branch remota fazendo o tracking local com remota `git checkout -t <NAME_REMOTE>/<NAME>`.
-    - NAME_REMOTE indica o nome da branch no repositório remoto, podendo ser encontrado através de `git remote -v`.
-    - NAME seria o nome da branch local.
+- Mudar de branch para uma branch remota fazendo o tracking local com remota `git checkout -t <NAME_REMOTE>/<NAME>` ou `git switch -c <NAME> <NAME_REMOTE>/<NAME>`.
+    - NAME_REMOTE indica o nome do repositório remoto, podendo ser encontrado através de `git remote -v`.
+    - NAME seria o nome da branch.
 - Deletar branch local `git branch -D <NAME>`.
 - Deletar mais de uma branch com filtro para manter branchs `git branch | grep -v "<NAME_BRANCH_TO_KEEP> | grep -v "<NAME_BRANCH_TO_KEEP> | xargs git branch -D`.
 - Deletar branch remota `git branch <NAME_REMOTE> --delete <NAME>`.
@@ -99,7 +99,7 @@
     - `git checkout <FILE>` ou `git restore <FILE>` remove apenas mudanças no arquivo informado.
     - `git checkout .` ou `git restore .`, remove tudo.
 - Para remover mudanças que apenas foram adiciondas em *staged* com o comando `git add`, podemos usar:
-    - `git reset HEAD <FILE>`, remove apenas mudanças no arquivo informado de *staged*.
+    - `git reset HEAD <FILE>` ou `git restore --staged <FILE>`, remove apenas mudanças no arquivo informado de *staged*.
         - Com isso, as mudanças saem de *staged* e voltam para *modified*.
 - Para remover mudanças que foram feito o *commit*, usar:
     - `git reset --soft HEAD~1`, voltam as mudaças do último *commit* para *staged*.
