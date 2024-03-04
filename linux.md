@@ -158,6 +158,13 @@
     - *z* adiciona o formato de compressão/descompressão **gzip**, usado em arquivo com extensão **.tar.gz**.
 - `traceroute` é usado para inspecionar a rota que o pacote de dados da internet pega até chegar no *host*
   - `traceroute www.google.com` irá mostrar a rota de dados até o host do google.
+- `bluetoothctl` é um comando para funcionalidade de bluetooth.
+    - Digitar `bluetoothctl` no terminal irá habilitar o shell interativo.
+    - `bluetoothctl scan on` faz 0 scan para descobrir os dispositivos disponíveis. *Ctrl + z* para parar a busca.
+    - `bluetoothctl devices` para listar os dispositivos encontrados no scan.
+    - `bluetoothctl pair <DEVICE_MAC>` faz o pareamento usando o mac address do dispositivo encontrado.
+    - `bluetoothctl connect <DEVICE_MAC>` para conectar com o dispositivo.
+    - `bluetoothctl disconnect <DEVICE_MAC>` para desconectar o dispositivo.
 
 ## WSL
 - No windows 10 ou mais atual podemos rodar e instalar uma versão de linux sem precisar de uma máquina virtual.
