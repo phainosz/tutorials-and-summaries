@@ -29,7 +29,7 @@
 - [Golang](https://go.dev/doc/install)
     - Instalação linux
         * Seguir os comandos para remover e extrair o zip baixado
-            - `sudo rm -rf /usr/local/go && tar -C /usr/local -xzf ZIP_FILE_GO.tar.gz`
+            - `sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf ZIP_FILE_GO.tar.gz`
         - Testar com `go version` ou `go env`
         - Talvez precise adicionar o caminho do bin para variaveis de ambientes
             - `nano .profile`
