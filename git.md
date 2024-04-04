@@ -77,6 +77,8 @@
 - É como um arquivo temporário das alterações feitas localmente. Funciona como uma pilha LIFO.
 - Para adicionar no stash `git stash`.
 - Para adicionar ao stash com nome `git stash push -m <NAME>`.
+- Para adicionar novos itens, *untracked files*, o comando é o seguinte:
+    - `git stash --include-untracked` ou `git stash -u`
 - Para listar itens do stash `git stash list`.
     - Irá retornar algo como `stash@{0}: WIP on something: f2c0c72... My super commit message`.
     - stash@{0} é a identificação do stash na pilha mudando apenas do número {0} para frente.
