@@ -36,13 +36,21 @@
 - `docker cp <SOURCE> <DEST>` ou `docker container cp <SOURCE> <DEST>` para copiar arquivos, podendo ser do container para o pc ou vice versa
 - `docker exec <CONTAINER> -it bash` para executar comandos dentro do container. Alguns formatos de imagens podem não conter bash e outras ferramentas, nesses casos, trocar bash por sh.
 - Usar FLAGS para auxiliar ao rodar o container
-    - -d para rodar no background(detached) sem travar o terminal
-    - -i para interagir com o container
-    - -t faz a alocação de um pseudo terminal
-    - -p para mapear a porta do container com o host
-    - -u para username quando disponível
-    - --name para alterar o nome do container
-    - --rm ira remover o mesmo container quando ele parar
+    - `-d` para rodar no background(detached) sem travar o terminal
+        - Ex: `docker run <IMAGE> -d`
+    - `-i` para interagir com o container
+        - Ex: `docker run <IMAGE> -i`
+    - `-t` faz a alocação de um pseudo terminal
+        - Ex: `docker run <IMAGE> -t`
+    - `-p` para mapear a porta do container com o host
+        - Ex: `docker run <IMAGE> -p 8080:8080`
+    - `-u` para username quando disponível
+    - `--name` para alterar o nome do container
+    - `--rm` ira remover o mesmo container quando ele parar
+        - Ex: `docker run <IMAGE> --rm`
+    - `-e` para passar variáveis de ambiente ao rodar o container.
+        - Ex: `docker run <IMAGE> -e VARIABLE_NAME=value`
+
 ## Dockerfile
 - Serve para criar uma imagem customizada
 - Para criar um dockerfile, basta criar um arquivo com o nome Dockerfile
