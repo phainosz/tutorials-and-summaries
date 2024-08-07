@@ -7,6 +7,7 @@
 - [Remote](#remote)
 - [Stash](#stash)
 - [Reverter alterações](#reverter-alterações)
+- [Tag](#tag)
 - [SSH](#ssh)
 
 ## Instalação
