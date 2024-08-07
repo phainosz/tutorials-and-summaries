@@ -123,6 +123,10 @@
     - Usar `git push origin <NAME_TAG>` para enviar a tag local para o remoto.
     - Usar `git push origin --tags` para enviar todas as tags local para o remoto.
 - Para remover uma tag local, usar `git tag -d <NAME> `.
+- Podemos fazer `checkout` em *tags* usando o comando: `git checkout <NAME>`.
+    - Podemos criar uma nova branch após fazer o checkout na *tag*, usando `git switch -c <BRANCH_NAME>`.
+    - Para retornar ou sair da *tag*, `git switch -`.
+- Criar uma nova branch partindo de uma *tag* sem fazer `checkout` na *tag*, `git switch -c <BRANCH_NAME> <TAG_NAME>`.
 
 ## SSH
 - Para conectar com repositórios remotos usando o ssh, são necessários alguns passos.
