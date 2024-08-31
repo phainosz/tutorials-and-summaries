@@ -59,7 +59,7 @@
 
 ### Geral
 - Tipos
-    - Números Inteiros, ex: `int, int8, int16, int32, int64, uint, rune, byte(alias uint8)`
+    - Números Inteiros, ex: `int, int8, int16, int32, int64, uint, rune(alis int32), byte(alias uint8)`
     - Números decimais, ex: `float32, float64`
     - Texto, ex: `string`
     - Booleanos, ex: `bool`
@@ -138,12 +138,22 @@
 ### Formatação
 - Existem casos que queremos modificar o valor de uma string usando formatação. Uma das formas seria usando `fmt.Printf("Oi %s", nome)`
 - O **%s** é chamado de verbo de anotação e existem outros com propósitos diferentes.
-    - `%v` valor no formato padrão.
+    - `%v` valor no formato padrão para o tipo do dado passado.
+        - `bool:                    %t`
+        - `int, int8 etc.:          %d`
+        - `uint, uint8 etc.:        %d, %#x if printed with %#v`
+        - `float32, complex64, etc: %g`
+        - `string:                  %s`
+        - `chan:                    %p`
+        - `pointer:                 %p`
     - `%T` usado para verificar o tipo da variável.
     - `%t` para booleano, *true* ou *false*.
     - `%b` para valor inteiro base 2(0 ou 1).
     - `%d` para valor inteiro base 10(0-9).
+        - `%+d` para mostrar o sinal.
     - `%f` para valor decimal.
+    - `%c` para caracteres unicodes, **rune**.
+    - `%02d` adiciona zero a esquerda, *2* pode ser alterado para a quantidade de zeros a esquerda.
     - `%s` para strings.
     - `%p` endereço de memória do tipo. **Observação: ao usar em *slice* pega o endereço de memória do primeiro elemento do slice.**
         ```go
