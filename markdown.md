@@ -8,6 +8,7 @@
 - [Quotes](#quotes)
 - [Tarefas](#tarefas)
 - [Código](#código)
+- [Detalhes](#detalhes)
 
 ## Comandos gerais
 - Para criar um arquivo md, basta criar o arquivo com extensão .md
@@ -51,3 +52,16 @@ func main() {
     
 }
 ```
+
+## Detalhes
+- Usado para mostrar/esconder conteúdos.
+- Ex:
+<details>
+  <summary>Click me</summary>
+
+  ### Heading
+  1. Foo
+  2. Bar
+     * Baz
+     * Qux
+</details>
