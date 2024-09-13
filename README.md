@@ -1,5 +1,6 @@
 # Tutoriais
 
+- [HTML](html.md)
 - [Golang](golang.md)
 - [Docker](docker.md)
 - [Git](git.md)
