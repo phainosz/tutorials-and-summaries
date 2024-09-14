@@ -3,6 +3,7 @@
 - [O que é HTML](#o-que-é-html)
 - [Geral](#geral)
 - [Tags](#tags)
+- [Atributos](#atributos)
 
 ## O que é HTML
 - HTML é um marcador padrão para páginas web.
@@ -139,8 +140,6 @@
   - `<section>` quebra em seções o conteúdo principal da página.
   - `<footer>` representa o rodapé da página. Sempre estará no final da página, geralmente usado para informações de copyright.
   - `<aside>` seção que contém conteúdo ligado direto ou indiretamente ao conteúdo principal, uma seção na lateral do *main*
-- `<>`
-- `<>`
 
 ## Atributos
 - Atributos podem ser genéricos ou específicos, somente usados por elementos especificos.
