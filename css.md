@@ -98,7 +98,6 @@
         padding: 0;
       }
       ```
-
     </details>
   - *seletor de elemento* é usado quando queremos aplicar estilização em um elemento especifico.
     <details>
@@ -109,7 +108,6 @@
         color: green;
       }
       ```
-
     </details>
   - *seletor de classe* usado para aplicar estilização em *atributo* do tipo *class*.
     <details>
@@ -121,7 +119,6 @@
         font-size: 25px;
       }
       ```
-
     </details>
   - *seletor por id* usado para aplicar estilização em *atributo* do tipo *id*.
     <details>
@@ -133,7 +130,6 @@
         font-size: 25px;
       }
       ```
-
     </details>
   - *seletor por atributo* é usado para especificar o estilo em todo *elemento* que conter o *atributo* desejado.
     <details>
@@ -149,7 +145,6 @@
         background-color: peachpuff;
       }
       ```
-
     </details>
   - *seletor de grupo* é usado para especificar o mesmo estilo para os elementos indicados.
     <details>
@@ -161,7 +156,6 @@
         background-color: grey;
       }
       ```
-
     </details>
   - *seletor de pseudo classes* é usado para aplicar estilo em um estado especifico de um elemento.
     <details>
@@ -181,7 +175,6 @@
         border-color: blue;
       }
       ```
-
     </details>
   - *seletor de pseudo elemento* é usado para aplicar estilo em parte de um elemento e não ele inteiro.
     <details>
@@ -198,7 +191,6 @@
         font-size: 2em;
       }
       ```
-
     </details>
   - *seletor de descendente* é usado para aplicar estilo todos as tags que são descendentes de uma tag.
     <details>
@@ -227,7 +219,6 @@
       <p>This is paragraph 3</p>
       <!-- in this case, none would -->
       ```
-
     </details>
   - *seletor de filhos* é usado para aplicar estilo todos as tags filhos diretos da tag pai.
     <details>
@@ -259,7 +250,6 @@
       </h1>
       <!-- in this case, none would work because they are inside another tag-->
       ```
-
     </details>
   - *seletor irmão adjacente* é usado para aplicar estilo para a primeira tag na sequência da tag especificada que esteja no mesmo nível.
     <details>
@@ -287,7 +277,6 @@
       <p>This is paragraph 2 (not selected)</p>
       <!-- only paragraph 1 is the adjacent sibling of h1 -->
       ```
-
     </details>
   - *seletor irmão geral* é usado para aplicar estilo para todas as tags na sequência da tag especificada que esteja no mesmo nível.
     <details>
@@ -316,7 +305,6 @@
       <p>This is paragraph 2</p>
       <!-- both Paragraph 1 and Paragraph 2 are siblings of <h1> and would be selected -->
       ```
-
     </details>
   - *seletor de grupo* é usado para aplicar estilo para todas as tags do grupo informado.
     <details>
@@ -328,5 +316,42 @@
         color : blue
       }
       ```
-
     </details>
+
+## Pseudo Classes
+- São usadas para selecionar e aplicar estilo em elementos de acordo com o seu estado ou posição dentro da página, sem a necessidade de usar *javascript*.
+- Um exemplo do uso, seria para alterar a cor de um elemento quando passar o mouse em cima dele, ou clicá-lo.
+- Usados com seletores, usando **:** após o elmemento. `a:hover{}`.
+- Podemos separar em alguns tipos e categorias de uso: *Estruturante*, *interativo*, *para formulários*, *links* e *dinâmico*.
+  - Alguns exemplos de *estruturantes*:
+    - `:root` Tem como alvo o elemento raiz do documento.
+    - `:nth-child(n)` Procura o filho nth, onde n pode ser número, palavra chave ou fórmula.
+    - `:first-child` Busca o primeiro filho do elemnto.
+    - `:last-child` Busca o último filho do elemento.
+    - `:first-of-type` Busca o primeiro elemento do tipo especificado.
+    - `:last-of-type`Busca o último elemento do tipo especificado.
+  - Alguns exemplos de *interativo*:
+    - `:hover` Aplica o estilo no elemento indicado ao passar o mouse por cima dele.
+    - `:active` Aplica o estilo no elemento ativado, por exemplo ao ser clicado.
+  - Alguns exemplos de *para formulário*:
+    - `:checked` Aplica estilo no elemento checado, como em *checkbox* ou *radio button*.
+    - `:valid` Alvo são elementos que tem seu valor válido dentro do formulário.
+    - `:invalid` Alvo são elementos que tem seu valor inválido dentro do formulário.
+  - Alguns exemplos de *link*:
+    - `:link` Usado em links que ainda não foram visitados. 
+    - `:visited` Usado em links que já foram visitados.
+  - Alguns exemplos de *dinâmico*:
+    - `:empty` Usado em elementos que não tem filhos.
+    - `:not(selector)` Usado em elementos que não atendem o critério do seletor informado.
+    - `:is(selector)` Usado em elementos que atendem qualquer critério do seletor informado.
+
+## Pseudo Elementos
+- São usados para estilizar partes especificas de um elemento.
+- Usados com seletores, usando **::** após o elemento, `p::before{}`.
+  - Alguns exemplos:
+    - `::after` Usado para inserir conteúdo após o elemento.
+    - `::before` Usado para inserir conteúdo antes do elemento.
+    - `::first-letter` Usado na primeira letra.
+    - `::first-line` Usado para a primeira linha.
+    - `::placeholder` Usado para aplicar estilo em texto dentro de elementos do tipo input.
+    - `::selection` Usado para estilizar texto selecionado dentro de um elemento.
