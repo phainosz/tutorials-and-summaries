@@ -3,6 +3,12 @@
 - [O que é CSS](#o-que-é-css)
 - [Geral](#geral)
 - [Seletores](#seletores)
+- [Pseudo Classes](#pseudo-classes)
+- [Pseudo Elementos](#pseudo-elementos)
+- [Flexbox](#flexbox)
+- [Grid](#grid)
+- [Midia Query](#midia-query)
+- [Animations](#animations)
 
 ## O que é css
 - **CSS** é uma linguagem para estilização da página web.
@@ -84,6 +90,16 @@
   - *flex* o elemento se torna um container *flex*, habilitando o uso de **flexbox**, os elementos filhos também se tornam containers *flex*.
   - *grid* o elemento se torna um container *grid*, habilitando o uso de **grid layout**.
 - `float: left | right | none | inherit;` especifica como o elemento deve se posicionar.  
+- Em **CSS** podemos criar variáveis para serem reutilizadas.
+- Declaração e uso de variáveis
+  ```css
+  :root {
+    --my-var: red;
+  }
+
+  div {
+    background-color: var(--my-var)
+  ```
 
 
 ## Seletores
@@ -355,3 +371,28 @@
     - `::first-line` Usado para a primeira linha.
     - `::placeholder` Usado para aplicar estilo em texto dentro de elementos do tipo input.
     - `::selection` Usado para estilizar texto selecionado dentro de um elemento.
+
+## Flexbox
+- É um modelo de layout que fornece uma forma eficiente e flexivel de organizar e distribuir o espaço entre itens dentro do container.
+- *flexbox container* define como os elementos dentro do container irão se comportar, é definido ao usar o atributo `display: flex`.
+- *flexbox itens*  são filhos do item definido como container.
+- *eixo principal* é a maneira como os elementos são colocados no container, por padrão o eixo principal é na horizontal.
+- *eixo transversal* é o eixo perpendicular ao eixo principal, por padrão na vertical.
+- Atributos usados no container:
+  - `flex-direction: row | row-reverse | column | column-rever;` irá alterar o comportamento dos eixos e a distribuição dos itens dentro do container.
+    - *row* é o valor padrão.
+    - Se alterado para qualquer valor de *column*, o eixo principal passa a ser na vertical e o eixo transversal na horizontal.
+  - `flex-wrap: nowrap | wrap | wrap-reverse;` altera como os itens se comportam em questão de quebrar para próxima linha/coluna ou tentar encaixar todos na mesma linha/coluna.
+  - `justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly;` altera como os itens se comportam no eixo principal. Ajuda a distribuir espaço restante da linha.
+  - `align-items: flex-start | flex-end | center | stretch | baseline;` Semelhante ao `justify-content` mas para o eixo transvesal.
+- Atributos usados nos itens:
+  - `flex-grow: 2;` Aceita um valor número, padrão é 1, serve para definir como o item dentro do container irá crescer se necessário. Cada item dentro do container pode ter seu valor, o resultado final será distribuído de acordo. Caso existam 4 itens, três deles com `flex-grow` 1 e um deles como 2, este com maior valor terá o dobro caso tenha espaço para crescer.
+  - `align-self: flex-start | flex-end | center | stretch | baseline;` Tem os mesmos valores de `align-items`, fazem a mesma coisa mas para um item especifico do container.
+  - `flex-basis: 200px;` Altera o tamanho do item do container, dependendo de como está o eixo principal, afetrá `width` caso seja *row* ou `heigth` caso seja *column*.
+  - `flex-shrink: 2;` É o inverso do `flex-grow`, funciona da mesma forma, porém para encolher o item.
+
+## Grid
+
+## Midia Query
+
+## Animations
