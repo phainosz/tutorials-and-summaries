@@ -385,6 +385,7 @@
   - `flex-wrap: nowrap | wrap | wrap-reverse;` altera como os itens se comportam em questão de quebrar para próxima linha/coluna ou tentar encaixar todos na mesma linha/coluna.
   - `justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly;` altera como os itens se comportam no eixo principal. Ajuda a distribuir espaço restante da linha.
   - `align-items: flex-start | flex-end | center | stretch | baseline;` Semelhante ao `justify-content` mas para o eixo transvesal.
+  - `gap: 5px;` serve para adicionar distância entre os itens dentro do container.
 - Atributos usados nos itens:
   - `flex-grow: 2;` Aceita um valor número, padrão é 1, serve para definir como o item dentro do container irá crescer se necessário. Cada item dentro do container pode ter seu valor, o resultado final será distribuído de acordo. Caso existam 4 itens, três deles com `flex-grow` 1 e um deles como 2, este com maior valor terá o dobro caso tenha espaço para crescer.
   - `align-self: flex-start | flex-end | center | stretch | baseline;` Tem os mesmos valores de `align-items`, fazem a mesma coisa mas para um item especifico do container.
@@ -392,6 +393,15 @@
   - `flex-shrink: 2;` É o inverso do `flex-grow`, funciona da mesma forma, porém para encolher o item.
 
 ## Grid
+- É um modelo de layout mais robusto que *flexbox* e também mais complexo.
+- Em um layout de *grid*, temos dois elementos: *Grid Container* e *Grid Item*
+  - *Grid Container* define como é apresentado os elementos filhos dentro do container. Para usar e configurar o container, usa `display: grid;`.
+  - *Grid Items* são os filhos diretos dentro do container grid, os itens podem ser posicionados verticalmente e horizontalmente.
+- Por padrão, *grid* usa uma coluna única e criará as linhas conforme necessário, com base na quantidade de *grid items*.
+- Para especificar e configurar colunas, usar `grid-template-columns: 50% 50%;`, no exemplo, serão duas colunas com metade do espaço disponível no container. Em *grid* ganhamos o uso de uma nova medida **fr(fraction)**, funciona de forma similar ao *flex-grow*.
+  - Se usarmos `grid-template-columns: 1fr 3fe;` iremos criar uma *grid* com 2 colunas, mesmo tendo mais de 2 *grid items*, será criado uma nova linha.
+- Para especificar e configurar linhas, usar `grid-template-rows: 1fr 3fr;`, no exemplo, serão duas linhas, a primeira com 1/4 do tamanho disponível e a segunda 3/4.
+- Podemos especificar o número de linhas e colunas de outra forma, `grid-template-columns: repeat(3, 1fr);`, irá criar 3 colunas com o tamanho de *1fr* cada.
 
 ## Midia Query
 
