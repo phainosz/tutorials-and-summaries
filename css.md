@@ -402,6 +402,112 @@
   - Se usarmos `grid-template-columns: 1fr 3fe;` iremos criar uma *grid* com 2 colunas, mesmo tendo mais de 2 *grid items*, será criado uma nova linha.
 - Para especificar e configurar linhas, usar `grid-template-rows: 1fr 3fr;`, no exemplo, serão duas linhas, a primeira com 1/4 do tamanho disponível e a segunda 3/4.
 - Podemos especificar o número de linhas e colunas de outra forma, `grid-template-columns: repeat(3, 1fr);`, irá criar 3 colunas com o tamanho de *1fr* cada.
+  <details>
+    <summary>Ex:</summary>
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <style>
+          .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+          }
+          /*
+            in this example, we have 3 grid items, with this css we would have 3 divs in a row.
+            if we add more grid items, it would follow the pattern, 3 items each row
+            [1][2][3]
+          */
+        </style>
+      </head>
+
+      <body>
+        <div class="grid-container">
+          <div class="grid-item">1</div>
+          <div class="grid-item">2</div>
+          <div class="grid-item">3</div>
+        </div>
+      </body>
+    </html>
+    ```
+  </details>
+- Por padrão o algoritimo do *css grid* irá posicionar o primeiro elemento filho na primeira célula vazia. Para alterarmos esse comportamento, usamos no *grid item*, `grid-row` ou `grid-column`. Esses atributos são a forma curta de `grid-row-start` e `grid-row-end`, `grid-column-start` e `grid-column-end`, que indicam onde o *grid item* deve iniciar e terminar. Usando `grid-row` ou `grid-column`, determinar o começo e fim da posição do *grid item*.
+  <details>
+    <summary>Ex:</summary>
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <style>
+          .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+          }
+
+          .grid-item {
+            grid-row: 1;
+            grid-column: 1 / 4;/* 1 to 4 mean the lines, 
+            | | | |
+            1 2 3 4
+            we count the lines and not the blocks. A 4 column grid has 5 column lines. Same goes for rows.
+            Negative values works, it starts counting right to left or bottom to top.
+            
+            grid-row: 1 is the same as grid-row-start: 1
+            grid-column: 1 / 4 is the same as grid-column-start: 1 and grid-column-end: 4
+            */
+          }
+          /*
+            in this example, we have 1 grid item, this item would match the position bellow
+            [1][1][1]
+            [ ][ ][ ]
+            [ ][ ][ ]
+          */
+        </style>
+      </head>
+
+      <body>
+        <div class="grid-container">
+          <div class="grid-item">1</div>
+        </div>
+      </body>
+    </html>
+    ```
+  </details>
+- Existe uma forma diferente de organizar itens dentro da *grid*, usando *grid areas*.
+  <details>
+    <summary>Ex:</summary>
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <style>
+          .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+          }
+
+          .grid-item {
+            grid-row: 1;
+            grid-column: 1 / 4;/* 1 to 4 mean the lines, 
+          }
+        </style>
+      </head>
+
+      <body>
+        <div class="grid-container">
+          <div class="grid-item">1</div>
+        </div>
+      </body>
+    </html>
+    ```
+  </details>
+  
 
 ## Midia Query
 
