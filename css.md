@@ -494,7 +494,7 @@
 
           .grid-item {
             grid-row: 1;
-            grid-column: 1 / 4;/* 1 to 4 mean the lines, 
+            grid-column: 1 / 4;        
           }
         </style>
       </head>
@@ -510,5 +510,78 @@
   
 
 ## Midia Query
+- São regras que permitem estiliação de página para certos tamanhos de tela. Ajudam a manter a *responsividade* para diversos dispositivos com telas em tamanhos diferentes.
+- Se a *media query* configurada for compatível com o tamanho de tela no dispositivo, a regra será aplicada.
+  <details>
+    <summary>Sintaxe:</summary>
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <style>
+          /*
+          @media [media-type] ([media-feature]) {
+             CSS Styles 
+          }
+          */
+        </style>
+      </head>
+      <body>
+        <h1>MEDIA QUERY</h1>
+      </body>
+    </html>
+    ```
+  </details>
+- *Media Types* são usados para aplicar **CSS** em diferentes tipos de dispositivos. Os mais comuns são: *all*, *print* e *screen*.
+  - *all* é o valor padrão, usando este valor, todos os dispositivos seguirão o estilo aplicado.
+  - *print* serve para quando queremos imprimir a página.
+  - *screen* só serve para telas, como computadores, tablets e celulares.
+- *Media Fetures* aplicam o estilo com base em características específicas, todas as *media features* devem ter *parenteses* ao redor.
+- *Operadores lógicos* são usados para definir as regras de estilização que queremos aplicar. Podendo ser usados em combinação da forma que for necessária para atingir o resultado esperado. São eles:
+  - *and* combina múltiplos *media features*, onde cada resultado precisa ser *true*.
+  - *or* similar ao *and* mas apenas uma das condições precisa ser *true*.
+  - *not* usado para reverter a lógica da condição.
+  - *only* aplica o estilo, apenas se toda a condição for *true*.
+  - *comma(,)* combina uma ou mais condições em uma.
+  <details>
+    <summary>Ex:</summary>
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <style>
+          /* in this example, the layout will change when less than 992px from 4 columns to 2, when it's less than 500px will change from 2 to 1*/
+          .column-box {
+            float: left;
+            width: 25%;
+            padding: 3px;
+            box-sizing: border-box;
+            background-color: pink;
+            border: 2px solid blue;
+        }
+          @media screen and (max-width: 992px) {
+              .column-box {
+                width: 50%;
+              }
+          }
+          @media screen and (max-width: 500px) {
+              .column-box {
+                width: 100%;
+              }
+          }
+        </style>
+      </head>
+      <body>
+        <h2>Resize the browser window to see the effect.</h2>
+        <div class="column-box">Box 1</div>
+        <div class="column-box">Box 2</div>
+        <div class="column-box">Box 3</div>
+        <div class="column-box">Box 4</div>
+      </body>
+    </html>
+    ```
+  </details>
 
 ## Animations
