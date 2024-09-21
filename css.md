@@ -100,6 +100,44 @@
   div {
     background-color: var(--my-var)
   ```
+- `transition` é um atributo usado para alterar propriedades de forma suave em um período de duração.
+  - `transition: transform 250ms;` irá aplicar no atributo `transform` a duração de 250ms.
+    <details>
+      <summary>Ex:</summary>
+
+      ```html
+      <!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <style> 
+            .btn {
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              border: none;
+              background: slateblue;
+              color: white;
+              font-size: 20px;
+              font-weight: 500;
+              line-height: 1;
+
+              /*make the tranform smoother applying a transition within 250m*/
+              transition: transform 250ms;
+            }
+        
+            .btn:hover {
+              transform: translateY(10px);
+            }
+          </style>
+        </head>
+        <body>
+            <button class="btn">Hello</button>
+        </body>
+      </html>
+      ```
+    </details>
+
+- `transform` 
 
 
 ## Seletores
@@ -585,3 +623,53 @@
   </details>
 
 ## Animations
+- **CSS** permite animação dos *elementos* *html* sem que seja necessário o uso de *javascript*.
+- Uma animação é a alteração gradualmente de um estilo para outro.
+- Para usar animações, precisamos fazer o uso de **keyframes**. **Keyframes** são usados para definir animações, especificando a sequência de quadros ou passos da animação.
+  - Sintaxe: `@keyframes animation-name {keyframes-selector {css-styles;}}`.
+    - *animation-name* é obrigatório, serve para identificar o nome do **keyframe** que irá ocorrer a animação.
+    - *keyframe-selector* é o tipo de seletor que usaremos para animação, ex: `from(0%)`, `to(100%)`.
+  <details>
+    <summary>Ex:</summary>
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <style>
+          .box {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            display: grid;
+            place-content: center;
+            color: white;
+            text-align: center;
+
+            animation: slide-in 1000ms;
+            animation-iteration-count: 3;
+          }
+
+          /*
+            creates an animation that will slide from left to right
+            slide-in is the name of the animation, must be unique
+          */
+          @keyframe slide-in {
+            from {
+              transform: translateX(-100%);
+              opacity: 0.25;
+            }
+            to {
+              transform: translateX(0%);
+              opacity: 1;
+            }
+          }
+          
+        </style>
+      </head>
+      <body>
+        <div class="box">Hello</div>
+      </body>
+    </html>
+    ```
+  </details>
