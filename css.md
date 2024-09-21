@@ -663,6 +663,7 @@
             text-align: center;
 
             animation: slide-in 1000ms;
+            /*if the iteration count needed to be inifite, just change 3 to infinite*/
             animation-iteration-count: 3;
           }
 
@@ -689,3 +690,15 @@
     </html>
     ```
   </details>
+- Caso queira adicionar delay na animação, usar o atributo `animation-delay`.
+- Podemos modificar o fluxo que a animação é executada com `animation-direction`. Podemos mudar para executar de trás pra frente, normal, alternado e alternado reverso.
+  - `animation-direction: normal;` é o padrão, a aplicação roda normalmente.
+  - `animation-direction: reverse;` muda para o fluxo reverso, de trás pra frente.
+  - `animation-direction: alternate;` usado para animação que começa e retorna ao início, vai no fluxo normal e retorna em reverso.
+  - `animation-direction: alternate-reverse;` similar ao *alternate* mas no sentido reverso.
+- Podemos especificar a curva de velocidade usada na animação. Quando movemos um elemento da esquerda para direita, o elemento se move de forma linear, podemos alterar esse comportamento linear para outros.
+  - `animation-timing-function: linear` é o comportamento descrito acima.
+  - `animation-timing-function: ease` é o valor padrão quando não alterado.
+  - `animation-timing-function: ease-in` a animação começa lento e finaliza rápido.
+  - `animation-timing-function: ease-out` a animação começa rápido e finaliza lento.
+  - `animation-timing-function: ease-in-out` é a combinação de *easy-in* com *easy-out*.
