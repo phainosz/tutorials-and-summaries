@@ -101,6 +101,7 @@
     background-color: var(--my-var)
   ```
 - `transition` é um atributo usado para alterar propriedades de forma suave em um período de duração.
+  - Similares a animação, servem para criar alguns efeitos de transição de elementos.
   - `transition: transform 250ms;` irá aplicar no atributo `transform` a duração de 250ms.
     <details>
       <summary>Ex:</summary>
@@ -122,6 +123,11 @@
               line-height: 1;
 
               /*make the tranform smoother applying a transition within 250m*/
+              /*we can apply transition to more than one attribute using comma and repeat the attribute and time for the transition*/
+              /*
+                linear is a timing function for the transition
+                we can use linear, ease-in, ease-out, ease-in-out and ease, where ease is the default value.
+              */
               transition: transform 250ms;
             }
         
@@ -137,8 +143,18 @@
       ```
     </details>
 
-- `transform` 
-
+- `transform` serve para aplicar mudanças no elemento como: rotacionar, movimentar, inclinar, etc, através do uso de funções.
+  - `translate`, `translateY` e `translateX` são funções que permitem movimentar os elementos.
+    - `translateY` movimenta o elemento no eixo Y, para cima e para baixo.
+    - `translateX` movimenta o elemento no eixo X, para direita e para esquerda.
+    - `translate` é a forma curta para `translateX` e `translateY`, ex: `translate(1px, 10px)` *1px* representa o eixo X e *10px* representa o eixo Y.
+  - `scale` é uma função que permite aumentar ou diminuir um elemento de tamanho.
+    - `scale` usa valores de o até 2. Podendo passar valores para o eixo X e Y.
+      - `scale(2)` dobra o tamanho, `scale(0.5, 2)` reduz metade no eixo X e dobra no eixo Y.
+  - `rotate` é a função que rotaciona o elemento.
+    - Podemos rotacionar em graus ou em voltas, 1 volta é 360 graus. `rotate(360deg)` ou `rotate(1turn)`.
+  - `skew` é uma função usada para torcer/inclinar o elemento. Podendo ser aplicado no eixo X, eixo Y ou ambos, similar ao `translate`.
+  - Podemos combinar essas funções, basta adicionar uma após a outra.
 
 ## Seletores
 - *Seletores* são usados para selecionar o *elemento **html** que queremos aplicar o *estilo*.
