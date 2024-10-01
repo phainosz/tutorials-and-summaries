@@ -2,6 +2,10 @@
 
 - [O que é SQL](#o-que-é-sql)
 - [Geral](#geral)
+- [Tables](#tables)
+- [Queries](#queries)
+- [Joins](#joins)
+- [Transações](#transações)
 
 
 ## O que é SQL
@@ -25,7 +29,7 @@
     | :---: | :------ | :---: | :------: | :------- | :------------ |
     | 1     | Jhon    | 50    | 250.00   | New York | USA           |
     | 2     | Ana     | 24    | 4000.00  | Tokyo    | Japan         |
-    | 3     | Peter   | 31    | 1200.45  | London   | Englang       |
+    | 3     | Peter   | 31    | 1200.45  | London   | England       |
   </details>
 - No exemplo acima temos representado 6 *colunas(column)* com diferentes valores em cada *row*.
 - Em casos onde não temos valores para o *field*, represantamos a falta de valor como **NULL**, ou seja, um *field* com valor em branco é um *field* *NULL*.
@@ -37,12 +41,16 @@
     - `CREATE` usado para criar *database*, *table*, *index*, *triggers*, *function*, *views* e *store procedure*.
       - `CREATE DATABASE database_name;`
       - `CREATE TABLE table_name (column1 data_type, column2 data_type, ...);`
-      - `CREATE INDEX index_name on table_name (column1);`
+      - `CREATE INDEX index_name on table_name (column1, column2, ...);`
     - `DROP` deleta objetos do *database*.
       - `DROP TABLE table_name;`
       - `DROP DATABASE database_name;`
     - `ALTER` altera estrutura do *database*.
       - `ALTER TABLE table_name ADD COLUMN column_name data_type;`
+      - `ALTER TABLE table_name DROP COLUMN column_name;`
+      - `ALTER TABLE table_name ADD INDEX index_name [index_type];`
+      - `ALTER TABLE table_name DROP INDEX index_name;`
+      - `ALTER TABLE table_name RENAME COLUMN old_column_name to new_column_name;`
     - `TRUNCATE` remove todos o dados da tabela.
       - `TRUNCATE TABLE table_name;`
     - `COMMENT` adicina comentários no dicionário de dados.
@@ -61,7 +69,7 @@
     - `UPDATE` faz uma operação de atualização de dados existentes na tabela.
       - `UPDATE table_name SET column1 = value1, column2 = value2 WHERE condition;`
     - `DELETE` faz a remoção de dado presente na tabela.
-      - `DELETE FROM table_name WHERE condition`
+      - `DELETE FROM table_name WHERE condition;`
   - *DCL – Data Control Language*
     - Incluem comandos para gerenciar permissões, como permitir um usuário acessar o banco ou remover a permissão de um usuário existente.
     - `GRANT` adiciona novos privilégios ao usuário.
@@ -76,3 +84,56 @@
   - `FOREIGN KEY` usado para identificar *row* em outra tabela.
   - `CHECK` garante que o valor da *column* satisfaz a condição especificada.
   - `INDEX` usado para criar e buscar dados de uma forma mais eficaz.
+- *Operadores* são palavras ou símbolos reservados para realizar comparações ou operações aritiméticas.
+  - Exemplos de operadores aritiméticos:
+    - `+` soma.
+    - `-` subtração.
+    - `*` multiplicação.
+    - `/` divisão.
+    - `%` módulo.
+  - Exemplos de operadores de comparação:
+    - `=` igual.
+    - `!=` diferente.
+    - `>` maior que.
+    - `<` menor que.
+    - `>=` maior igual.
+    - `<=` menor igual.
+  - Exemplos de operadores lógicos:
+    - `ALL` *true* se todas as comparações forem *true*.
+    - `AND` *true* se todas as comparações separadas por `AND` forem *true*.
+    - `OR` *true* se uma das comparações separadas por `OR` forem *true*.
+    - `BETWEEN` *true* se o operando estiver no range usado na comparação.
+    - `IN` *true* se o operando for igual a um item da lista informada.
+    - `LIKE` *true* se o operando corresponder ao padrão informado.
+    - `NOT` reverte o valor de qualquer operador booleano.
+
+## Tables
+- Aqui entraremos mais afundo em como fazer operações em **tables**.
+- Para criar uma tabela, usamos o comando `CREATE`.
+  <details>
+    <summary>Ex:</summary>
+
+    ```sql
+    CREATE TABLE CUSTOMERS(
+      ID      INT NOT NULL,
+      NAME    VARCHAR(20) NOT NULL,
+      AGE     INT NOT NULL,
+      SALARY  DECIMAL(18, 2),
+      PRIMARY KEY (ID)
+    );
+    ```
+    |  ID   |   NAME  |  AGE  |  SALARY   |
+    | :---: | :------ | :---: | :------:  |
+  </details>
+- Podemos verificar uma tabela que já existente usando o comando, `DESC table_name;`, irá mostrar a estrutura da tabela com as colunas, tipos de dados e constraints se existir.
+- Se temos uma situação que queremos criar uma tabela, porém ela já existe, usando o exemplo mostrado acima, irá ocorrer um erro. Para não ocorrer erros, podemos alterar o comando para: `CREATE TABLE IF NOT EXISTS`.
+- Para listar todas as tabelas do database, usar `SHOW TABLES;`.
+- Para remover tabela, `DROP TABLE table_name;` ou `DROP TABLE IF EXISTS table_name;`.
+- Para remover todos os dados de uma tabela de uma vez, usar `TRUNCATE TABLE table_name;`. Não aceita condição `WHERE`.
+- Para remover dados da tabela usando uma condição `WHERE`, usar `DELETE FROM table_name WHERE condition;`. Podendo ser usado sem `WHERE`, irá remover todos as linhas.
+
+## Queries
+
+## Joins
+
+## Transações
