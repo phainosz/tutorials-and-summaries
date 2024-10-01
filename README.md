@@ -1,12 +1,13 @@
 # Tutoriais
 
+- [Markdown](markdown.md)
 - [HTML](html.md)
 - [CSS](css.md)
-- [Golang](golang.md)
-- [Docker](docker.md)
 - [Git](git.md)
-- [Markdown](markdown.md)
+- [Golang](golang.md)
+- [SQL](#sql)
+- [Linux](linux.md)
+- [Docker](docker.md)
 - [Kubernetes](kubernetes.md)
 - [Rust](rust.md)
-- [Linux](linux.md)
 - [Neovim](neovim.md)
