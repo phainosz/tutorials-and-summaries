@@ -5,7 +5,7 @@
 - [Tables](#tables)
 - [Queries](#queries)
 - [Joins](#joins)
-- [Transações](#transações)
+- [Transactions](#transactions)
 
 
 ## O que é SQL
@@ -218,5 +218,20 @@
   - **LEFT JOIN** retorna tudo que está na tabela da esquerda.
   - **RIGHT JOIN** retorna tudo que está na tabela da direita.
 
-
-## Transações
+## Transactions
+- **TRANSACTIONS** são usados para gerenciar e executar operações com o intuito de manter a consistência e integridade dos dados.
+- Podemos iniciar e finalizar uma *transaction*, sendo finalizada com um *commit* ou *rollback*.
+- Alguns dos beneficios são:
+  - Controlar a execução de operações e prevenir conflitos.
+  - Garantir a integridade dos dados, mesmo com operações de falhar durante a transação.
+  - Permitir a recuperação de um erro mantendo a consistência do banco de dados.
+- **Transactions** aderem ao principio ACID.
+  - *Atomicity(atomicidade)* garante que todas as operaçẽos dentro de uma transação são completadas ou nenhuma delas. Se uma operação falha, toda a transação sofre o rollback, desfazendo todas as mudanças anteriores dentro da transação.
+  - *Consistency(consistência)* garante que todo o banco de dados permanceça consistente após a execução da transação.
+  - *Isolation(isolamento)* ao iniciar uma transação, ela fica invisível de outras transações que ocorrem de forma concorrente, previnindo conflitos entre múltiplas transações.
+  - *Durability(durabilidade)* quando uma transação finaliza com *commit*, seus efeitos serão adicionados a base mesmo que ocorra erros após isso.
+- Para iniciar uma transaction, usar o comando: `BEGIN TRANSACTION;` ou `START TRANSACTION;`.
+- Para fazer o commit de uma transaction, usar o comando: `COMMIT;`.
+  - O comando `COMMIT` é usado para salvar permanentemente os dados que sofrearam alteração durante a transação no banco de dados.
+- Para fazer o rollback, usar o comando: `ROLLBACK;`
+  - O comando `ROLLBACK` é usado para cancelar qualquer mudança feita durante a transação.
