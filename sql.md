@@ -124,6 +124,7 @@
     ```
     |  ID   |   NAME  |  AGE  |  SALARY   |
     | :---: | :------ | :---: | :------:  |
+
   </details>
 - Podemos verificar uma tabela que já existente usando o comando, `DESC table_name;`, irá mostrar a estrutura da tabela com as colunas, tipos de dados e constraints se existir.
 - Se temos uma situação que queremos criar uma tabela, porém ela já existe, usando o exemplo mostrado acima, irá ocorrer um erro. Para não ocorrer erros, podemos alterar o comando para: `CREATE TABLE IF NOT EXISTS`.
@@ -133,6 +134,42 @@
 - Para remover dados da tabela usando uma condição `WHERE`, usar `DELETE FROM table_name WHERE condition;`. Podendo ser usado sem `WHERE`, irá remover todos as linhas.
 
 ## Queries
+- Como já mencionado anteriormente, para fazer *queries* usamos o comando `SELECT`.
+- Podemos adicionar cláusulas `WHERE` em nossas *queries*. `SELECT * FROM table_name WHERE condition;`.
+  - `SELECT * FROM CUSTOMERS WHERE AGE >= 18;`.
+  - `SELECT * FROM CUSTOMERS WHERE SALARY BETWEEN 1800 AND 2500;`.
+  - `SELECT * FROM CUSTOMERS WHERE SALARY >= 18 AND SALARY <= 25;`.
+  - `SELECT * FROM CUSTOMERS WHERE AGE IN (18, 19, 20);`.
+  - `SELECT * FROM CUSTOMERS WHERE AGE NOT 18;`.
+- Podemos ordenar de forma crescente ou decrescente os dados por colunas:
+  - `SELECT * FROM table_name WHERE condition ORDER BY column_name ASC;` sendo esta opção por padrão, não precisando informar `ASC`.
+  - `SELECT * FROM table_name WHERE condition ORDER BY column_name DESC;`
+- Usamos `DISTINCT` para remover apenas da *query* valores duplicados, informando quais colunas queremos fazer esse filtro:
+  - `SELECT DISTINCT column1, column2, ... FROM table_name;`.
+- Temos funções de agregação usadas em *queries*:
+  - **AVG** retorna a média dos itens avaliados: `SELECT AVG(AGE) FROM CUSTOMERS;`. Irá retornar a idade média da coluna *AGE* da tabela.
+  - **COUNT** retorna a quantidade dos itens avaliados: `SELECT COUNT(*) FROM CUSTOMERS;`. Irá retornar a quantidade de linhas da tabela.
+  - **MAX** retorna o valor máximo para dos itens avaliados. `SELECT MAX(AGE) FROM CUSTOMERS;`. Irá retornar a maior idade encontrada.
+  - **MIN** retorna o valor mínimo para dos itens avaliados. `SELECT MIN(AGE) FROM CUSTOMERS;`. Irá retornar a menor idade encontrada.
+  - **SUM** retorna a soma dos valores para os itens avaliados. `SELECT SUM(SALARY) FROM CUSTOMERS;`. Irá retorna a soma de todos os salários.
+- Podemos usar a condicional **SQL CASE**, para tomadas de decisão, para retornar valores baseado na condição criada. Usado geralmente para criar uma nova coluna de acordo com os valores e a condição.
+  <details>
+    <summary>Ex:</summary>
+
+    ```sql
+    SELECT 
+      NAME,
+      SALARY,
+      CASE
+        WHEN SALARY < 3000 THEN 'Low'
+        WHEN SALARY >= 3000 AND SALARY <= 5000 THEN 'Average'
+        WHEN SALARY > 5000 THEN 'High'
+      END as EVALUATION
+    FROM
+      CUSTOMERS;
+    ```
+
+  </details>
 
 ## Joins
 
