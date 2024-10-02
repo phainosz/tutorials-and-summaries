@@ -172,5 +172,51 @@
   </details>
 
 ## Joins
+- **JOINS** são cláusulas usadas para combinar dados de duas ou mais *tabelas*. Usando as **chaves estrangeiras(foreign keys)** para combinar os campos das tabelas.
+- A *sintaxe* básica para o uso de **JOIN** é a seguinte: `SELECT * FROM table1 JOIN table2;`.
+  <details>
+    <summary>Ex:</summary>
+
+    ```sql
+    CREATE TABLE CUSTOMERS(
+      ID      INT NOT NULL,
+      NAME    VARCHAR(20) NOT NULL,
+      AGE     INT NOT NULL,
+      SALARY  DECIMAL(18, 2),
+      PRIMARY KEY (ID)
+    );
+
+    INSERT INTO CUSTOMERS VALUES
+    (1, 'Ramesh', 32, 2000.00 ),
+    (2, 'Khilan', 25, 1500.00 ),
+    (3, 'Kaushik', 23, 2000.00 ),
+    (4, 'Chaitali', 25, 6500.00 ),
+    (5, 'Muffy', 24, 10000.00 );
+
+    CREATE TABLE ORDERS (
+      ORDER_ID INT NOT NULL,
+      DATE VARCHAR (20) NOT NULL,
+      CUSTOMER_ID INT NOT NULL,
+      AMOUNT DECIMAL (18, 2)
+    );
+
+    INSERT INTO ORDERS VALUES 
+    (102, '2009-10-08 00:00:00', 3, 3000.00),
+    (100, '2009-10-08 00:00:00', 3, 1500.00),
+    (101, '2009-11-20 00:00:00', 2, 1560.00),
+    (103, '2008-05-20 00:00:00', 4, 2060.00);
+
+    SELECT ID, NAME, AGE, AMOUNT 
+    FROM CUSTOMERS 
+    JOIN ORDERS 
+    ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID;
+    ```
+
+  </details>
+- **SQL** permite vários tipos de **JOINS**, com base no tipo que queremos que essa junção seja feita.
+  - **INNER JOIN** é quando buscamos os dados na intersecção de duas tabelas, faz a junção apenas se existirem nas duas tabelas.
+  - **LEFT JOIN** retorna tudo que está na tabela da esquerda.
+  - **RIGHT JOIN** retorna tudo que está na tabela da direita.
+
 
 ## Transações
