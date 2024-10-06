@@ -128,6 +128,8 @@
     - Podemos criar uma nova branch após fazer o checkout na *tag*, usando `git switch -c <BRANCH_NAME>`.
     - Para retornar ou sair da *tag*, `git switch -`.
 - Criar uma nova branch partindo de uma *tag* sem fazer `checkout` na *tag*, `git switch -c <BRANCH_NAME> <TAG_NAME>`.
+- Para remover uma tag local, `git tag --delete <NAME>`
+- Para remover uma tag remota, `git push --delete origin <NAME>`
 
 ## SSH
 - Para conectar com repositórios remotos usando o ssh, são necessários alguns passos.
