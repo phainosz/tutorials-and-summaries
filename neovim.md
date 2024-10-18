@@ -97,9 +97,11 @@
 - `map <C-a> ggVG` mapeia um comando para um atalho desejado. No exemplo, vai para o ínicio do arquivo, entra em *modo visual* e vai para o fim do arquivo, mapeia para *Ctrl a*.
 
 ### Insert Mode
+- Para entrar em **INSERT MODE**, pode usar: `i`, `a`, `o`, `I`, `A`, `O`, etc.
 - `esc` para sair do mode e ir para *Normal mode*.
 
 ### Visual Mode
+- Para entrar em **VISUAL MODE**, pode usar: `v` para iniciar, existem outras combinações possíveis.
 - `d` para deletar o que foi selecionado.
 - `y` copia o que foi selecionado, termo usado é chamado de *yanking*.
   - `p` para colar o que foi copiado no final o que foi copiado usanod `v`.
@@ -108,11 +110,12 @@
 - `=` identa toda o conteúdo selecionado.
 - Selecionar um texto e apertar `u` irá alterar a seleção para minúsculo.
 - Selecionar um texto e apertar `U` irá alterar a seleção para maiúculo.
-- `aw` selecionar uma palavra.
-- `a(` selecionar bloco entre *()*.
-- `a{` selecionar bloco entre *{}*
-- `at` selecionar bloco entre *<>*. 
+- `viw` selecionar uma palavra.
+- `vi(` selecionar bloco entre *()*.
+- `vi{` selecionar bloco entre *{}*
+- `vt` selecionar bloco entre *<>*. 
+- Podemos também entrar em **VISUAL MODE LINE**, usando `V`, isso irá selecionar a linha toda.
 
 ### Visual Mode Block
-- Para entrar em neste modo, usar `Ctrl + v`.
+- Para entrar em neste modo, usar `<C-v>`, *ctrl + v*.
 - Usado para realizar ações em múltiplas linhas.
