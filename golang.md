@@ -38,7 +38,7 @@
         - VSCode instalar plugin *Go* e configurar VSCode caso necessário, apertar *Ctrl Shift p*, Go: Install/Update Tools, selecionar todos.
 - [Go playground](https://go.dev/play/), usar o go via web.
 
-### Comandos Go
+## Comandos Go
 - `go version`
 - `go env` lista as variaveis do go.
 - `go run` para rodar o projeto.
@@ -50,14 +50,14 @@
     - `go doc fmt` mostra informações do pacote fmt.
     - `go doc -src fmt Println` mostra informações do arquivo fonte da função Println do pacote fmt.
 
-### Primeiros passos
+## Primeiros passos
 - Criar o arquivo `main.go`
 - Criar o módulo para a aplicação: `go mod init MODULE_NAME`
 - Adicionar o pacote: `package main`
 - Criar a função principal: `func main()`
 - Como rodar: `go run main.go`
 
-### Geral
+## Geral
 - Tipos
     - Números Inteiros, ex: `int, int8, int16, int32, int64, uint, rune(alis int32), byte(alias uint8)`
     - Números decimais, ex: `float32, float64`
@@ -143,7 +143,7 @@
     |---go.sum
     ```
 
-### Formatação
+## Formatação
 - Existem casos que queremos modificar o valor de uma string usando formatação. Uma das formas seria usando `fmt.Printf("Oi %s", nome)`
 - O **%s** é chamado de verbo de anotação e existem outros com propósitos diferentes.
     - `%v` valor no formato padrão para o tipo do dado passado.
@@ -171,12 +171,12 @@
         ```
     - [clique aqui](https://pkg.go.dev/fmt) para saber mais.
 
-### Variáveis
+## Variáveis
 - `var` e `const`
 - Inferência usando **:=** ex: `name := "Foo`
 - Operações em tipos numéricos devem ser do mesmo tipo.
 
-### Condições IFs e Switch
+## Condições IFs e Switch
 - Seguem o formato a seguir:
   <details>
     <summary>Ex:</summary>
@@ -248,13 +248,13 @@
     ```
   </details>
 
-### Arrays
+## Arrays
 - Sintaxe, `var array [n]T`, *n* é o tamanho e *T* é o tipo.
     - `var array = [50]string{}`, `var array [50]string` ou `var array [5]int = [5]int{1,2,3,4,5}`.
 - Para adicionar ou alterar, é da mesma forma convencional: `array[0] = "String"`.
 - Tamanho total do array ex: `len(array)`.
 
-### Slices
+## Slices
 - É uma abstração do array com tamanho dinâmico.
 - Slices são referências de valores, diferente de arrays que são tipos de valores. Isso implica que quando criamos um array e passamos como parametro de uma função, todos os elementos serão copiados, enquanto quando usamos slice, a função recebe a referência em memória do slice.
 - Criado igual o array mas sem o tamanho do array, ex: `var slice[]string` ou `var slice = []string{}`.
@@ -302,7 +302,7 @@
     - length é o tamanho inicial do array.
     - cap é a capacidade máxima do array.
 - Tomar cuidado com o array subjacente.
-### Maps
+## Maps
 - É uma collection de chave valor.
 - Criado usando chave e valor tipados, ex: `var mymap map[string]string` ou um map vazio `var mymap = make(map[string]string)`.
 - Para adicionar no map, ex: `mymap["key"] = value`.
@@ -327,7 +327,7 @@
     ```
   </details>
 
-### Loops
+## Loops
 - Existe apenas *for* em **GO**, *while* e *doWhile* não existem.
 - O mesmo de C ou Java: 
   <details>
@@ -385,7 +385,7 @@
     ```
   </details>
 
-### Structs
+## Structs
 - Funciona de forma semelhante do C.
 - Usado como forma de definir multiplos tipos de dados.
 - Alternativa para classes em Go.
@@ -501,7 +501,7 @@
     ```
   </details>
 
-### Funções
+## Funções
 - A nomenclatura usada no Go é *func*.
 - Por padrão parâmetros em Go são *pass by value* o que signifa é que todo parâmetro de função é uma cópia.
 - Em casos que não queremos fazer uma cópia do parâmetro, são usados [ponteiros](#ponteiros)
@@ -625,7 +625,7 @@
     ```
   </details>
 
-### Ponteiros
+## Ponteiros
 - São variáveis que apontam para um endereço de memória.
 - Um ponteiro declarado mas não dado o valor(`var a *int`), tem valor **nil**.
 - Ponteiros são referências de memória. Para lidar com ponteiros, podemos usar dois operadores:
@@ -675,7 +675,7 @@
     ```
   </details>
 
-### Interfaces
+## Interfaces
 - Funciona como um contrato, semelhante em orientação a object, mas sem a necessidade de implementar diretamente:
   <details>
     <summary>Ex:</summary>
@@ -722,7 +722,7 @@
     ```
   </details>
 
-### Goroutines
+## Goroutines
 - Gouroutines é a forma que Go trabalha com concorrencia usando algo similar a threads, mas mais leves.
 - Ao lidar com concorrência, alguns conceitos precisam ser abordados:
     - *Data race* acontece quando tentamos acessar a mesma variável. Por exemplo, duas threads acessam a mesma variável, uma tenta ler e outra escrever.
@@ -745,7 +745,7 @@
   </details>
 
 
-### Channels
+## Channels
 - *Channels* são uma forma de fazer sincronização em código concorrente.
 - Eles nos permitem trasmitir valores entre goroutines.
 - A comunicação é semelhante em um cano, tem uma entrada e uma saída. Elas entram e saem na mesma ordem até o channel ser fechado.
@@ -964,7 +964,7 @@
     ```
   </details>
 
-### Testes
+## Testes
 - Para criar testes, o Go disponibiliza ferramentas nativas nos seus pacotes.
 - Para rodar os testes, pode ser feito no pacote que contem os testes, `go test`.
 - Para rodar todos os testes do projeto, usar `go test ./...`.
@@ -980,7 +980,7 @@
     - Cada teste deve começar com **Test** antes do nome do método e adicionar o parametro para uso das validacoes.
         - ex: `TestMetodoXpto(t *testing.T)`.
     
-### Packages
+## Packages
 - O pacote main é o principal como o nome já diz. Podendo ser utilizado com varios arquivos .go neste mesmo pacote, a diferença está na forma de rodar, os arquivos precisam ser declarados no `go run main.go xxx.go yyy.go` ou na raiz `go run .`.
 - Novos pacotes podem ser criados com outras pastas com o nome do pacote.
   <details>
@@ -1018,13 +1018,13 @@
     - `go get -u <LIB>` baixa o código da lib atualizado, caso houver.
     - `go intall <LIB>` faz a compilação da lib.
 
-### Modulos
+## Modulos
 - Modulos servem para gerenciamento de dependências em projetos Go.
 - Modulos são coleções de pacotes indicados dentro do **go.mod**.
 - `go mod init <MOD_NAME>` cria um novo modulo.
 - `go mod tidy` remove/adiciona dependências em **go.mod**.
 
-### Workspaces
+## Workspaces
 - Nos permitem trabalhar com multiplos modulos simultaneamente.
 - Funciona de forma similar a modulos.
 - Ajudam para rodar um projeto local com alterações de um módulo dependente. Quando temos um projeto x, que usa o modulo y, porém fizemos alterações no módulo y e ele n está com estas alterações no repositório remoto.
@@ -1047,7 +1047,7 @@
 - Podem ser criados *workspaces* de forma geral e adicionar uma variável de ambiente, cada *módulo* adicioná-lo ao *workspace*. Para fazer isso,
 adicionar *GOWORK* como variável do sistema e indicar o path da pasta. Para verificar o local do *GOWORK*, usar `go env GOWORK` no terminal.
 
-### Erros
+## Erros
 - No Go não temos exceções e sim erros, e dessa forma, os erros são tratados de forma diferente.
 - Podendo usar o pacotes errors para criar seus erros a partir de `errors.New("Error")`.
 - Exemplo usando divisão por 0:
@@ -1115,7 +1115,7 @@ adicionar *GOWORK* como variável do sistema e indicar o path da pasta. Para ver
   </details>
 - Existe dentro de Go, **panic** e **recover** que são interfaces internas similares ao **try catch** conhecido em outras linguagens.
 
-### Generics
+## Generics
 - Generics possibilitam o uso de chamadas sem tipagem.
   <details>
     <summary>Ex sem generics:</summary>
