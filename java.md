@@ -158,12 +158,14 @@
   - Um *objeto* é algo que possui um estado e comportamento.
   - É definido a partir da instância de uma *classe*.
   - Possui um endereço de memória.
+- *Classes* são onde criamos e estruturamos *métodos* e *atributos*
 - Existem quatro pilares que são importantes para o entendimento de OO, **herança**, **polimorfismo**, **abstração** e **encapsulamento**.
 - **Herança** permite a criação de novas classes baseadas em classes existentes. Em vez de criar uma classe do zero, você pode definir uma nova classe que herda atributos e métodos de uma classe já existente.
   - A **herança** facilita o reaproveitamento de código, pois as subclasses herdam funcionalidades comuns da superclasse, evitando duplicação.
   - Além de *reuso* a **herança** traz o **polimorfismo** como benefício.
-- **Polimorfismo** é quando temos algum relacionamento, seja de *herança* ou *interface*, aplicamos *overloading* ou *overriding* para alterar o comportamento.
 - **Polimorfismo** permite que objetos de diferentes classes sejam tratados como se fossem da mesma classe base, especialmente quando compartilham uma interface ou herdam de uma superclasse comum. Na prática, isso significa que o mesmo método pode ter diferentes comportamentos dependendo do objeto que o está executando.
   - *Overloading* método com mesmo nome, mas com *parâmetros* diferentes.
   - *Overriding* método com mesmo nome, mesmos  *parâmetros*, mas em um *sub-classe*.
-- **Encapsulamento** consiste em ocultar os detalhes internos de implementação de uma classe, expondo apenas o que é necessário para que outros componentes interajam com ela. Em outras palavras, o encapsulamento protege os dados e funcionalidades internos de uma classe, permitindo acesso somente através de métodos específicos (chamados getters e setters, ou métodos públicos) que a própria classe define.
+- **Abstração** é usados para focar apenas nos aspectos essenciais de um objeto ou sistema, permitindo criar uma representação simplificada de um conceito.
+  - Na prática, é implementado usando *classes* e *métodos* que representam partes importantes de um conceito, sem adicionar complexidade. Frequentemente através de *interfaces* e *classes abstratas* que especificam o que deve ser implementado.
+- **Encapsulamento** consiste em ocultar os detalhes internos de implementação de uma classe, expondo apenas o que é necessário para que outros componentes interajam com ela. Em outras palavras, o encapsulamento protege os dados e funcionalidades internos de uma *classe*, permitindo acesso somente através de métodos específicos (chamados *getters* e *setters*, ou *métodos públicos*) que a própria classe define.
