@@ -163,9 +163,148 @@
 - **Herança** permite a criação de novas classes baseadas em classes existentes. Em vez de criar uma classe do zero, você pode definir uma nova classe que herda atributos e métodos de uma classe já existente.
   - A **herança** facilita o reaproveitamento de código, pois as subclasses herdam funcionalidades comuns da superclasse, evitando duplicação.
   - Além de *reuso* a **herança** traz o **polimorfismo** como benefício.
+  - Ex:
+  ```java
+    class Animal {
+      public void move() {
+        System.out.println("The animal moves");
+      }
+    }
+
+    class Dog extends Animal {
+      public void bark() {
+        System.out.println("The dog barks");
+      }
+    }
+
+    class Main {
+      public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.move();  // inherited behavior
+        dog.bark();  // behavior unique to Dog
+      }
+    }
+  ```
+  
 - **Polimorfismo** permite que objetos de diferentes classes sejam tratados como se fossem da mesma classe base, especialmente quando compartilham uma interface ou herdam de uma superclasse comum. Na prática, isso significa que o mesmo método pode ter diferentes comportamentos dependendo do objeto que o está executando.
   - *Overloading* método com mesmo nome, mas com *parâmetros* diferentes.
+    - Ex:
+    ```java
+      class Calculator {
+        // method to add two integers
+        public int add(int a, int b) {
+            return a + b;
+        }
+
+        // overloaded method to add three integers
+        public int add(int a, int b, int c) {
+            return a + b + c;
+        }
+
+        // overloaded method to add two double values
+        public double add(double a, double b) {
+            return a + b;
+        }
+      }
+
+      class Main {
+        public static void main(String[] args) {
+          Calculator calc = new Calculator();
+
+          // calling overloaded methods
+          System.out.println("Sum of two integers: " + calc.add(5, 10)); // calls add(int, int)
+          System.out.println("Sum of three integers: " + calc.add(5, 10, 15)); // calls add(int, int, int)
+          System.out.println("Sum of two doubles: " + calc.add(5.5, 10.5)); // calls add(double, double)
+        }
+      }
+    ```
   - *Overriding* método com mesmo nome, mesmos  *parâmetros*, mas em um *sub-classe*.
+    - Ex:
+    ```java
+      class Animal {
+        public void sound() {
+          System.out.println("Some generic animal sound");
+        }
+      }
+
+      class Dog extends Animal {
+        @Override
+        public void sound() {
+          System.out.println("Bark");
+        }
+      }
+
+      class Main {
+        public static void main(String[] args) {
+          Animal animal = new Dog();  // polymorphism
+          animal.sound();  // output: "Bark"
+        }
+      }
+    ```
+
 - **Abstração** é usados para focar apenas nos aspectos essenciais de um objeto ou sistema, permitindo criar uma representação simplificada de um conceito.
   - Na prática, é implementado usando *classes* e *métodos* que representam partes importantes de um conceito, sem adicionar complexidade. Frequentemente através de *interfaces* e *classes abstratas* que especificam o que deve ser implementado.
+  - Ex:
+  ```java
+    interface Database {
+      void connect();
+    }
+
+    class MySQLDatabase implements Database {
+      @Override
+      public void connect() {
+          System.out.println("Connecting to MySQL database...");
+      }
+    }
+
+    class PostgreSQLDatabase implements Database {
+      @Override
+      public void connect() {
+          System.out.println("Connecting to PostgreSQL database...");
+      }
+    }
+
+    class Main {
+      public static void main(String[] args) {
+          Database db = new MySQLDatabase();  // can switch to PostgreSQL easily
+          db.connect();
+      }
+    }
+  ```
 - **Encapsulamento** consiste em ocultar os detalhes internos de implementação de uma classe, expondo apenas o que é necessário para que outros componentes interajam com ela. Em outras palavras, o encapsulamento protege os dados e funcionalidades internos de uma *classe*, permitindo acesso somente através de métodos específicos (chamados *getters* e *setters*, ou *métodos públicos*) que a própria classe define.
+  - Ex:
+  ```java
+    class User {
+      private String name;
+      private int age;
+
+      public String getName() {
+        return name;
+      }
+
+      public void setName(String name) {
+        if (name != null && !name.isEmpty()) {
+            this.name = name;
+        }
+      }
+
+      public int getAge() {
+        return age;
+      }
+
+      public void setAge(int age) {
+        if (age > 0) {
+            this.age = age;
+        }
+      }
+    }
+
+    class Main {
+      public static void main(String[] args) {
+          User user = new User();
+          user.setName("John");
+          user.setAge(30);
+          System.out.println("User: " + user.getName() + ", Age: " + user.getAge());
+      }
+    }
+  ```
