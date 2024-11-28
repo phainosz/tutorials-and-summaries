@@ -7,6 +7,7 @@
 - [Arrays](#arrays)
 - [Loops](#loops)
 - [Orientação a Objetos](#oop)
+- [SOLID](#solid)
 
 ## Instalação
 - Instalar o **JDK**, java development kit.
@@ -305,6 +306,229 @@
           user.setName("John");
           user.setAge(30);
           System.out.println("User: " + user.getName() + ", Age: " + user.getAge());
+      }
+    }
+  ```
+
+## SOLID
+- Não é algo específico ou só encontrado no **Java**.
+- São 5 diretrizes que ajduam o tornar o código mais *modular*, *flixível* e *fácil* de manter.
+- **Single Responsibility Principle (SRP)**:
+  - Princípio da Responsabilidade Única.
+  - Cada classe deve ter uma única responsabilidade ou razão para mudar.
+  - Ex: Imagine uma classe que gerencia usuários e também envia e-mails. Isso viola o SRP porque são duas responsabilidades distintas.
+  ```java
+    //bad
+    public class UserManager {
+      public void saveUser(String user) {
+        // save user code
+      }
+
+      public void sendWelcomeEmail(String email) {
+        // send email code
+      }
+    }
+  ```
+  
+  ```java
+    //good
+    public class UserManager {
+      public void saveUser(String user) {
+        // save user code
+      }
+    }
+
+    public class EmailService {
+      public void sendWelcomeEmail(String email) {
+        // send email code
+      }
+    }
+  ```
+- **Open/Closed Principle (OCP)**:
+  - Princípio Aberto/Fechado.
+  - O código deve estar aberto para extensão, mas fechado para modificação.
+  - Ex: Uma calculadora que soma e multiplica. Se você precisar adicionar divisão, não deve modificar o código existente.
+  ```java
+    //bad
+    public class Calculator {
+      public int calculate(int a, int b, String operation) {
+        if (operation.equals("sum")) {
+            return a + b;
+        } else if (operation.equals("multiply")) {
+            return a * b;
+        }
+        return 0;
+      }
+    }
+  ```
+
+  ```java
+    //good
+    public interface Operation {
+      int execute(int a, int b);
+    }
+
+    public class SumOperation implements Operation {
+      public int execute(int a, int b) {
+        return a + b;
+      }
+    }
+
+    public class MultiplyOperation implements Operation {
+      public int execute(int a, int b) {
+        return a * b;
+      }
+    }
+  ```
+- **Liskov Substitution Principle (LSP)**:
+  - Princípio da Substituição de Liskov.
+  - Se uma classe filha substituir a classe pai, o comportamento do sistema não deve mudar.
+  - Ex: Imagine uma classe *Rectangle* e outra *Square* que herda de *Rectangle*.
+  ```java
+    //bad
+    public class Rectangle {
+      protected int width, height;
+
+      public void setWidth(int width) {
+        this.width = width;
+      }
+
+      public void setHeight(int height) {
+        this.height = height;
+      }
+
+      public int getArea() {
+        return width * height;
+      }
+    }
+
+    public class Square extends Rectangle {
+      @Override
+      public void setWidth(int width) {
+        this.width = width;
+        this.heigth = width; // break expected behavior
+      }
+    }
+  ```
+
+  ```java
+    //good
+    public class Rectangle {
+      protected int width, height;
+
+      public void setDimensoes(int width, int height) {
+        this.width = width;
+        this.height = height;
+      }
+
+      public int getArea() {
+        return width * height;
+      }
+    }
+
+    public class Square {
+      private int side;
+
+      public void setSide(int side) {
+        this.side = side;
+      }
+
+      public int getArea() {
+        return side * side;
+      }
+    }
+  ```
+- **Interface Segregation Principle (ISP)**:
+  - Princípio da Segregação de Interfaces.
+  - Uma classe não deve ser forçada a implementar métodos que não usa.
+  - Ex: Imagine uma interface para um pássaro com métodos de voar e nadar. Um pinguim implementa a interface, mas não voa.
+  ```java
+    public interface Bird {
+      void fly();
+      void swim();
+    }
+
+    public class Penguim implements Bird {
+      public void fly() {
+        // do nothing, penguim do not fly
+      }
+
+      public void swim() {
+        System.out.println("Penguim swimming");
+      }
+    }
+  ```
+  
+  ```java
+    //good
+    public interface Bird {
+      void eat();
+    }
+
+    public interface FlyingBird {
+      void fly();
+    }
+
+    public interface SwimmingBird {
+      void swim();
+    }
+
+    public class Penguim implements Bird, SwimmingBird {
+      public void eat() {
+        System.out.println("Penguim eating");
+      }
+
+      public void nadar() {
+        System.out.println("Penguim swimming");
+      }
+    }
+  ```
+- **Dependency Inversion Principle (DIP)**:
+  - Princípio da Inversão de Dependência.
+  - Dependa de abstrações, não de implementações concretas.
+  - Ex: Uma classe que depende diretamente de outra é difícil de testar e modificar.
+  ```java
+    //bad
+    public class Database {
+      public void save(String data) {
+        // save code
+      }
+    }
+
+    public class UserService {
+      private Database database;
+
+      public UserService() {
+        this.database = new Database(); // high coupling
+      }
+
+      public void saveUser(String user) {
+        database.save(user);
+      }
+    }
+  ```
+  
+  ```java
+    //good
+    public interface DataStorage {
+      void save(String data);
+    }
+
+    public class Database implements DataStorage {
+      public void save(String data) {
+        // save code
+      }
+    }
+
+    public class UserService {
+      private DataStorage dataStorage;
+
+      public UserService(DataStorage dataStorage) {
+        this.dataStorage = dataStorage;
+      }
+
+      public void saveUser(String user) {
+        dataStorage.save(user);
       }
     }
   ```
