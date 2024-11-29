@@ -29,11 +29,11 @@
 - **Java** possui muitas palavras-chaves(keywords) que foram criadas com um propósito específico e usadas dentro do código.
   - Ex:
     ```java
-      public class Hello {
-        public static void main(String arg[]) {
-          System.out.println("Hello, World");
-        }
+    public class Hello {
+      public static void main(String arg[]) {
+        System.out.println("Hello, World");
       }
+    }
     ```
     - `class` é uma *keyword* específica para declarar uma classe em **java**.
     - `public` é uma *keyword* que representa um modificador de acesso em **java**.
@@ -58,42 +58,42 @@
 - Usados para controle condicional usando uma *variável* ou um valor específico como base.
 - Ex `if`:
   ```java
-    int age = 20;
-    if (age < 18) {
-      //...
-    } else if (age >= 18 && age < 60) {
-      //...
-    } else {
-      //...
-    }
+  int age = 20;
+  if (age < 18) {
+    //...
+  } else if (age >= 18 && age < 60) {
+    //...
+  } else {
+    //...
+  }
   ```
 - Ex `switch`:
   ```java
-    String number = 0;
-    
-    switch (number) {
-      case 0:
-        System.out.println("0");
-        break;
-      case 1:
-        System.out.println("1");
-        break;
-      case 2:
-        System.out.println("2");
-        break;
-      default:
-        System.out.println("error");
-        break;
-    }
-    
-    //or
+  String number = 0;
+  
+  switch (number) {
+    case 0:
+      System.out.println("0");
+      break;
+    case 1:
+      System.out.println("1");
+      break;
+    case 2:
+      System.out.println("2");
+      break;
+    default:
+      System.out.println("error");
+      break;
+  }
+  
+  //or
 
-    String result = switch (day) {
-      case 0, 1, 2, 3 -> "low";
-      case 4, 5, 6 -> "medium";
-      case 7, 8, 9 -> "high";
-      default -> "error"
-    };
+  String result = switch (day) {
+    case 0, 1, 2, 3 -> "low";
+    case 4, 5, 6 -> "medium";
+    case 7, 8, 9 -> "high";
+    default -> "error"
+  };
   ```
   
 ## Arrays
@@ -102,12 +102,12 @@
 - Cada item é indexado e começa no **index** 0 na maioria das linguagens. Podemos acessar um elemento diretamente através do seu índice.
 - Ex:
   ```java
-      int[] array = new int[2];
-      array[0] = 1;
-      array[1] = 2;
+    int[] array = new int[2];
+    array[0] = 1;
+    array[1] = 2;
 
-      // or array creation with initialization
-      int[] array2 = { 1, 2, 3, 4, 5 };
+    // or array creation with initialization
+    int[] array2 = { 1, 2, 3, 4, 5 };
   ```
 
 ## Loops
@@ -115,40 +115,39 @@
 - Em **Java** temos 3 tipos de **loops**: `for`, `while` e `do while`.
 - Ex:
   ```java
-
-    //syntax
-    //for(initialization; condition; increment/decrement)
-    for (int i = 0; i < 10; i++) {
-      //some code...
-    }
-    
-    //while (condition)
-    int i = 0;
-    while (i < 10) {
-      //code to be executed     
-      i++;
-    }
-    
-    int j = 0;
-    do {
-      //code to be executed     
-      j++;
-    } while (j < 10)
+  //syntax
+  //for(initialization; condition; increment/decrement)
+  for (int i = 0; i < 10; i++) {
+    //some code...
+  }
+  
+  //while (condition)
+  int i = 0;
+  while (i < 10) {
+    //code to be executed     
+    i++;
+  }
+  
+  int j = 0;
+  do {
+    //code to be executed     
+    j++;
+  } while (j < 10)
   ```
 - Podemos usar algumas keywords que alterar o fluxo de execução do loop, como por exemplo `continue` e `break`.
   ```java
-    for (int i = 0; i < 10; i++) {
-      if (i == 5) {
-        break;//when i value is 5, the whole loop will stop e execute the rest of the code. It will break the loop.
-      }
+  for (int i = 0; i < 10; i++) {
+    if (i == 5) {
+      break;//when i value is 5, the whole loop will stop e execute the rest of the code. It will break the loop.
     }
+  }
 
-    for (int j = 0; j < 10; j++) {
-      if (i == 5) {
-        continue;//when i equal to 5, it will not print "after if". Continue moves to the next iteration of the loop, ignoring the rest of the code inside the loop after continue statement is met.
-      }
-      System.out.println("after if");
+  for (int j = 0; j < 10; j++) {
+    if (i == 5) {
+      continue;//when i equal to 5, it will not print "after if". Continue moves to the next iteration of the loop, ignoring the rest of the code inside the loop after continue statement is met.
     }
+    System.out.println("after if");
+  }
   ```
 
 ## OOP
@@ -166,148 +165,148 @@
   - Além de *reuso* a **herança** traz o **polimorfismo** como benefício.
   - Ex:
   ```java
-    class Animal {
-      public void move() {
-        System.out.println("The animal moves");
-      }
+  class Animal {
+    public void move() {
+      System.out.println("The animal moves");
     }
+  }
 
-    class Dog extends Animal {
-      public void bark() {
-        System.out.println("The dog barks");
-      }
+  class Dog extends Animal {
+    public void bark() {
+      System.out.println("The dog barks");
     }
+  }
 
-    class Main {
-      public static void main(String[] args) {
-        Dog dog = new Dog();
-        dog.move();  // inherited behavior
-        dog.bark();  // behavior unique to Dog
-      }
+  class Main {
+    public static void main(String[] args) {
+      Dog dog = new Dog();
+      dog.move();  // inherited behavior
+      dog.bark();  // behavior unique to Dog
     }
+  }
   ```
   
 - **Polimorfismo** permite que objetos de diferentes classes sejam tratados como se fossem da mesma classe base, especialmente quando compartilham uma interface ou herdam de uma superclasse comum. Na prática, isso significa que o mesmo método pode ter diferentes comportamentos dependendo do objeto que o está executando.
   - *Overloading* método com mesmo nome, mas com *parâmetros* diferentes.
     - Ex:
     ```java
-      class Calculator {
-        // method to add two integers
-        public int add(int a, int b) {
-            return a + b;
-        }
-
-        // overloaded method to add three integers
-        public int add(int a, int b, int c) {
-            return a + b + c;
-        }
-
-        // overloaded method to add two double values
-        public double add(double a, double b) {
-            return a + b;
-        }
+    class Calculator {
+      // method to add two integers
+      public int add(int a, int b) {
+        return a + b;
       }
 
-      class Main {
-        public static void main(String[] args) {
-          Calculator calc = new Calculator();
-
-          // calling overloaded methods
-          System.out.println("Sum of two integers: " + calc.add(5, 10)); // calls add(int, int)
-          System.out.println("Sum of three integers: " + calc.add(5, 10, 15)); // calls add(int, int, int)
-          System.out.println("Sum of two doubles: " + calc.add(5.5, 10.5)); // calls add(double, double)
-        }
+      // overloaded method to add three integers
+      public int add(int a, int b, int c) {
+        return a + b + c;
       }
+
+      // overloaded method to add two double values
+      public double add(double a, double b) {
+        return a + b;
+      }
+    }
+
+    class Main {
+      public static void main(String[] args) {
+        Calculator calc = new Calculator();
+
+        // calling overloaded methods
+        System.out.println("Sum of two integers: " + calc.add(5, 10)); // calls add(int, int)
+        System.out.println("Sum of three integers: " + calc.add(5, 10, 15)); // calls add(int, int, int)
+        System.out.println("Sum of two doubles: " + calc.add(5.5, 10.5)); // calls add(double, double)
+      }
+    }
     ```
   - *Overriding* método com mesmo nome, mesmos  *parâmetros*, mas em um *sub-classe*.
     - Ex:
     ```java
-      class Animal {
-        public void sound() {
-          System.out.println("Some generic animal sound");
-        }
+    class Animal {
+      public void sound() {
+        System.out.println("Some generic animal sound");
       }
+    }
 
-      class Dog extends Animal {
-        @Override
-        public void sound() {
-          System.out.println("Bark");
-        }
+    class Dog extends Animal {
+      @Override
+      public void sound() {
+        System.out.println("Bark");
       }
+    }
 
-      class Main {
-        public static void main(String[] args) {
-          Animal animal = new Dog();  // polymorphism
-          animal.sound();  // output: "Bark"
-        }
+    class Main {
+      public static void main(String[] args) {
+        Animal animal = new Dog();  // polymorphism
+        animal.sound();  // output: "Bark"
       }
+    }
     ```
 
 - **Abstração** é usados para focar apenas nos aspectos essenciais de um objeto ou sistema, permitindo criar uma representação simplificada de um conceito.
   - Na prática, é implementado usando *classes* e *métodos* que representam partes importantes de um conceito, sem adicionar complexidade. Frequentemente através de *interfaces* e *classes abstratas* que especificam o que deve ser implementado.
   - Ex:
   ```java
-    interface Database {
-      void connect();
-    }
+  interface Database {
+    void connect();
+  }
 
-    class MySQLDatabase implements Database {
-      @Override
-      public void connect() {
-          System.out.println("Connecting to MySQL database...");
-      }
+  class MySQLDatabase implements Database {
+    @Override
+    public void connect() {
+        System.out.println("Connecting to MySQL database...");
     }
+  }
 
-    class PostgreSQLDatabase implements Database {
-      @Override
-      public void connect() {
-          System.out.println("Connecting to PostgreSQL database...");
-      }
+  class PostgreSQLDatabase implements Database {
+    @Override
+    public void connect() {
+        System.out.println("Connecting to PostgreSQL database...");
     }
+  }
 
-    class Main {
-      public static void main(String[] args) {
-          Database db = new MySQLDatabase();  // can switch to PostgreSQL easily
-          db.connect();
-      }
+  class Main {
+    public static void main(String[] args) {
+        Database db = new MySQLDatabase();  // can switch to PostgreSQL easily
+        db.connect();
     }
+  }
   ```
 - **Encapsulamento** consiste em ocultar os detalhes internos de implementação de uma classe, expondo apenas o que é necessário para que outros componentes interajam com ela. Em outras palavras, o encapsulamento protege os dados e funcionalidades internos de uma *classe*, permitindo acesso somente através de métodos específicos (chamados *getters* e *setters*, ou *métodos públicos*) que a própria classe define.
   - Ex:
   ```java
-    class User {
-      private String name;
-      private int age;
+  class User {
+    private String name;
+    private int age;
 
-      public String getName() {
-        return name;
-      }
+    public String getName() {
+      return name;
+    }
 
-      public void setName(String name) {
-        if (name != null && !name.isEmpty()) {
-            this.name = name;
-        }
-      }
-
-      public int getAge() {
-        return age;
-      }
-
-      public void setAge(int age) {
-        if (age > 0) {
-            this.age = age;
-        }
+    public void setName(String name) {
+      if (name != null && !name.isEmpty()) {
+        this.name = name;
       }
     }
 
-    class Main {
-      public static void main(String[] args) {
-          User user = new User();
-          user.setName("John");
-          user.setAge(30);
-          System.out.println("User: " + user.getName() + ", Age: " + user.getAge());
+    public int getAge() {
+      return age;
+    }
+
+    public void setAge(int age) {
+      if (age > 0) {
+        this.age = age;
       }
     }
+  }
+
+  class Main {
+    public static void main(String[] args) {
+      User user = new User();
+      user.setName("John");
+      user.setAge(30);
+      System.out.println("User: " + user.getName() + ", Age: " + user.getAge());
+    }
+  }
   ```
 
 ## SOLID
@@ -318,217 +317,217 @@
   - Cada classe deve ter uma única responsabilidade ou razão para mudar.
   - Ex: Imagine uma classe que gerencia usuários e também envia e-mails. Isso viola o SRP porque são duas responsabilidades distintas.
   ```java
-    //bad
-    public class UserManager {
-      public void saveUser(String user) {
-        // save user code
-      }
-
-      public void sendWelcomeEmail(String email) {
-        // send email code
-      }
+  //bad
+  public class UserManager {
+    public void saveUser(String user) {
+      // save user code
     }
+
+    public void sendWelcomeEmail(String email) {
+      // send email code
+    }
+  }
   ```
   
   ```java
-    //good
-    public class UserManager {
-      public void saveUser(String user) {
-        // save user code
-      }
+  //good
+  public class UserManager {
+    public void saveUser(String user) {
+      // save user code
     }
+  }
 
-    public class EmailService {
-      public void sendWelcomeEmail(String email) {
-        // send email code
-      }
+  public class EmailService {
+    public void sendWelcomeEmail(String email) {
+      // send email code
     }
+  }
   ```
 - **Open/Closed Principle (OCP)**:
   - Princípio Aberto/Fechado.
   - O código deve estar aberto para extensão, mas fechado para modificação.
   - Ex: Uma calculadora que soma e multiplica. Se você precisar adicionar divisão, não deve modificar o código existente.
   ```java
-    //bad
-    public class Calculator {
-      public int calculate(int a, int b, String operation) {
-        if (operation.equals("sum")) {
-            return a + b;
-        } else if (operation.equals("multiply")) {
-            return a * b;
-        }
-        return 0;
+  //bad
+  public class Calculator {
+    public int calculate(int a, int b, String operation) {
+      if (operation.equals("sum")) {
+          return a + b;
+      } else if (operation.equals("multiply")) {
+          return a * b;
       }
+      return 0;
     }
+  }
   ```
 
   ```java
-    //good
-    public interface Operation {
-      int execute(int a, int b);
-    }
+  //good
+  public interface Operation {
+    int execute(int a, int b);
+  }
 
-    public class SumOperation implements Operation {
-      public int execute(int a, int b) {
-        return a + b;
-      }
+  public class SumOperation implements Operation {
+    public int execute(int a, int b) {
+      return a + b;
     }
+  }
 
-    public class MultiplyOperation implements Operation {
-      public int execute(int a, int b) {
-        return a * b;
-      }
+  public class MultiplyOperation implements Operation {
+    public int execute(int a, int b) {
+      return a * b;
     }
+  }
   ```
 - **Liskov Substitution Principle (LSP)**:
   - Princípio da Substituição de Liskov.
   - Se uma classe filha substituir a classe pai, o comportamento do sistema não deve mudar.
   - Ex: Imagine uma classe *Rectangle* e outra *Square* que herda de *Rectangle*.
   ```java
-    //bad
-    public class Rectangle {
-      protected int width, height;
+  //bad
+  public class Rectangle {
+    protected int width, height;
 
-      public void setWidth(int width) {
-        this.width = width;
-      }
-
-      public void setHeight(int height) {
-        this.height = height;
-      }
-
-      public int getArea() {
-        return width * height;
-      }
+    public void setWidth(int width) {
+      this.width = width;
     }
 
-    public class Square extends Rectangle {
-      @Override
-      public void setWidth(int width) {
-        this.width = width;
-        this.heigth = width; // break expected behavior
-      }
+    public void setHeight(int height) {
+      this.height = height;
     }
+
+    public int getArea() {
+      return width * height;
+    }
+  }
+
+  public class Square extends Rectangle {
+    @Override
+    public void setWidth(int width) {
+      this.width = width;
+      this.heigth = width; // break expected behavior
+    }
+  }
   ```
 
   ```java
-    //good
-    public class Rectangle {
-      protected int width, height;
+  //good
+  public class Rectangle {
+    protected int width, height;
 
-      public void setDimensoes(int width, int height) {
-        this.width = width;
-        this.height = height;
-      }
-
-      public int getArea() {
-        return width * height;
-      }
+    public void setDimensoes(int width, int height) {
+      this.width = width;
+      this.height = height;
     }
 
-    public class Square {
-      private int side;
-
-      public void setSide(int side) {
-        this.side = side;
-      }
-
-      public int getArea() {
-        return side * side;
-      }
+    public int getArea() {
+      return width * height;
     }
+  }
+
+  public class Square {
+    private int side;
+
+    public void setSide(int side) {
+      this.side = side;
+    }
+
+    public int getArea() {
+      return side * side;
+    }
+  }
   ```
 - **Interface Segregation Principle (ISP)**:
   - Princípio da Segregação de Interfaces.
   - Uma classe não deve ser forçada a implementar métodos que não usa.
   - Ex: Imagine uma interface para um pássaro com métodos de voar e nadar. Um pinguim implementa a interface, mas não voa.
   ```java
-    public interface Bird {
-      void fly();
-      void swim();
+  public interface Bird {
+    void fly();
+    void swim();
+  }
+
+  public class Penguim implements Bird {
+    public void fly() {
+      // do nothing, penguim do not fly
     }
 
-    public class Penguim implements Bird {
-      public void fly() {
-        // do nothing, penguim do not fly
-      }
-
-      public void swim() {
-        System.out.println("Penguim swimming");
-      }
+    public void swim() {
+      System.out.println("Penguim swimming");
     }
+  }
   ```
   
   ```java
-    //good
-    public interface Bird {
-      void eat();
+  //good
+  public interface Bird {
+    void eat();
+  }
+
+  public interface FlyingBird {
+    void fly();
+  }
+
+  public interface SwimmingBird {
+    void swim();
+  }
+
+  public class Penguim implements Bird, SwimmingBird {
+    public void eat() {
+      System.out.println("Penguim eating");
     }
 
-    public interface FlyingBird {
-      void fly();
+    public void nadar() {
+      System.out.println("Penguim swimming");
     }
-
-    public interface SwimmingBird {
-      void swim();
-    }
-
-    public class Penguim implements Bird, SwimmingBird {
-      public void eat() {
-        System.out.println("Penguim eating");
-      }
-
-      public void nadar() {
-        System.out.println("Penguim swimming");
-      }
-    }
+  }
   ```
 - **Dependency Inversion Principle (DIP)**:
   - Princípio da Inversão de Dependência.
   - Dependa de abstrações, não de implementações concretas.
   - Ex: Uma classe que depende diretamente de outra é difícil de testar e modificar.
   ```java
-    //bad
-    public class Database {
-      public void save(String data) {
-        // save code
-      }
+  //bad
+  public class Database {
+    public void save(String data) {
+      // save code
+    }
+  }
+
+  public class UserService {
+    private Database database;
+
+    public UserService() {
+      this.database = new Database(); // high coupling
     }
 
-    public class UserService {
-      private Database database;
-
-      public UserService() {
-        this.database = new Database(); // high coupling
-      }
-
-      public void saveUser(String user) {
-        database.save(user);
-      }
+    public void saveUser(String user) {
+      database.save(user);
     }
+  }
   ```
   
   ```java
-    //good
-    public interface DataStorage {
-      void save(String data);
+  //good
+  public interface DataStorage {
+    void save(String data);
+  }
+
+  public class Database implements DataStorage {
+    public void save(String data) {
+      // save code
+    }
+  }
+
+  public class UserService {
+    private DataStorage dataStorage;
+
+    public UserService(DataStorage dataStorage) {
+      this.dataStorage = dataStorage;
     }
 
-    public class Database implements DataStorage {
-      public void save(String data) {
-        // save code
-      }
+    public void saveUser(String user) {
+      dataStorage.save(user);
     }
-
-    public class UserService {
-      private DataStorage dataStorage;
-
-      public UserService(DataStorage dataStorage) {
-        this.dataStorage = dataStorage;
-      }
-
-      public void saveUser(String user) {
-        dataStorage.save(user);
-      }
-    }
+  }
   ```
