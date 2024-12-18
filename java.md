@@ -12,7 +12,7 @@
 ## Instalação
 - Instalar o **JDK**, java development kit.
 - Existem várias maneiras de instalar **Java**, uma delas é no site da [oracle](https://www.oracle.com/java/technologies/downloads/).
-- Eu gosto de fazer instalação usando [sdkman](https://sdkman.io/), serve para **Java** e outras ferramentas.
+- Instalação usando [sdkman](https://sdkman.io/), serve para **Java** e outras ferramentas.
 
 ## Geral
 - **Java** é uma linguagem de programação robusta e fortemente tipada.
@@ -70,7 +70,7 @@
 - Ex `switch`:
   ```java
   String number = 0;
-  
+
   switch (number) {
     case 0:
       System.out.println("0");
@@ -85,7 +85,7 @@
       System.out.println("error");
       break;
   }
-  
+
   //or
 
   String result = switch (day) {
@@ -95,19 +95,19 @@
     default -> "error"
   };
   ```
-  
+
 ## Arrays
 - **Arrays** são estruturas de dados lineares que guardam elementos do mesmo tipo de dado.
 - São alocados de forma contígua em memória, o que significa, é um espaço de memória com o tamanho da estutura, onde cada elemento está alocado sequencialmente em um indice do espaço alocado.
 - Cada item é indexado e começa no **index** 0 na maioria das linguagens. Podemos acessar um elemento diretamente através do seu índice.
 - Ex:
   ```java
-    int[] array = new int[2];
-    array[0] = 1;
-    array[1] = 2;
+  int[] array = new int[2];
+  array[0] = 1;
+  array[1] = 2;
 
-    // or array creation with initialization
-    int[] array2 = { 1, 2, 3, 4, 5 };
+  // or array creation with initialization
+  int[] array2 = { 1, 2, 3, 4, 5 };
   ```
 
 ## Loops
@@ -120,17 +120,17 @@
   for (int i = 0; i < 10; i++) {
     //some code...
   }
-  
+
   //while (condition)
   int i = 0;
   while (i < 10) {
-    //code to be executed     
+    //code to be executed
     i++;
   }
-  
+
   int j = 0;
   do {
-    //code to be executed     
+    //code to be executed
     j++;
   } while (j < 10)
   ```
@@ -185,7 +185,7 @@
     }
   }
   ```
-  
+
 - **Polimorfismo** permite que objetos de diferentes classes sejam tratados como se fossem da mesma classe base, especialmente quando compartilham uma interface ou herdam de uma superclasse comum. Na prática, isso significa que o mesmo método pode ter diferentes comportamentos dependendo do objeto que o está executando.
   - *Overloading* método com mesmo nome, mas com *parâmetros* diferentes.
     - Ex:
@@ -328,7 +328,7 @@
     }
   }
   ```
-  
+
   ```java
   //good
   public class UserManager {
@@ -447,17 +447,17 @@
     void swim();
   }
 
-  public class Penguim implements Bird {
+  public class Penguin implements Bird {
     public void fly() {
-      // do nothing, penguim do not fly
+      // do nothing, penguin do not fly
     }
 
     public void swim() {
-      System.out.println("Penguim swimming");
+      System.out.println("Penguin swimming");
     }
   }
   ```
-  
+
   ```java
   //good
   public interface Bird {
@@ -472,13 +472,13 @@
     void swim();
   }
 
-  public class Penguim implements Bird, SwimmingBird {
+  public class Penguin implements Bird, SwimmingBird {
     public void eat() {
-      System.out.println("Penguim eating");
+      System.out.println("Penguin eating");
     }
 
     public void nadar() {
-      System.out.println("Penguim swimming");
+      System.out.println("Penguin swimming");
     }
   }
   ```
@@ -506,7 +506,7 @@
     }
   }
   ```
-  
+
   ```java
   //good
   public interface DataStorage {
