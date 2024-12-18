@@ -19,8 +19,8 @@
     - Minikube facilita no processo de instalação e uso local.
 - Linux
   - [Minikube](https://minikube.sigs.k8s.io/docs/start/]):
-    ``` 
-      curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 
+    ```
+      curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
       sudo install minikube-linux-amd64 /usr/local/bin/minikube
     ```
 
@@ -38,13 +38,25 @@
     - **metadata** são dados sobre o objeto, como *name*, *labels*, etc.
 
 ## Comandos gerais
-- `kubectl logs <POD>` gera informações de log de um **Pod** especificado.
+- `kubectl logs <POD_NAME>` gera informações de log de um **Pod** especificado.
+  - `kubectl logs -f <POD_NAME>` mostra logs do *pod* informado em tempo real.
 - `kubectl get <RESOURCE>` gera informações básicas sobre os componentes.
+  - resources: *svc*, *deployments*, *pods*, *configmaps*, etc.
+  - `kubectl get pods --all-namespaces` lista todos os *pods* de todos os *namespaces*.
+  - `kubectl get pods -n <NAMESPACE>` lista todos os *pods* do *namespace* informado.
 - `kubectl get <RESOURCE> -o wide` gera informações estendidas sobre os componentes.
-- `kubectl describe <RESOURCE> <NAME>` gera informação específica sobre o componente informado.
+  - `kubectl get pods <POD_NAME> -n <NAMESPACE>`.
+- `kubectl describe <RESOURCE> <RESOIRCE_NAME>` gera informação específica sobre o componente informado.
+  - `kubectl describe pods <POD_NAME> -n <NAMESPACE>`.
 - `kubectl create -f <FILENAME>.yml` para criar o tipo do arquivo definido e rodar as configurações.
     - Este comando usado para criar/configurar um recurso que já exista, irá dar erro.
     - O comando `kubctl create` também pode ser usado para criar o recurso de forma imperativa, criar via linha de comando.
+- `kubectl get all` mostra todos o recursos do *namespace* atual.
+  - `kubectl get all -n <NAMESPACE>` mostra todos o recursos do *namespace* informado.
+- `kubectl get namespaces` lista todos os *namespaces* do *cluster*.
+- `kubectl top pods` mostra métricas dos pods, incluindo CPU e uso de memória.
+  - Podendo ser usado com outros recursos ou um recurso em específico: `kubectl top pod <POD_NAME>`.
+- `kubectl cluster-info` mostra informações sobre o *cluster*.
 - `kubectl apply -f <FILENAME>.yml` para criar um recurso usando as configurações definidas.
 - `kubectl delete <RESOURCE> <NAME>` deleta o recurso indicando usando o nome do recurso.
 - `kubectl delete -f <FILENAME>.yml` deleta o recurso indicando usando o nome do arquivo.
@@ -205,7 +217,7 @@ spec:
 - *ClusterIP* o **Service** não é exposto para fora do **Cluster** mas pode ser usado internamente.
 - *NodePort* o **Service** é exposto para fora do **Cluster** e pode ser usado externamente com a porta estática do *Node* mais a porta configurada no *NodePort*, *<NODE_IP>:<NODE_PORT>*.
 - *LoadBalancer* também é exposto para fora do **Cluster** que será usado conforme o *Load Balancer* disponibilizado pelo provedor que for fornecido.
-- *ExternalName* é exposto para fora do **Cluster**, mapeia o **Service** com um *DNS* pré definido. 
+- *ExternalName* é exposto para fora do **Cluster**, mapeia o **Service** com um *DNS* pré definido.
 - Ex *NodePort*:
 ```yml
 apiversion: v1
