@@ -111,7 +111,7 @@
 - Para verificar as arquiteturas suportadas, usar `go tool dist list`.
 - Para trocar a arquitetura e usar uma diferente, usar o seguinte comando:
     - `GOOS=windows GOARCH=amd64 go build -o app.exe`
-    
+
 - Estrutura para projetos **Go**:
     - *cmd* será onde fica a aplicação *main* do projeto.
     - *pkg* é usado para adionar código que poderá ser exportado para uso público. Garanta que tudo está funcionando corretamente neste pacote, pois outros projetos podem importar o seu projeto e fazer o uso do conteúdo de *pkg*.
@@ -259,7 +259,7 @@
 - Slices são referências de valores, diferente de arrays que são tipos de valores. Isso implica que quando criamos um array e passamos como parametro de uma função, todos os elementos serão copiados, enquanto quando usamos slice, a função recebe a referência em memória do slice.
 - Criado igual o array mas sem o tamanho do array, ex: `var slice[]string` ou `var slice = []string{}`.
 - Para adicionar no próximo elemento do slice, é utilizado append, ex: `slice = append(slice, "Dado")`. Podendo ser passado n elementos como parametros, ex: `slice = append(slice, "Dado", "Dado2")`.
-- Para fazer o slice de um slice, usar os indices desejados: 
+- Para fazer o slice de um slice, usar os indices desejados:
   <details>
     <summary>Ex:</summary>
 
@@ -289,7 +289,7 @@
 - Para remover itens de um slice, usar a função `append()` para criar um novo slice a partir dos indices:
   <details>
     <summary>Ex:</summary>
-    
+
     ```go
     slice := []int{1,2,3,4,5}
     slice2 := append(slice[:2], slice[3:]...)//slice[:2] (1,2), slice[3:] (4,5) -> get 1,2 and append with 4,5
@@ -302,6 +302,7 @@
     - length é o tamanho inicial do array.
     - cap é a capacidade máxima do array.
 - Tomar cuidado com o array subjacente.
+
 ## Maps
 - É uma collection de chave valor.
 - Criado usando chave e valor tipados, ex: `var mymap map[string]string` ou um map vazio `var mymap = make(map[string]string)`.
@@ -309,7 +310,7 @@
 - O range em maps seria o mesmo de arrays e slices, porém o indice se torna a key:
   <details>
     <summary>Ex:</summary>
-    
+
     ```go
     myMap := map[int]string{1: "Um", 2: "Dois"}
     for key, value := range myMap {
@@ -320,7 +321,7 @@
 - Para deletar elementos do map, usar delete usando a chave:
   <details>
     <summary>Ex:</summary>
-    
+
     ```go
     myMap := map[int]string{1: "Um", 2: "Dois", 3: "Tres"}
     delete(myMap, 2)
@@ -329,10 +330,10 @@
 
 ## Loops
 - Existe apenas *for* em **GO**, *while* e *doWhile* não existem.
-- O mesmo de C ou Java: 
+- O mesmo de C ou Java:
   <details>
     <summary>Ex:</summary>
-    
+
     ```go
     sum := 0
     for i := 1; i < 5; i++ {
@@ -340,10 +341,10 @@
     }
     ```
   </details>
-- Maneira que se assemelha ao while: 
+- Maneira que se assemelha ao while:
   <details>
     <summary>Ex:</summary>
-    
+
     ```go
     n := 1
     for n < 5 {
@@ -354,18 +355,18 @@
 - Loop infinito:
   <details>
     <summary>Ex:</summary>
-    
+
     ```go
     sum := 0
     for {
-      sum++ 
+      sum++
     }
     ```
   </details>
 - ForEach range loop:
   <details>
     <summary>Ex:</summary>
-    
+
     ```go
     strings := []string{"hello", "world"}
     for index, element := range strings {
@@ -376,7 +377,7 @@
 - Em casos onde o index do ForEach não é necessário, pode utilizar _ para ignorar o indice:
   <details>
     <summary>Ex:</summary>
-    
+
     ```go
     strings := []string{"hello", "world"}
     for _, element := range strings {
@@ -392,7 +393,7 @@
 - Os campos da struct seguem o padrão de nomenclatura para export de dados, pascal case para usar fora do pacote:
   <details>
     <summary>Ex:</summary>
-    
+
     ```go
     type UserData struct {
       firstName       string
@@ -405,7 +406,7 @@
 - Como adicionar valores para struct. Primeiro segue como o nome do campo da struct, segundo como o valor:
   <details>
     <summary>Ex:</summary>
-    
+
     ```go
     var userData = UserData {
       firstName:       firstName,
@@ -578,7 +579,7 @@
       y := func(x int) {
         fmt.Println(x42)
       }
-      
+
       y(x)
     }
     ```
@@ -650,7 +651,7 @@
     y := &x //& define y with same memory address as x
     fmt.Println(*y) //print y memory address
     ```
-  
+
   Ou
 
     ```go
@@ -758,7 +759,7 @@
     ```go
     func main() {
       var ch chan string //accepts any type
-      
+
       ch2 := make(chan int)
     }
     ```
@@ -979,7 +980,7 @@
         - ex: Para o main.go, criar o `main_test.go` no mesmo pacote.
     - Cada teste deve começar com **Test** antes do nome do método e adicionar o parametro para uso das validacoes.
         - ex: `TestMetodoXpto(t *testing.T)`.
-    
+
 ## Packages
 - O pacote main é o principal como o nome já diz. Podendo ser utilizado com varios arquivos .go neste mesmo pacote, a diferença está na forma de rodar, os arquivos precisam ser declarados no `go run main.go xxx.go yyy.go` ou na raiz `go run .`.
 - Novos pacotes podem ser criados com outras pastas com o nome do pacote.
