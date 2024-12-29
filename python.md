@@ -11,6 +11,7 @@
 - [Sets](#sets)
 - [Exceções](#exceções)
 - [Módulos](#modulos)
+- [OOP](#oop)
 
 ## Instalação
 - [Link site oficial](https://www.python.org/downloads/)
@@ -496,4 +497,104 @@
   from princing import get_net_price
   net_price = get_net_price(price=100, tax_rate=0.01)
   print(net_price)
+  ```
+
+## OOP
+- **Programação Orientada a Objetos** organiza o código em uma combinação de diferentes tipos de objetos para incorporar ações que representem o mundo real.
+- É um paradigma que usa *objetos* para desenhar sistemas de aplicação, simplificando o processo e a manutenção de código.
+- Usamos atributos e métodos para representar características e comportamentos de algo real em formato de cõdigo.
+- Para entender OO, precisamos entender alguns conceitos cruciais, mas antes de tudo, entender o que é um *objeto*:
+  - Um *objeto* é algo que possui um estado e comportamento.
+  - É definido a partir da instância de uma *classe*.
+  - Possui um endereço de memória.
+- *Classes* são onde criamos e estruturamos *métodos* e *atributos*
+- Em **python** para criar uma classe usamos a seguinte sintaxe:
+  ```python
+  class Person:
+    pass # pass is used to allow the class to have an empty body, Withou pass, the interpreter would raise IndentationError
+
+  person = Person()
+
+  # check object is instance of specific class
+  print(isinstance(person, Person))
+  ```
+- Por ser uma linguagem dinâmica, podemos adicionar atributos em uma instância de uma classe, porém estes atributos somes em uma nova instância.
+- Para definir um instanciador de classe, usar o método `__init__`:
+  ```python
+  class Person:
+    # self is the instance of the class
+    def __init__(self, name, age):
+      self.name = name
+      self.age = age
+
+  person = Person('John', 25)
+  ```
+- Podemos criar *funções* para uma classe, chamados de *métodos*:
+  ```python
+  class Person:
+    def __init__(self, name, age):
+      self.name = name
+      self.age = age
+
+    def greet(self):
+      return f"Hi, it's {self.name}"
+
+  person = Person('John', 25)
+  print(person.greet())
+  ```
+- Podemos definir *atributos* para uma classe, estes atributos são compartilhados entre as instâncias da classe:
+  ```python
+  class Person:
+    counter = 0
+
+    def __init__(self, name, age):
+      self.name = name
+      self.age = age
+
+    def greet(self):
+      return f"Hi, it's {self.name}"
+
+  person = Person('John', 25)
+  print(person.greet())
+  person.counter
+
+  # or from a class
+  Person.counter
+  ```
+- Podemos criar *métodos* de uma classe que podem ser compartilhadas por todas as instâncias, assim como *atributos*:
+  ```python
+  class Person:
+    def __init__(self, name, age):
+      self.name = name
+      self.age = age
+
+    @classmethod # it's a decorator to make a class method, allow access to class attributes
+    def create(cls): # need first argument. cls is the class itself. cls is a convention name.
+      return Person('Doe', 22)
+
+  person = Person.create()
+  print(person)
+  ```
+- Podemos criar *métodos* de uma classe, que não fazem acesso aos dados da instância:
+  ```python
+  class TemperatureConverter:
+    @staticmethod
+    def celsius_to_fahrenheit(c):
+      return 9 * c / 5 + 32
+
+    @staticmethod
+    def fahrenheit_to_celsius(f):
+      return 5 * (f - 32) / 9
+
+  fahrenheit = TemperatureConverter.celsius_to_fahrenheit(30)
+  print(fahrenheit) # print 86
+  ```
+- **Herança** é feita da seguinte forma:
+  ```python
+  class Employee(Person):
+    def __init__(self, name, age, job_title):
+      super().__init__(name, age)
+      self.job_title = job_title
+
+  employee = Employee('John', 25, 'Developer')
   ```
