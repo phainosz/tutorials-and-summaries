@@ -4,12 +4,13 @@
 - [Geral](#geral)
 - [Condicionais](#condicionais)
 - [Loops](#loops)
-- [Funções](#funcoes)
+- [Funções](#funções)
 - [Listas](#listas)
 - [Tuplas](#tuplas)
-- [Dicionários](#dicionarios)
+- [Dicionários](#dicionários)
 - [Sets](#sets)
-- [Exceções](#excecoes)
+- [Exceções](#exceções)
+- [Módulos](#modulos)
 
 ## Instalação
 - [Link site oficial](https://www.python.org/downloads/)
@@ -45,6 +46,19 @@
     - *and*: `1 == 1 and 2 > 1` -> verdadeiro
     - *or*: `1 == 1 or 2 > 1` -> verdadeiro
     - *not*: `not 1 < 2` -> falso
+- Quando temos algum recurso que é necessário chamar a *função* `close()`, podemos usar o **with** para fazer isso de forma automática.
+  - Exemplo sem `with`:
+    ```python
+    f = open('file.txt')
+    print(f.read())
+    f.close()
+    ```
+  - Exemplo com `with`:
+    ```python
+    with open('file.txt') as f:
+      print(f.read())
+    ```
+
 - **Jupyter Notebook**
 
 ## Variáveis
@@ -454,4 +468,32 @@
     print(c)
   finally:
     print('Finishing up.')
+  ```
+
+## Modulos
+- Um módulo é uma parte do código com uma funcionalidade especifica.
+- Em **pyton** um módulo é um arquivo que contains código python.
+- A nomenclatura do módulo, será o nome do arquivo sem o `.py` ao final. Ex:
+  ```python
+  # pricing.py
+
+  def get_net_price(price, tax_rate, discount=0):
+    return price * (1 + tax_rate) * (1-discount)
+
+
+  def get_tax(price, tax_rate=0):
+    return price * tax_rate
+  ```
+
+  ```python
+  # main.py
+  import pricing
+
+  net_price = pricing.get_net_price(price=100, tax_rate=0.01)
+  print(net_price)
+
+  # or
+  from princing import get_net_price
+  net_price = get_net_price(price=100, tax_rate=0.01)
+  print(net_price)
   ```
