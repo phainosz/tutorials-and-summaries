@@ -5,6 +5,11 @@
 - [Condicionais](#condicionais)
 - [Loops](#loops)
 - [Funções](#funcoes)
+- [Listas](#listas)
+- [Tuplas](#tuplas)
+- [Dicionários](#dicionarios)
+- [Sets](#sets)
+- [Exceções](#excecoes)
 
 ## Instalação
 - [Link site oficial](https://www.python.org/downloads/)
@@ -17,17 +22,15 @@
 - *Strings* podem ser escritas com **'** ou **"**, podendo ser usada **"""* para um texto com várias linhas.
 - Formatar uma *string* em **python** é feito da seguinte forma:
   - Ex:
-  ```python
-  age = 18
-  print(f"My age is {age}")
-  #print My age is 18
-  ```
+    ```python
+    age = 18
+    print(f"My age is {age}") # print My age is 18
+    ```
   - Podendo ser usado de outra forma, mostrar o valor da variável e seu nome:
-  ```python
-  age = 18
-  print(f"{age=}")
-  #print age=18
-  ```
+    ```python
+    age = 18
+    print(f"{age=}") # print age=18
+    ```
 - Para executar um arquivo **python**, usar `python file.py`.
 - **Python** não faz o uso de **;**.
 - **Python** usa *identação* e *espaços* para estruturar código.
@@ -53,120 +56,139 @@
   - *float* para números decimais.
   - *bool* para valores booleanos.
 - Para checar o tipo da variável, podemos usar a *função* `type`: `type("what type is this")`.
+- Podemos usar atribuições de variáveis com seu tipo, isso é chamado de *type annotations*. Basicamente serve de documentação para o desenvolvedor, não irá afetar na interpretação do código.
+  - Ex:
+    ```python
+    age: int = 18
+    text: str = "hello world"
+    price: float = 1.99
+    active: bool = False
+
+    def greet(name: str) -> None: # use None to represent no return in a function
+      print(f"Hello {name}")
+
+    ```
 
 ## Condicionais
 - Usados para controle condicional usando uma *variável* ou um valor específico como base.
   - Ex:
-  ```python
-  age = 18
-  if age < 18:
-    print("Under 18")
-  elif age == 18:
-    print("Is 18")
-  else:
-    print("Above 18")
+    ```python
+    age = 18
+    if age < 18:
+      print("Under 18")
+    elif age == 18:
+      print("Is 18")
+    else:
+      print("Above 18")
+    ```
 
 ## Loops
 - Em programação, **loops** são essenciais para percorrer uma estrutura de dados, repetir uma sequência de código até uma condição específica.
 - Em **Python** temos 2 tipos de **loops**: `for` e `while`.
   Ex `for`:
-  ```python
-  for i in range(5): # iterates from 0 to 4
-    print(i)
-  ```
-  Ex `while`:
-  ```python
-  i = 0
-  while i < 5:
-    print(i)
-    i += 1
-  ```
+    ```python
+    for i in range(5): # iterates from 0 to 4
+      print(i)
+    ```
+    Ex `while`:
+    ```python
+    i = 0
+    while i < 5:
+      print(i)
+      i += 1
+    ```
 - Podemos usar o `break` em casos onde queremos parar o *loop* devido à uma condição.
   - Ex:
-  ```python
-  for i in range(5):
-    if i == 3:
-      break
-    print(i)
-  ```
+    ```python
+    for i in range(5):
+      if i == 3:
+        break
+      print(i)
+    ```
 - Podemos usar o `continue` em casos onde queremos pular um passo do *loop* devido à uma condição.
   - Ex:
-  ```python
-  for i in range(10):
-    if i % 2 == 0:
-      continue
-    print(i) # print only odd numbers(1,3,5,7,9)
-  ```
+    ```python
+    for i in range(10):
+      if i % 2 == 0:
+        continue
+      print(i) # print only odd numbers(1,3,5,7,9)
+    ```
 
 ## Funções
 - **Funções** são blocos de códigos reutilizáveis, que realizam tarefas específicas, podendo retornar valores ou não.
 - Em **python** usamos a palavra chave **def** para definir uma *função*.
   - Ex:
-  ```python
-  def greet(name):
-    return f"Hello {name}"
+    ```python
+    def greet(name):
+      return f"Hello {name}"
 
-  print(greet("John"))
-  ```
+    print(greet("John"))
+    ```
 - Podendo ser adicionado uma documentação sobre a função e seus parâmetros.
   - A primeira linha após uma **função**, sendo ela uma string, é interpretada como **docstring**.
   - Para ver a **docstring** de um **função** usar a **função** `help()`, com a função que deseja ver a doc: `help(print)`.
   - Ex:
-  ```python
-  def greet(name):
-    """
-    Returns a personalized greeting for the given name.
+    ```python
+    def greet(name):
+      """
+      Returns a personalized greeting for the given name.
 
-    Args:
-        name (str): The name of the person to greet.
+      Args:
+          name (str): The name of the person to greet.
 
-    Returns:
-        str: A greeting message in the format "Hello {name}".
-    """
-    return f"Heelo {name}"
+      Returns:
+          str: A greeting message in the format "Hello {name}".
+      """
+      return f"Heelo {name}"
 
-  print(greet("John"))
-  ```
+    print(greet("John"))
+    ```
 - Podemos criar valores padrôes para parâmetros usados em funções.
   - Ex:
-  ```python
-  def greet(name, message='Hi '):
-    return f"{message} {name}"
+    ```python
+    def greet(name, message='Hi '):
+      return f"{message} {name}"
 
-  print(greet("John"))
-  ```
+    print(greet("John"))
+    ```
 - Podemos usar argumentos nomeados em casos onde queremos fornecer apenas alguns valores para a **função** chamada.
   Ex:
-  ```python
-  def get_price(price, discount):
-    return price * (1 - discount)
+    ```python
+    def get_price(price, discount):
+      return price * (1 - discount)
 
-  print(get_price(100, 0.1))
+    print(get_price(100, 0.1))
 
-  # if we want a default value for discount, we modify to this
-  def get_price(price, discount=0.1):
-    return price * (1 - discount)
+    # if we want a default value for discount, we modify to this
+    def get_price(price, discount=0.1):
+      return price * (1 - discount)
 
-  # and use it like that
-  print(get_price(100))
+    # and use it like that
+    print(get_price(100))
 
-  # but what if we had another paramter called tax with a default value and we wanted to modify only discount value?
-  def get_price(price, tax=0.07, discount=0.05):
-    return price * (1 + tax - discount)
+    # but what if we had another paramter called tax with a default value and we wanted to modify only discount value?
+    def get_price(price, tax=0.07, discount=0.05):
+      return price * (1 + tax - discount)
 
-  print(get_price(100)) # its ok
-  print(get_price(100, 0.06)) # it would only modify tax to 0.06 and not discount
-  print(get_price(price=100, discount=0.06)) # that would work
-  print(get_price(price=100, discount=0.06, 0.08)) # that would cause an error
-  ```
+    print(get_price(100)) # its ok
+    print(get_price(100, 0.06)) # it would only modify tax to 0.06 and not discount
+    print(get_price(price=100, discount=0.06)) # that would work
+    print(get_price(price=100, discount=0.06, 0.08)) # that would cause an error
+    ```
 - Podemos usar argumentos flexíveis em uma *função*.
   - Ex:
-  ```python
-  def print_args(*args):
-    for arg in args:
-      print(arg)
+    ```python
+    def print_args(*args):
+      for arg in args:
+        print(arg)
 
-  print_args(1,2,3,4) # internally *args is treated as a tuple
+    print_args(1,2,3,4) # internally *args is treated as a tuple
+    ```
+- Em **python** podemos usar *funções lambdas* para criar *funções* sem uma declaração. Ex:
+  ```python
+  # lambda parameter: expression
+  square = lambda x: x ** 2
+  print(square(4)) # print 16
   ```
 
 ## Listas
@@ -182,3 +204,254 @@
 - Para remover itens da *lista*, usar:
   - `del list[0]`. remove o item informado através do índice.
   - `list.remove(0)`. remove o item informado através do índice.
+- Podemos fazer o *slice* de uma *lista* seguindo a seguinte sintaxe: `list[begin: end: step]`.
+  - *begin* tem o valor padrão 0.
+  - *end* tem como valor padrão o tamanho da lista.
+  - *step* tem o valor padrão 1.
+  - Todos os valores passados, precisam ser índices válidos.
+  - *Slice* retorna uma nova lista.
+  ```python
+  colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet']
+  example_1 = colors[1:4]
+  print(example_1) # prints ['orange', 'yellow', 'green']
+
+  example_2 = colors[:3]
+  print(example_2) # prints ["red", 'orange', 'yellow']
+
+  example_3 = colors[-1:]
+  print(example_3) # prints ['violet']
+
+  example_4 = colors[::2]
+  print(example_4) # prints ['red', 'yellow', 'blue', 'violet']
+
+  example_5 = colors[::-1]
+  print(example_5) # prints reversed list ['violet', 'indigo', 'blue', 'green', 'yellow', 'orange', 'red']
+  ```
+- Podemos acessar valores de uma lista de uma forma diferente. Ex:
+  ```python
+  colors = ['red', 'blue', 'green']
+  red, blue, green = colors
+  print(red) # prints red
+  print(blue) # prints blue
+  print(green) # prints green
+
+  red, blue = colors # ValueErros: too many values to unpack
+
+  red, *others = colors
+  print(red) # prints red
+  print(others) # prints ['blue', 'green']
+  ```
+- Para fazer um loop em uma lista, podemos fazer da seguinte maneira:
+  ```python
+  cities = ['New York', 'Beijing', 'Cairo', 'Mumbai', 'Mexico']
+
+  for city in cities:
+    print(city)
+
+  # if we want to know the index, use enumerate
+  for item in enumerate(cities):
+    print(item) # print (index, item) = (0, 'New York')...
+
+  for index, city in enumerate(cities):
+    print(f"{index}: {city}")
+  ```
+- Para encontrar um *index* em uma *lista* temos duas formas. Ex:
+  ```python
+  cities = ['New York', 'Beijing', 'Cairo', 'Mumbai', 'Mexico']
+
+  result = cities.index("Cairo")
+  print(result) # print 2
+
+  # if element doen't exist
+  result = cities.index("Osaka")
+  # ValueError: 'Osaka' is not in list
+
+  city = 'Osaka'
+  if city in cities:
+    print(cities.index(city))
+  else:
+    print(f"{city} doesn't exist in the list")
+  ```
+  - Em programação, geralmente precisamos alterar os valores de cada elemento de uma lista e retonar uma nova. **List comprehension* permite fazer isso de uma forma simplificada.
+    - Ex:
+      ```python
+      number = [1, 2, 3, 4, 5]
+
+      squares = []
+      for number in numbers:
+        squares.append(number**2)
+
+      print(squares) # print [1, 4, 9, 16, 25]
+
+      # map
+      squares = list(map(lambda number: number ** 2, numbers)) # map() returns an interator. list() transform the interator to a list
+      print(squares) # print [1, 4, 9, 16, 25]
+
+      # list comprehension
+        # syntax [output_expression for element in list]
+      squares = [number**2 for number in numbers]
+      print(squares) # print [1, 4, 9, 16, 25]
+
+      # filter
+      filtered_list = list(filter(lambda number: number > 3, numbers)) # map() returns an interator. list() transform the interator to a list
+      print(filtered_list) # print [4, 5]
+
+      # list comprehension with if condition
+        # syntax [output_expression for element in list if condition]
+      filtered_list = [number for number in numbers if number > 3]
+      print(filtered_list) # print [4, 5]
+      ```
+
+## Tuplas
+- Uma **tupla** pode ser considerada uma *lista imútavel*.
+- Para criar uma *tupla* usar: `my_tuple =  (1,2,3)`.
+- Ex:
+  ```python
+  coordinates = (123, 456)
+  print(coordinates[0]) # prints 123
+  print(coordinates[1]) # prints 456
+
+  # or
+  x, y = coordinates
+  print(x) # prints 123
+  print(y) # prints 456
+  ```
+
+## Dicionários
+- Em **python** um *dicionário* é uma coleção no fomato *chave-valor*.
+- A *chave* deve ser um valor *imutável*.
+- A declaração de um *dicionário* é a seguinte: `empty_dict = {}`.
+- Para atribuir valores em inicialização, Ex:
+  ```python
+  person = {
+    'first_name': 'John',
+    'last_name': 'Doe',
+    'age': 25,
+    'active': True
+  }
+
+  # access values
+  print(person['first_name'])
+  # or
+  print(person.get('first_name'))
+
+  # add values
+  person['gender'] = 'Male'
+
+  # change values
+  person['age'] = 30
+
+  # remove keys
+  del person['active']
+
+  # loop dictionary
+  for key, value in person.items():
+    print(f"{key}: {value}")
+
+  # loop dictionary keys
+  for key in person.keys():
+    print(key)
+
+  # loop dictionary values
+  for value in person.values():
+    print(value)
+  ```
+- Assim como em **lista** temos *list comprehension*, em **dicionários** temos *dictionary comprehension*.
+  - Funciona de forma semelhante. Ex:
+    ```python
+    my_dict = {
+        'A': 1,
+        'B': 2,
+        'C': 3,
+        'D': 4,
+    }
+
+    new_dict = {}
+    for key, value in my_dict.items():
+        new_dict[key] = value*2
+
+    print(new_dict) # print {'A': 2, 'B': 3, 'C': 4, 'D': 5}
+
+    # dict comprehension
+    new_dict = {key: value * 2 for (key, value) in my_dict.values()}
+    print(new_dict) # print {'A': 2, 'B': 3, 'C': 4, 'D': 5}
+
+    # dict comprehension with filter
+    new_dict = {key: value * 2 for (key, value) in my_dict.values() if value > 2}
+    print(new_dict) # print {'C': 4, 'D': 5}
+    ```
+
+## Sets
+- São coleções de dados que não possuem *ordenação* dos elementos, não aceitas *itens duplicados*.
+- Para defirnir um **set**, usar: `empty_set = set()`.
+- Não confundir com **dicionarios**, pois para criar um **set** preenchido, usa-se o seguinte: `my_set = {'Python', 'Java', 'Golang'}`.
+- Podemos usar **set comprehension**, funciona da mesma forma que em **lista**, basta trocar **[]** por **{}**.
+  - Podemos usar uma lista como *coleção* de entrada. O **set** gerado irá remover elementos duplicados e aplicar o **set comprehension**.
+    ```python
+    numbers = [1, 2, 3, 4, 5]
+
+    squares = {number ** 2 for number in numbers}
+    print(squares) # print {2, 4, 9, ,16, 25}
+    ```
+
+## Exceções
+- Em **python** temos dois tipos de *erros*, erros de *sintaxe* e *exceções*.
+  - Errors de *sintaxe* pode ser por falta de **:** em um *if*, identação incorreta, etc.
+  - *Exceções* ocorrem durante execução do código, podem ser por diversos motivos, conversões incorretas, acessar algo que não existe, etc.
+- A sintaxe em **python** é a seguinte:
+  ```python
+  number = int(input('Type a number: ')) # digit letter instead
+  # if pressed a leeter instead a number, ValueError exception will occur
+
+  print(in)
+
+  try:
+    number = int(input('Type a number: '))
+
+    print(number)
+  except:
+    print('Error! Please enter a valid number')
+  ```
+- Podemos informar que tipo de *exceção* queremos capturar, agrupar *exceções* que queremos ter o mesmo tratamento. Ex:
+  ```python
+  try:
+    number = int(input('Type a number: '))
+
+    result = 10 / number # if number is 0, exception ZeroDivisionError will occur
+
+    print(number)
+  except ValueError:
+    print('Error! Please enter a valid number')
+  except ZeroDivisionError:
+    print('Error! Number is 0')
+
+  # or
+  try:
+    number = int(input('Type a number: '))
+
+    result = 10 / number # if number is 0, exception ZeroDivisionError will occur
+
+    print(number)
+  except (ValueError, ZeroDivisionError):
+    print('Error! Please enter a valid number')
+  ```
+- Existem casos que queremos que algo sempre seja executado, independente de *exception* ou não, nesses casos usamos a cláusula *finally*. Ex:
+  ```python
+  a = 10
+  b = 0
+
+  try:
+    c = a / b
+    print(c)
+  except ZeroDivisionError as error:
+    print(error)
+  finally:
+    print('Finishing up.')
+
+  # we can use try ... finally withou the except statement
+  try:
+    c = a / b
+    print(c)
+  finally:
+    print('Finishing up.')
+  ```
