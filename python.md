@@ -470,6 +470,15 @@
   finally:
     print('Finishing up.')
   ```
+- Para criar uma **exceão** usar a **keyword** **raise**. Ex:
+  ```python
+  name = input('Enter your name: ')
+
+  if not name:
+    raise ValueError('Invalid name') # raise exception when name is blank
+  else:
+    print(name)
+  ```
 
 ## Modulos
 - Um módulo é uma parte do código com uma funcionalidade especifica.
@@ -582,7 +591,7 @@
     def celsius_to_fahrenheit(c):
       return 9 * c / 5 + 32
 
-    @staticmethod
+    @staticmethod # it's a decorator to make methods that doesn't have access to class state.
     def fahrenheit_to_celsius(f):
       return 5 * (f - 32) / 9
 
@@ -597,4 +606,50 @@
       self.job_title = job_title
 
   employee = Employee('John', 25, 'Developer')
+  ```
+- Em **python** não temos o conceito de *atributos* privados, para definir que um atributo é privado, usados **_** para informar que o *atributo* será privado.
+  ```python
+  class Counter:
+    def __init__(self):
+      self._current = 0
+
+    def increment(self):
+      self._current += 1
+
+  counter = Counter()
+  counter.increment()
+  ```
+- Em **python** podemos criar *properties** e com isso alterar **getter** e **setter**.
+  ```python
+  class Person:
+    def __init__(self, age):
+      self.age = age
+
+    @property # create a getter for the attribute
+    def age(self):
+      return self._age
+
+    @age.setter
+    def age(self, age):
+      if age <= 0:
+        raise ValueError('Invalid age')
+      self._age = age
+
+  person = Person(10)
+  print(person.age) # print 10
+
+  person.age = 0 # will raise exception
+  person = Person(0) # will raise exception
+  ```
+- **Python** possui **enums** e são criados da seguinte forma:
+  ```python
+  from enum import Enum
+
+  class Color(Enum):
+    RED = 1
+    GREEN = 2
+    BLUE = 3
+
+  print(Color.RED.name) # print RED
+  print(Color.RED.value) # print 1
   ```
