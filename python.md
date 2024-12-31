@@ -12,6 +12,7 @@
 - [Exceções](#exceções)
 - [Módulos](#modulos)
 - [OOP](#oop)
+- [Testes](#testes)
 
 ## Instalação
 - [Link site oficial](https://www.python.org/downloads/)
@@ -652,4 +653,140 @@
 
   print(Color.RED.name) # print RED
   print(Color.RED.value) # print 1
+  ```
+
+## Testes
+- Testes pode ser feitos de várias formas, será abordado testes *unitários* nesse momento.
+- **Testes unitários** verificam um pedaço de código como uma unidade.
+- Usado para verificar se este pedaço está fazendo o que foi programado para fazer.
+- **Python** possui um módulo nativo para isso, `unittest`.
+  ```python
+  #square.py
+  class Square:
+    def __init__(self, legnth) -> None:
+      if type(length) not in [int, float]:
+        raise TypeError('Length must be a number')
+      self.length = length
+
+    def area(self):
+      return self.length * self.length
+  ```
+  ```python
+  # test_square.py
+  import unittest
+
+  from square import Square
+
+  class TestSquare(unittest.TestCase):
+    def test_area(self):
+      square = Square(10)
+      are = square.area()
+      self.assertEqual(area, 100)
+
+    def test_length_with_wront_type(self):
+      with self.assertRaises(TypeError)
+        square = Square('10')
+
+  # run test with python test_square.py
+  # remove this and run python -m unittest to run without this if block.
+  if __name__ == '__main__':
+    unittest.main()
+  ```
+- Existem casos em que queremos que algo rode antes ou após os testes, exemplo:
+  ```python
+  import unittest
+
+  def setUpModule():
+    print('Running setUpModule')
+
+
+  def tearDownModule():
+    print('Running tearDownModule')
+
+
+  class TestMyModule(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+      print('Running setUpClass')
+
+    @classmethod
+    def tearDownClass(cls):
+      print('Running tearDownClass')
+
+    def setUp(self):
+      print('')
+      print('Running setUp')
+
+    def tearDown(self):
+      print('Running tearDown')
+
+    def test_case_1(self):
+      self.assertEqual(5+5, 10)
+
+    def test_case_2(self):
+      self.assertEqual(1+1, 2)
+
+  # the output running with python -m unittest -v
+  #Running setUpModule
+  #Running setUpClass
+  #test_case_1 (test_my_module.TestMyModule) ...
+  #Running setUp
+  #Running test_case_1
+  #Running tearDown
+  #ok
+  #test_case_2 (test_my_module.TestMyModule) ...
+  #Running setUp
+  #Running test_case_2
+  #Running tearDown
+  #ok
+  #Running tearDownClass
+  #Running tearDownModule
+  #
+  #----------------------------------------------------------------------
+  #Ran 2 tests in 0.002s
+  #
+  #OK
+  ```
+- Podemos usar `@unittest.skip('Work in progress')` em *métodos* e *classes* para pular o teste.
+  - Além de pular testes, há a possibilidade de pular testes com condições:
+    - `@unittest.skipIf(condition, reason)`.
+      - Pular testes no windows: `@unittest.skipIf(platform.startswith("win"), "Do not run on Windows")`.
+    - `@unittest.skipUnless(condition, reason)`, pula o teste se a condição não for verdadeira.
+- Existem casos em que não queremos usar o valor real ou não temos como usar um valor especifico no *teste*, para isso usamos **mock**:
+  ```python
+  # odometer.py
+  from random import randint
+  def speed():
+    return randint(40, 120)
+
+  def alert():
+    speed = speed()
+    if speed < 60 or speed > 100:
+      return True
+    return False
+  ```
+
+  ```python
+  # odometer_test.py
+  import unittest
+  from unittest.mock import Mock
+  import odometer
+
+  class TestOdometer(unittest.TestCase);
+    def test_alert_normal(self):
+      odometer.speed() = Mock() # mock function speed()
+      odometer.speed.return_value = 70 # every speed() call, return value 70
+      self.assertFalse(odometer.alert())
+
+    def test_alert_overspeed(self):
+      odometer.speed() = Mock() # mock function speed()
+      odometer.speed.return_value = 100 # every speed() call, return value 100
+      self.assertFalse(odometer.alert())
+
+    def test_alert_underspeed(self):
+      odometer.speed() = Mock() # mock function speed()
+      odometer.speed.return_value = 59 # every speed() call, return value 59
+      self.assertFalse(odometer.alert())
+
+  # run the test python -m unittest test_odometer.py -v
   ```
