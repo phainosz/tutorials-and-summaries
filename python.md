@@ -790,3 +790,8 @@
 
   # run the test python -m unittest test_odometer.py -v
   ```
+- Podemos verificar a cobertura dos testes, o que foi testado e o que faltou testar.
+  - Para isso, precisamos adicionar o módulo *coverage*: `pip install coverage`.
+  - Para rodar o teste verificando a cobertura, seguir duas etapas, rodar o teste e verificar a cobertura do arquivo gerado.
+    - `python -m coverage run -m unittest` irá gerar o arquivo de *report*.
+    - `python -m coverage report` irá mostrar como ficou a cobertura do código testado.
