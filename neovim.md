@@ -23,7 +23,7 @@
 - `O` entra em *Insert mode* na linha acima onde o cursor está.
 - `A` entra en *Insert mode* no final da linha onde o cursor está.
 - `u` desfaz o que foi feito.
-- `Ctrl + R` volta o que foi desfeito. 
+- `Ctrl + R` volta o que foi desfeito.
 - `0` move o cursor para o início da linha.
 - `_` move o cursor para o início do texto na linha.
 - `$` move o cursor para o fim da linha.
@@ -54,7 +54,7 @@
 - `yiw` copia a palavra em que o cursor está em cima.
 - `t` move o cursor para frente antes da palvra/símbolo buscado.
   - Ex: `t*` move o cursor para o até * encontrado.
-- `t` move o cursor para trás antes da palvra/símbolo buscado. 
+- `t` move o cursor para trás antes da palvra/símbolo buscado.
 - `f` move o cursor para frente na palvra/símbolo buscado.
   - Ex: `f*` move o cursor para no * encontrado.
   - `;` vai para o próximo símbolo encontrado na linha.
@@ -82,6 +82,9 @@
 - `Ctrl + u` para mover a tela meia página para cima.
 - `Shift + Ctrl + c` para copiar o texto selecionado usando *visual mode*.
 - `Shift + Ctrl + v` para colar o texto normal.
+- `Ctrl + o` Quando você se move para uma nova localização no código, como ao usar o comando gd (go to definition),
+Neovim adiciona essa posição à lista de saltos. Pressionar `Ctrl-o` permite que você volte para a posição onde estava antes do salto.
+- `Ctrl + i` Após usar `Ctrl-o` para voltar, você pode usar `Ctrl-i` para avançar novamente para a posição à qual você tinha saltado.
 
 ### Command Mode
 - `:` execução de comandos.
@@ -113,7 +116,7 @@
 - `viw` selecionar uma palavra.
 - `vi(` selecionar bloco entre *()*.
 - `vi{` selecionar bloco entre *{}*
-- `vt` selecionar bloco entre *<>*. 
+- `vt` selecionar bloco entre *<>*.
 - Podemos também entrar em **VISUAL MODE LINE**, usando `V`, isso irá selecionar a linha toda.
 
 ### Visual Mode Block
