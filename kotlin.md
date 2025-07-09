@@ -1,5 +1,3 @@
-Integrações com banco de dados (Exposed, JDBC, etc.)
-
 # Anotaçẽs gerais sobre Kotlin
 
 - [Introdução](#introdução)
