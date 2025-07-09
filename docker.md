@@ -8,12 +8,13 @@
 - [Network](#network)
 - [Volumes](#volumes)
 
-
 ## Intalação
+
 - [Docker](https://docs.docker.com/get-docker/)
 - Verificar versão com `docker version`
 
 ## Comandos gerais
+
 - Para verificar comandos de ajuda para o docker usar `docker --help`
     - Pode ser utilizado junto com comando especificos, ex: `docker container --help`
 - Comandos antigos eram utilizados sem especificar uma subcategoria, atualmente existe uma forma mais nova
@@ -27,14 +28,17 @@
 - `docker run <IMAGE>` ou `docker container run <IMAGE>` roda o container
 - `docker start <CONTAINER_ID>` ou `docker container run <CONTAINER_ID>` roda o container
 - `docker stop <CONTAINER_ID>` ou `docker container stop <CONTAINER_ID>` parar o container
-- `docker exec <CONTAINER_ID>` ou `docker container exec <CONTAINER_ID>` executar um container ou comando para o container
+- `docker exec <CONTAINER_ID>` ou `docker container exec <CONTAINER_ID>` executar um container ou comando para o
+  container
     - Usado em conjunto com os comandos -it para realizar comando dentro do container
 - `docker container logs <CONTAINER_ID>` para ver os logs do container informado
 - `docker pull <IMAGE>` ou `docker image pull <IMAGE>` faz o download da imagem
 - `docker images` ou `docker image ls` mostra detalhes de imagens local
 - `docker images inspect <IMAGE>` ou `docker image inspect <IMAGE>` mostra detalhes da imagem informada
-- `docker cp <SOURCE> <DEST>` ou `docker container cp <SOURCE> <DEST>` para copiar arquivos, podendo ser do container para o pc ou vice versa
-- `docker exec <CONTAINER> -it bash` para executar comandos dentro do container. Alguns formatos de imagens podem não conter bash e outras ferramentas, nesses casos, trocar bash por sh.
+- `docker cp <SOURCE> <DEST>` ou `docker container cp <SOURCE> <DEST>` para copiar arquivos, podendo ser do container
+  para o pc ou vice versa
+- `docker exec <CONTAINER> -it bash` para executar comandos dentro do container. Alguns formatos de imagens podem não
+  conter bash e outras ferramentas, nesses casos, trocar bash por sh.
 - Usar FLAGS para auxiliar ao rodar o container
     - `-d` para rodar no background(detached) sem travar o terminal
         - Ex: `docker run <IMAGE> -d`
@@ -52,16 +56,21 @@
         - Ex: `docker run <IMAGE> -e VARIABLE_NAME=value`
 
 ## Dockerfile
+
 - Serve para criar uma imagem customizada
 - Para criar um dockerfile, basta criar um arquivo com o nome Dockerfile
 - Após criado e adicionado os comandos para criação da imagem, fazer o build
-    - Usar `docker build .` ou `docker image build .` para criar imagem através do Dockerfile quando estiver no mesmo local do Dockerfile
-    - Usar `docker build -t <IMAGE_NAME> .` ou `docker image build -t <IMAGE_NAME> .` para nomear a imagem criada com Dockerfile
+    - Usar `docker build .` ou `docker image build .` para criar imagem através do Dockerfile quando estiver no mesmo
+      local do Dockerfile
+    - Usar `docker build -t <IMAGE_NAME> .` ou `docker image build -t <IMAGE_NAME> .` para nomear a imagem criada com
+      Dockerfile
     - Usar `docker build -f <SRC_FILE> .` ou `docker image build -f <SRC_FILE> .` para criar imagem em outra pasta
     - Para dar um nome e TAG para a imagem usar `docker build -t NAME:TAG .`
-- Para o dockerfile existe uma forma de ignorar arquivos assim como usado gitignore no git. Usar .dockerignore quando houver arquivos a serem ignorados na construção da imagem usando Dockerfile.
+- Para o dockerfile existe uma forma de ignorar arquivos assim como usado gitignore no git. Usar .dockerignore quando
+  houver arquivos a serem ignorados na construção da imagem usando Dockerfile.
 - Instruções para o Dockerfile
     * \# Adiciona comentários dentro do Dockerfile
+
     - INSTRUCAO argumento, este é o padrão para adicionar os comandos
     - `FROM` é uma instrução obrigatória e é ela que informa qual a imagem iremos utilizar
         - Ex: `FROM openjdk:latest`
@@ -71,15 +80,17 @@
         - EX: `WORKDIR /app`
     - `COPY` basicamente copia arquivos locais para o container
         - Ex: `COPY foo/bar.txt /containerFolder`
-    - `ENV` serve para declaração de variaveis de ambiente, podendo ter valor ou ser especificado o valor na hora de rodar o container. Para acessar vairáveis dentro do Dockerfile, usar $ + nome da variável.
+    - `ENV` serve para declaração de variaveis de ambiente, podendo ter valor ou ser especificado o valor na hora de
+      rodar o container. Para acessar vairáveis dentro do Dockerfile, usar $ + nome da variável.
         - Ex: Multiplos valores `ENV FOO=bar XPTO="http://xpto.com"`
         - Ex: Sem o uso do igual(=), desencorajado `ENV FOO bar`
-    - `ARG` serve para declaração de variaveis de ambiente, podendo ter valor ou ser especificado o valor na hora do build da imagem e não ao rodar o container, como é feito usando *ENV*.
+    - `ARG` serve para declaração de variaveis de ambiente, podendo ter valor ou ser especificado o valor na hora do
+      build da imagem e não ao rodar o container, como é feito usando *ENV*.
         - Ex: `ARG FOO=bar`
     - `EXPOSE` funciona como uma documentação para qual porta o container estará rodando
         - Ex: `EXPOSE 8080`
         - Este comando não altera a porta do container. Para alterar a porta usada no container, usar a flag **-p**
-    - `ENTRYPOINT` executa um comando quando o container é iniciado. 
+    - `ENTRYPOINT` executa um comando quando o container é iniciado.
         - Ex: `ENTRYPOINT ["java", "-jar", "myJar.jar"]`
         - Indicado conter apenas um comando pois será executado o ultimo encontrado
         - Este comando pode ser sobreescrito usando --entrypoint \<COMMAND\> ao rodar o container
@@ -101,20 +112,25 @@
     ```
 
 ## Docker Compose
+
 - Docker compose é uma ferramenta para definir vários containers e rodar com apenas um comando usando arquivo yaml
-- Especificação e lista de comandos [The Compose Specification](https://github.com/compose-spec/compose-spec/blob/master/spec.md)
+- Especificação e lista de
+  comandos [The Compose Specification](https://github.com/compose-spec/compose-spec/blob/master/spec.md)
 - Para verificar a versão do docker compose, usar `docker compose version`
-- **version** é a versão do docker-compose.yaml, ver mais em [Compose versioning](https://docs.docker.com/compose/compose-file/compose-versioning/)
+- **version** é a versão do docker-compose.yaml, ver mais
+  em [Compose versioning](https://docs.docker.com/compose/compose-file/compose-versioning/)
 - **build** se informado, usa um arquivo Dockerfile para criar a imagem
 - **services** é uma seção para a definição de cada container usado no docker-compose
 - **ports** é usado para mapear a porta do container para a porta do host
 - **volumes** serve para criar ou definir volume, usado da mesma forma como na CLI usando o *-v* ou *--volume*
 - **image** será a imagem usada para o container
 - **networks** para criar ou utilizar uma network no container
-- **depends_on** informa que um container precisa de outro para subir, o valor usado é o nome dado ao container que ele necessita
+- **depends_on** informa que um container precisa de outro para subir, o valor usado é o nome dado ao container que ele
+  necessita
 - **env_file** adiciona variável de ambiente usando um arquivo *.env*
 - **environment** permite configurar variáveis dentro do container, o mesmo que *-e* na CLI
-    - Quando estiver usando spring ou outra linguagem e precise usar variáveis de ambiente, pode-se utilizar com este comando ou *env_file* para usar um arquivo externo usando *.env*
+    - Quando estiver usando spring ou outra linguagem e precise usar variáveis de ambiente, pode-se utilizar com este
+      comando ou *env_file* para usar um arquivo externo usando *.env*
     - Para adicionar variáveis em spring seguir o exemplo abaixo
     ```
     ...
@@ -122,7 +138,7 @@
      SPRING_APPLICATION_NAME=myApp
     ...
     ```
-    **ou**
+  **ou**
     ```
     ...
     environment:
@@ -139,6 +155,7 @@
     - Usar `docker compose up -d` para rodar no background
     - Usar `docker compose down` para parar
     - Obs. estes comandos seguem a nova especificação do docker compose V2
+
 ```
 # version was not added following the specification in this date
 services:
@@ -152,13 +169,16 @@ services:
 ```
 
 ## Enviar imagem para o docker hub
+
 - Para publicar uma imagem no docker hub, primeiramente precisa ter uma conta
 - Para fazer login no seu computador, digitar no terminal `docker login` e inserir suas credenciais
 - Usar o comando `docker image push <IMAGE_NAME>` para enviar a imagem
     - Obs. A imagem precisa conter o nome do owner. Ex: fulano/myapp
-    - No caso de sua imagem não conter o nome do owner, usar `docker image tag <IMAGE_ID> fulano/myapp` ou recriar a imagem usando build com o nome correto.
+    - No caso de sua imagem não conter o nome do owner, usar `docker image tag <IMAGE_ID> fulano/myapp` ou recriar a
+      imagem usando build com o nome correto.
 
 ## Network
+
 - Habilita a comunicação entre containers
 - Um container pode ter uma ou mais networks
 - Caso não seja especificado uma, ele usará a padrão
@@ -166,9 +186,10 @@ services:
 - Para listar networks existentes, usar `docker network ls`
 - Para usar a network criada ao rodar um container via CLI, `docker run -it --network <NETWORK> <CONTAINER>`
 
-
 ## Volumes
-- Servem para manter os dados quando um container é parado, ao iniciar ele novamente, continuar com os dados gerados anteriomente
+
+- Servem para manter os dados quando um container é parado, ao iniciar ele novamente, continuar com os dados gerados
+  anteriomente
 - Para criar um volume via CLI, usar `docker volume create <NAME>`
 - Para listar volumes, usar `docker volume ls`
 - Para usar um volume na criação de container via CLI, usar `docker run -v <VOLUME> <CONTAINER>`

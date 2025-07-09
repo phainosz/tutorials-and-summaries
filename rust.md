@@ -22,6 +22,7 @@
 - [Gerenciamento de Memória](#gerenciamento-de-memória)
 
 ## Instalação
+
 - [Site oficial](https://www.rust-lang.org/tools/install)
 - [Rust playground](https://play.rust-lang.org/)
 - Windows
@@ -62,33 +63,37 @@
             "[rust]": {
                 "editor.formatOnSave": true,
                 "editor.defaultFormatter": "rust-lang.rust-analyzer"
-            },
+            }
         }
         ```
     - *crates*
     - *Better TOML*
 
 ## Comandos Rust
+
 - `cargo init` cria um novo projeto em uma pasta existente.
 - `cargo new <NAME_PROJETO>` cria projeto com o nome informado.
 - `cargo run` para rodar um projeto.
 - `rustc --version` para verificar versão do **Rust** instalada.
 - `rustc <FILE>.rs`para fazer o build de um arquivo **Rust*.
 - `cargo check` verifica se o código irá compilar sem gerar um executável.
-_ `cargo build` para fazer o build de um projeto criado com o cargo.
+  _ `cargo build` para fazer o build de um projeto criado com o cargo.
     - Podendo usar a flag *release*, `cargo build --release`, que fará otimizações para o código rodar melhor.
 - `cargo test` irá rodar os testes criados.
 - `cargo clean` remove os artefatos gerados no *build*.
 - `cargo tree` traz a lista completa de depências do projeto.
 
 ## Conceitos Gerais
+
 - Gerenciador de pacotes do **Rust** é o **cargo**.
 - **Rust** usa o padrão *snake case*.
 - **rustc** é o copilador do **Rust**.
-- *match* são expressões similares ao *if* e *switch*, porém eles devem cobrir todas as possiblidades da expressão testada.
+- *match* são expressões similares ao *if* e *switch*, porém eles devem cobrir todas as possiblidades da expressão
+  testada.
     - Se alguma possibilidade for adicionado, o compilador irá informar o erro ao não cobrir esta nova possibilidade.
     - Quando não quiser testar todas as possibilidades, usar *_* como se fosse o *default* do *switch*.
     - Ex:
+
 ```rust
 fn main() {
     let some_bool = true;
@@ -99,12 +104,14 @@ fn main() {
     }
 }
 ```
+
 - *Cargo.toml* é o arquivo que contém metadados do seu projeto rust, assim como suas dependências.
-- Documentação em **Rust** é gerado com *///* e a descrição. Para gerar a documentação, usar o comando `cargo doc`ou `cargo doc --open`para visualizar
+- Documentação em **Rust** é gerado com *///* e a descrição. Para gerar a documentação, usar o comando `cargo doc`ou
+  `cargo doc --open`para visualizar
 - Exitem alguns formatos de retorno no **Rust** que ajudam a representar dados.
     - *Option*, usado quando pode existir ou não o dado retornado.
         - Pode ser usado *match* para verificar qual foi o retorno.
-        -Ex:
+          -Ex:
         ```rust
         enum Option<T> {
             None,
@@ -119,7 +126,8 @@ fn main() {
             Err(E),
         }
         ```
-- Existe o operador *?* no **Rust**, ele é utilizado para retornar dados dos tipos *Result* e *Option* de forma simplificada.
+- Existe o operador *?* no **Rust**, ele é utilizado para retornar dados dos tipos *Result* e *Option* de forma
+  simplificada.
     - Ex:
         ```rust
         #[derive(Debug)]
@@ -159,9 +167,12 @@ fn main() {
     - Verificar o projeto com `cargo clippy`, similar ao `cargo check`.
 
 ## Variáveis
+
 - Em **Rust** criação de variáveis e constantes são possíveis usando *let* ou *const*.
 - Variáveis em **Rust** são imutáveis por padrão.
-- Para variáveis, existe o conceito de mutabilidade, uma variável definida usando *let* pode ser reescrita, porém com algumas ressalvas.
+- Para variáveis, existe o conceito de mutabilidade, uma variável definida usando *let* pode ser reescrita, porém com
+  algumas ressalvas.
+
 ```rust
 fn main() {
     let x = 1;
@@ -172,14 +183,17 @@ fn main() {
     let mut x = 3;
 }
 ```
+
 - Os tipos de variáveis seguem o padrão encontrado em outras linguagens, variando em tamanhos e seus tipos.
 - Inteiros: `i8 i16 i32 i64 i128 u8 u16 u32 u64 u128`
 - Decimais: `f32 f64`
 - Booleanos: `bool`
 - Characteres: `char`
-- Strings podem ser criadas de dois tipos, usando `String::from("my string")` ou `"my string".to_owned()` e o conceito de *borrowed* usando apenas `let my_string = "my string"` onde terá uma *&str*.
+- Strings podem ser criadas de dois tipos, usando `String::from("my string")` ou `"my string".to_owned()` e o conceito
+  de *borrowed* usando apenas `let my_string = "my string"` onde terá uma *&str*.
 - Variáveis podem ser convertidas quando não são compatíveis, usando *as*.
     - Ex:
+
 ```rust
 fn main() {
     multiply(1.1, 2);
@@ -191,9 +205,11 @@ fn multiply(x: f32, y: u16) {
 ```
 
 ## Strings
+
 - Em **Rust** exitem alguns tipos de *strings*, sendo a mais comuns **String** e **&str**.
 - **String** o valor é *owned*, enquanto o **&str** é *borrowed*.
 - Ex:
+
 ```rust
 fn print(data: &str) {
     println!("{:?}", data);
@@ -209,9 +225,11 @@ fn main() {
 ```
 
 ## Funções
+
 - A declaração de funções em **Rust** usa-se *fn* como palavra chave.
 - Para declarar uma função com retorno, usar `->` e indicar qual o tipo de retorno.
 - Ex:
+
 ```rust
 fn my_function() {
     println!("{}", hello_world());
@@ -226,8 +244,11 @@ fn main() {
     my_function();
 }
 ```
-- Funções anônimas ou *closures* são funções sem nome que podem ser usadas como argumentos de outras funções ou como execução de função invocada.
+
+- Funções anônimas ou *closures* são funções sem nome que podem ser usadas como argumentos de outras funções ou como
+  execução de função invocada.
 - Ex:
+
 ```rust
 fn main() {
     let add = |a: i32, b: i32| -> i32 {
@@ -241,9 +262,11 @@ fn main() {
 ```
 
 ## Loops
+
 - Usados para fazer iterações.
 - *loop*, *while* e *for* são os tipos de loops em **rust**.
 - *loop* é infinito, podendo ser parado com *break*. Ex:
+
 ```rust
 fn main() {
     let mut value = 1;
@@ -257,7 +280,9 @@ fn main() {
     }
 }
 ```
+
 - *while* segue o mesmo padrão de outras linguagens. Ex:
+
 ```rust
 fn main() {
     let mut value = 1;
@@ -268,7 +293,9 @@ fn main() {
     println!("end");
 }
 ```
+
 - *for* pode ser usado com *iterators* ou com um *range*. Ex:
+
 ```rust
 fn main() {
     for i in 1..11 {
@@ -279,10 +306,11 @@ fn main() {
 }
 ```
 
-
 ## Métodos
+
 - Em *Rust* o conceito de métodos é um pouco diferente, implementar funcionalidades em tipos utilizado usando *impl*.
 - Ex:
+
 ```rust
 struct Book {
     pages: i32,
@@ -329,8 +357,10 @@ fn main() {
 ```
 
 ## Structs
+
 - São usados para definir multiplos tipos de dados.
 - Ex:
+
 ```rust
 struct Box {
     width: i32,
@@ -347,8 +377,10 @@ fn main() {
     println!("Box depth {}", a.width);
 }
 ```
+
 - *Structs* podem ser usados com *match* para verificar valores.
 - Ex:
+
 ```rust
 struct Box {
     width: i32,
@@ -371,9 +403,11 @@ fn main() {
 ```
 
 ## Tuplas
+
 - São similares a *struct*, servem para armazenar dados, porém dados do mesmo tipo.
 - Muito usados em retornos de *funções*.
 - Ex:
+
 ```rust
 fn main() {
     let numbers = tuple_number();
@@ -394,10 +428,13 @@ fn tuple_number() -> (i8, i8, i8) {
 ```
 
 ## Arrays
+
 - *Arrays* são usados para manipular listas de informações de um determinado tipo com tamanho fixo.
 - Sintaxe: `let years:[i32; 3] = [2000, 2001, 2002]`, `i32` é o tipo e `3` é o tamanho.
-- Para acessar e manipular, usado da mesma forma que em qualquer *array*, lembrando que sem *mut*, não será possível fazer alterações.
+- Para acessar e manipular, usado da mesma forma que em qualquer *array*, lembrando que sem *mut*, não será possível
+  fazer alterações.
 - Para iterar em um *array*, ex:
+
 ```rust
 fn main() {
     let years: [i32; 3] = [2000, 2001, 2002];
@@ -409,9 +446,11 @@ fn main() {
 ```
 
 ## Vetores
+
 - *Vetores* são usados para manipular listas de informações de um determinado tipo com tamanho dinâmico.
 - Contemplam maior funcionalidades como adicionar mais itens no *vetor*, remover, etc.
 - Ex:
+
 ```rust
 fn main() {
     let mut years = Vec::new();
@@ -434,8 +473,10 @@ fn main() {
 ```
 
 ## Enum
+
 - Dados que podem ser usados como variantes.
 - Ex:
+
 ```rust
 enum Direction {
     Up,
@@ -454,8 +495,10 @@ fn main() {
     }
 }
 ```
+
 - Enum podem ser usados com dados adicionais e receber parâmetros como informações.
 - Ex:
+
 ```rust
 enum Discount {
     Percent(i32),
@@ -474,20 +517,24 @@ fn main() {
 ```
 
 ## Macros
+
 - *macros* são similares a funções, porém eles expandem para execuções de códigos além da função.
 - Para identificar que uma função é um *macro*, ao final da função terá uma *!*, `println!(...)`.
 - Exemplo de *macros*:
     - `dbg!(...)` usado para inspecionar códigos durante desenvolvimento.
-    - `format!(...)` faz interpeloação de strings. Usado de forma similar ao `println!(...)` porém retorna o valor como string.
+    - `format!(...)` faz interpeloação de strings. Usado de forma similar ao `println!(...)` porém retorna o valor como
+      string.
     - `incluse_str!(...)` insere dados de um arquivo para o código. O arquivo usa o src como diretório de partida.
     - `env!(...)` configura uma variável de ambiente para o código.
     - `todo!(...)` código que falta ser finalizado.
     - `unreachable!(...)` indica que um ponto do código não deverá ser executado.
 
 ## Atributos
+
 - *Atributos* em **Rust** são pequenos pedaços de código que fornecem informações para o compilador.
 - Syntax, `#[attribute]` para atributos externos e `#![attribute]`para atributos internos.
 - Ex:
+
 ```rust
 //Inner attributes
 //remove warning for dead code and unused variables
@@ -507,20 +554,27 @@ fn main() {
 ```
 
 ## Packages e Crates
-- *Crates* é a menor parte do código em **Rust**, quando compilado um arquivo *.rs*, o compilador considera este arquivo como um *crate*.
+
+- *Crates* é a menor parte do código em **Rust**, quando compilado um arquivo *.rs*, o compilador considera este arquivo
+  como um *crate*.
 - *Crates* podem ser criado de duas formas: *binário* ou *biblioteca*:
-    - *Binário* são programas que podem ser compilados e rodados, devem possuir uma função *main* que define o que será executado.
+    - *Binário* são programas que podem ser compilados e rodados, devem possuir uma função *main* que define o que será
+      executado.
     - Um pacote pode ter múltiplas *crates* do tipo *binário* dentro de *src/bin*.
-- *Biblioteca* não possuem função *main* e não compilam para executáveis. São usados como funcionaldiades para serem compartilhadas com outros projetos.
+- *Biblioteca* não possuem função *main* e não compilam para executáveis. São usados como funcionaldiades para serem
+  compartilhadas com outros projetos.
 - *Package* é um agrupamento de um ou mais *crates*.
 - *Package* contém um arquivo `Cargo.toml` que descreve como fazer o build dos *crates*.
 
 ## Modulos
-- **Rust** disponibiliza um sistema de *módulos* que separam o código de forma lógica e gerenciam a visibilidade de forma hierarquica.
+
+- **Rust** disponibiliza um sistema de *módulos* que separam o código de forma lógica e gerenciam a visibilidade de
+  forma hierarquica.
 - *Módulos* podem ser *públicos* ou *privados*.
 - Por padrão, a acessibilidade em **Rust** é dada como private, para tornar público, precisa especificar com *pub*.
 - *Módulos* podem ser internos e externos.
 - Exemplo *módulo* interno:
+
 ```rust
 mod math {
     //the function is private without pub modifier
@@ -534,8 +588,10 @@ fn main() {
     println!("result of the sum {:?}", sum_result);
 }
 ```
+
 - Exemplo *módulo* externo:
 - Arquivo `main.rs`
+
 ```rust
 mod math;
 
@@ -544,12 +600,15 @@ fn main() {
     println!("result is {:?}", sum_result);
 }
 ```
+
 - Arquivo `math.rs`
+
 ```rust
 pub fn add(first:i32, second:i32) -> i32 {
   first + second
 }
 ```
+
 - Se um *módulo* tiver outros *módulos* dentro, o formato fica um pouco diferente:
 
 ```
@@ -564,10 +623,11 @@ pub fn add(first:i32, second:i32) -> i32 {
 - Na pasta `math.rs` teríamos os *módulos* que estão dentro do *módulo* **math**.
 - Cada arquivo dentro da pasta **math** seria um *módulo* e precisaria ser declarado em `math.rs`
 
-
 ## Traits
+
 - *Traits* servem para definir funcionalidades para certos tipos em **Rust**.
 - Ex:
+
 ```rust
 trait Printer {
     fn print(&self);
@@ -592,9 +652,11 @@ fn main() {
     console.print();
 }
 ```
+
 - Podemos ter um comportamento padrão em alguns casos com *trait*.
 - O padrão pode ou não ser sobreescrito, vai ser utilizado de acordo com o código escrito.
 - Ex:
+
 ```rust
 trait Printer {
     fn print(&self) {
@@ -611,8 +673,10 @@ fn main() {
     console.print();
 }
 ```
+
 - *Traits* podem ser usadas como parâmetro de *funções*.
 - Ex:
+
 ```rust
 struct Person {
     name: String,
@@ -642,11 +706,14 @@ fn main() {
 ```
 
 ## Lifetime
+
 - É algo semelhante a *generics*.
 - Servem para garantir o que a referência de um tipo é válida no tempo que é necessário.
 - Toda referência em **Rust** tem um *lifetime* válido de forma implicita.
-- As anotações para *lifetime* possuem uma sintaxe simples que é possível identificar ao encontrar **'** e geralmente uma letra na sequência, `&'a ...`.
+- As anotações para *lifetime* possuem uma sintaxe simples que é possível identificar ao encontrar **'** e geralmente
+  uma letra na sequência, `&'a ...`.
 - Ex 1:
+
 ```rust
 fn main() {
     let my_string = get_string();
@@ -659,7 +726,9 @@ fn get_string() -> &str {//missing lifetime specifier, this function's return ty
     "string"
 }//at the end of this function, the value "string" will be dealocated
 ```
+
 - Ex 2 com a correção do exemplo 1:
+
 ```rust
 fn main() {
     let my_string = get_string();
@@ -670,7 +739,9 @@ fn get_string<'a>() -> &'a str {
     "string"
 }
 ```
+
 - Ex 3 usando *static* *lifetime*:
+
 ```rust
 fn main() {
     let my_string = get_string();
@@ -681,9 +752,12 @@ fn get_string() -> &'static str {
     "string"
 }
 ```
+
 - *static lifetime* é um tipo especial de *lifetime* que dura por todo o tempo que a aplicação durar.
-- Quando temos mais de um parâmetro, podemos ter mais de um *lifetime* e especificar cada um em seus parametros e no retorno.
+- Quando temos mais de um parâmetro, podemos ter mais de um *lifetime* e especificar cada um em seus parametros e no
+  retorno.
 - Ex:
+
 ```rust
 fn main() {
     let my_string = get_string("first", "second");
@@ -696,13 +770,15 @@ fn get_string<'a, 'b>(x: &'a str, y: &'b str) -> &'a str {
 ```
 
 ## Gerenciamento de Memória
+
 - **Rust** não possui um *garbage collector*.
 - Para gerenciamento de memória, **Rust** usa um sistema chamado de *Ownership*.
 - *Ownership*:
     - Funciona de forma que apenas um local possa ser o dono de uma variável.
     - Quando o dono desta variável sai do escopo, o valor será limpo da memória.
     - Toda variável e seu valor devem ter um dono.
-    - Ex:    
+    - Ex:
+
 ```rust
 fn main() {
     let years = vec![2000, 2001, 2002];//this scope owns years
@@ -717,12 +793,15 @@ fn get_years(years: Vec<i32>) {
     }
 }//years is cleaned from memory
 ```
+
 - Para estas situações, **Rust** apresenta o conceito chamado de *References & Borrowing*.
 - *References & Borrowing*:
-    - Funciona de forma que o valor da variável é emprestado para ser usado em outro escopo sem que seja limpo ao perder o escopo que ela estava.
+    - Funciona de forma que o valor da variável é emprestado para ser usado em outro escopo sem que seja limpo ao perder
+      o escopo que ela estava.
     - O dono é o responsável por fazer a limpeza assim que perde o escopo.
     - Para usar este conceito de emprestar a referência do valor, usar *&*.
     - Ex:
+
 ```rust
 fn main() {
     let years = vec![2000, 2001, 2002];
