@@ -58,8 +58,6 @@
 - Armazenamento seguro em dispositivos
 - Criptomoedas e blockchain
 
----
-
 ## Tipos de Criptografia
 
 ### Criptografia Simétrica
@@ -101,8 +99,6 @@
 - Combina os dois tipos: usa criptografia assimétrica para trocar a chave simétrica, e simétrica para os dados.
 - Utilizada em protocolos como TLS/SSL (HTTPS).
 
----
-
 ## Soluções e Algoritmos Mais Usados
 
 ### Simétricos
@@ -121,8 +117,6 @@
 - **HMAC**: hash autenticado.
 - **JWT**: JSON Web Token para autenticação e troca segura de dados.
 
----
-
 ## Alternativas e Comparações
 
 | Algoritmo | Tipo        | Vantagens                         | Desvantagens                        |
@@ -138,8 +132,6 @@
 - **RSA/ECC**: Para troca de chaves e assinatura digital.
 - **Híbrido (TLS/SSL)**: Para comunicação segura na web.
 - **Hash (SHA/HMAC)**: Para garantir integridade de dados.
-
----
 
 ## Conceitos Técnicos Fundamentais na Criptografia Simétrica
 
@@ -201,8 +193,6 @@ init(256); // tamanho da chave em bits
 
 SecretKey secretKey = keyGen.generateKey();
 ```
-
----
 
 ## Exemplos Práticos em Java
 
@@ -383,8 +373,6 @@ public class RSAExample {
 }
 ```
 
----
-
 ## Considerações finais
 
 - A criptografia simétrica é rápida e eficiente para grandes volumes de dados, mas requer que a chave seja compartilhada
@@ -392,5 +380,3 @@ public class RSAExample {
 - A criptografia assimétrica facilita a troca segura de chaves e a autenticação, porém é mais lenta e indicada para
   pequenos volumes ou para proteger chaves simétricas.
 - Na prática, sistemas seguros combinam ambos: usam RSA para proteger a chave AES e AES para criptografar os dados.
-
----

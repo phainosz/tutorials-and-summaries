@@ -28,15 +28,11 @@
     - Código mais conciso e expressivo.
     - Corrotinas para facilitar concorrência e IO assíncrono.
 
----
-
 ## Instalação
 
 - Para instalar o **Kotlin** podemos fazer a instalaćão através do *sdkman*.
 - [sdkman](https://sdkman.io/), serve para **Kotlin** e outras ferramentas.
 - Instalar o *sdkman* e após isso rodar o comando `sdk install kotlin`.
-
----
 
 ## Geral
 
@@ -62,8 +58,6 @@
     - `protected`: visível na classe e subclasses.
     - `internal`: visível apenas dentro do mesmo módulo (um diferencial de Kotlin em relação ao Java).
 
----
-
 ## Comandos
 
 - Para compilar um arquivo `.kt`, podemos usar o comando `kotlinc`.
@@ -79,8 +73,6 @@
 - Podemos executar diretamente, sem compilar, usando o interpretador, `kotlinc -script Hello.kts`.
     - Arquivos com extensão `.kts` (Kotlin Script) são usados para **scripts rápidos**, como automações simples,
       configurações ou tarefas pequenas, sem a necessidade de `fun main`.
-
----
 
 ## Condições IFs e When
 
@@ -123,8 +115,6 @@
 
         println(result)
         ```
-
----
 
 ## Arrays
 
@@ -202,8 +192,6 @@
 - `Array<T>` é uma classe genérica, usada para tipos de referência.
 - Para melhor performance com tipos primitivos (`Int`, `Double`, `Boolean`, etc), use `intArrayOf`, `doubleArrayOf`,
   etc.
-
----
 
 ## Loops
 
@@ -291,8 +279,6 @@
       println(i)
     }
     ```
-
----
 
 ## Funções
 
@@ -444,8 +430,6 @@ fun print(vararg items: String) {
 print("A", "B", "C")
 ```
 
----
-
 ## Enums
 
 - Enums são usados para representar um conjunto fixo de constantes.
@@ -530,8 +514,6 @@ Color.RED.print()
 Color.GREEN.print()
 ```
 
----
-
 ## Null Safety
 
 - Kotlin foi projetado para eliminar os erros de `NullPointerException` (NPE) em tempo de compilação, sempre que
@@ -571,8 +553,6 @@ println(length)
     ```kotlin
     val length = nome!!.length
     ```
-
----
 
 ## Classes
 
@@ -655,8 +635,6 @@ class Person(val name: String, var age: Int = 18)
 data class Usuario(val nome: String, val idade: Int)
 ```
 
----
-
 ## Interfaces
 
 - Interfaces em Kotlin são contratos que definem **métodos e propriedades** que uma classe pode implementar. Elas são
@@ -694,8 +672,6 @@ class Circle(private val radius: Double) : Shape {
     }
 }
 ```
-
----
 
 ## Tratamento de Erros
 
@@ -750,8 +726,6 @@ val number = runCatching {
 }
 println(number) // 0
 ```
-
----
 
 ## Programação Orientada a Objetos
 
@@ -995,8 +969,6 @@ fun main() {
 - Use **herança** apenas quando for inegável que a subclasse é um tipo especializado da superclasse.
 - Use **composição** para construir sistemas modulares, flexíveis e desacoplados.
 
----
-
 ## Solid
 
 - O SOLID é um conjunto de **cinco princípios** da programação orientada a objetos que ajudam a tornar o código mais *
@@ -1154,8 +1126,6 @@ fun main() {
 
 - A classe `NotificationManager` depende da abstração `MessageService`, não de uma implementação fixa.
 
----
-
 ## Corroutines
 
 - Coroutines são construções de linguagem (nativas em Kotlin) que permitem executar tarefas de forma assíncrona e não
@@ -1230,8 +1200,6 @@ val result = value.await()
 - Ele bloqueia a thread atual até que todas as coroutines dentro dele terminem.
 - Não é recomendado para uso em produção (pode travar o sistema).
 
----
-
 ## Gradle
 
 - Gradle é uma ferramenta de automação de builds moderna, amplamente usada em projetos Kotlin, Java, Android, etc.
@@ -1251,6 +1219,7 @@ my-project/
     └── main/
         └── kotlin/
 ```
+
 - Para compilar um projeto usando gradle: `./gradlew build`.
 - Para executar o projeto: `./gradlew run`.
 - Para rodar os testes: `./gradlew test`.
