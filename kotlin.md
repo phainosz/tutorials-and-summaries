@@ -62,7 +62,7 @@
 
 - Para compilar um arquivo `.kt`, podemos usar o comando `kotlinc`.
     - Ex:
-        ```kotlin
+        ```
         kotlinc Hello.kt -include-runtime -d Hello.jar
         ```
     - Isso irá compilar o arquivo e gerar um executável `.jar` com o bytecode.
