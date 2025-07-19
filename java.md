@@ -409,10 +409,16 @@ public void checkAge(int age) throws IllegalArgumentException {
 
 ## Generics
 
-- Generics permitem tipagem segura em coleções e classes.
+- Generics permitem criar classes, interfaces e métodos que podem trabalhar com diferentes tipos de dados, especificando o tipo desejado no momento da utilização. Em vez de trabalhar com tipos concretos, como Integer ou String, você pode usar placeholders ou outros caracteres para representar tipos genéricos.
+- Placeholders mais usados em Java:
+  - `T` Representa um tipo geral, utilizado quando não há necessidade de uma restrição específica sobre o tipo. `Box<T>`.
+  - `E` Usado para representar elementos de coleções, como listas ou arrays. `List<E>`.
+  - `K, V` Usados em mapas para representar chave(key) e valor(value). `Map<K, V>`
+  - `R` Usado para indicar resultado ou retorno. `Function<T, R>`.
+  - `U, S` Auxiliares usados quando existe mais de um tipo envolvido. `BiFunction<T, U, R>`.
 
 ```java
-public class Box<T> {
+class Box<T> {
     private T content;
 
     public void setContent(T content) { this.content = content; }
@@ -422,6 +428,19 @@ public class Box<T> {
 Box<String> box = new Box<>();
 box.setContent("Text");
 System.out.println(box.getContent()); // Print: Text
+```
+
+- Generics não funcionam com tipos primitivos (como int, char, etc.). Então, você deve usar suas classes wrapper (Integer, Character, etc.).
+- Podemos criar apenas métodos genéricos sem que a classe precise fazer o uso de generics:
+
+```java
+class Helper {
+    public static <T> void changeContent(Box<T> first, Box<T> second) {
+        T temp = first.getContent();
+        first.setContent(second.getContent());
+        second.setContent(temp);
+    }
+}
 ```
 
 ## Lambdas
