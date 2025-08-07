@@ -104,6 +104,13 @@
     - Digitar `:%s/word/word2` irá alterar word para word2.
 - `map <C-a> ggVG` mapeia um comando para um atalho desejado. No exemplo, vai para o ínicio do arquivo, entra em *modo
   visual* e vai para o fim do arquivo, mapeia para *Ctrl a*.
+- Existe um comando poderoso chamado **visual range** ou **visual mode line range**.
+    - Para usar esse comando, é necessário entrar em **SELECTION MODE**. Selecione uma linha ou texto e digitar `:`. Irá para o input de comando com `:'<,'>`.
+    - Os usos mais comuns de `:'<,'>` são:
+        - Substituição: `:'<,'>s/foo/bar`, troca a palavra **foo** por **bar**. Apenas uma, se precisar trocar todas as ocorrências, usar `:'<,'>s/foo/bar/g`.
+        - Comentar linhas: `:'<,'>norm I//`, **norm** ou **normal** muda para **NORMAL MODE**, usa `I` para inserir texto no início da linha e insere //. 
+        - Fazer alterações complexas: preciso inserir **{** no início e fim da linha, `:'<,'>norm I{^[A}`, porém para fazer 
+            - Para fazer `^[` usar após `I{` `Ctrl-v + Esc` para fazer o símbolo correto e o comando interpretar como saída para **NORMAL MODE**.
 
 ### Insert Mode
 
