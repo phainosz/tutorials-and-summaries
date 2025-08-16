@@ -136,6 +136,8 @@
 - `git tag` é o comando para listar todas as *tags* do seu repositório.
 - `git tag -n` lista todas as tags com o nome e descrição da *tag*.
 - `git tag <NAME>` para criar uma nova *tag* com o nome informado.
+- `git tag -d <NAME>` para remover uma *tag* local com o nome informado.
+- `git push origin --delete <NAME>` para remover uma *tag* no repositório remoto.
 - `git tag -a <NAME>` para criar uma nova *tag* com informações de data, e do usuário que criou a tag.
 - `git tag <NAME> -m "<DESCRIPTION>"` para criar uma *tag* com uma descrição.
 - Tags assim como as branchs, precisam ser enviadas para o repositório remoto.
