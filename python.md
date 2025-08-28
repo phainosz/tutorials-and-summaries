@@ -25,7 +25,7 @@
 - **Python** possui um *REPL(read-eval-print loop)* que possibilita interagir com a linguagem via terminal. Insira o
   comando `python` no terminal que irá entrar nesse modo.
     - Para sair, usar o comando `exit()`.
-- *Strings* podem ser escritas com **'** ou **"**, podendo ser usada **"""* para um texto com várias linhas.
+- *Strings* podem ser escritas com **'** ou **"**, podendo ser usada **"""** para um texto com várias linhas.
 - Formatar uma *string* em **python** é feito da seguinte forma:
     - Ex:
       ```python
