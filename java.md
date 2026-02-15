@@ -20,6 +20,7 @@
 - [Threads e Concorrência](#threads-e-concorrência)
 - [Gerenciamento de Memória](#gerenciamento-de-memória)
 - [Gradle](#gradle)
+- [Versões](#versões)
 
 ## Introdução
 
@@ -851,3 +852,103 @@ dependencies {
 ./gradlew run      # Run application
 ./gradlew clean    # Clean build
 ```
+
+## Versões
+
+Principais mudanças nas versões do Java. Apenas LTS, incluso itens de versões intermediárias para a versão LTS seguinte.
+
+### Java 25
+
+- Arquivo sem classe, criação do `main()` simplificado.
+```java
+void main() {
+  IO.println("Java 25");
+}
+```
+- Suporte a primitivos para pattern mathing.
+- Structured concurrency, traz uma nova forma de organizar tarefas paralelas e concorrentes.
+```java
+try (var scope = StructuredTaskScope.<String>open()) {
+  var user = scope.fork(() -> getUser());
+  var role = scope.fork(() -> getRole());
+  
+  scope.join(); //wait all
+  scope.throwIfFailed();
+  
+  IO.println(user.get());
+  IO.println(role.get());
+```
+- Scoped Values, substituto mordeno para `ThreadLocal`, usado para armazenar dados por thread.
+- Stable Value, novo recurso para armazenar valores que precisamos inicializar apenas uma vez e reutilizá-lo em diferentes trechos do código.
+
+### Java 21
+
+- Virtual threads, concorrência moderna, threads leve e gerenciadas pela JVM.
+- Pattern matching para switch. Expressões mais ricas e com maior suporte.
+```java
+return switch (obj) {
+    case String s -> s.length();
+    case Integer i -> i * 2;
+    case null -> 0;
+};
+```
+- Record Patterns, usado para desestruturação de records.
+```java
+if (obj instanceof Usuario(String nome, int idade)) {
+    System.out.println(nome);
+}
+```
+- Novo garbage collector, ZGC trouxe melhorias de performance.
+
+### Java 17
+
+- Aprimoramento em *switch*, forma mais concisa e expressiva.
+```java
+var type = switch (code) {
+  case 200, 201 -> "Success";
+  case 400, 401, 404 -> "Client error";
+  case 500 -> "Server error";
+  default -> "Unknown";
+}
+```
+- Blocos de texto para representar string em multiplas linhas e formatadas.
+```java
+String sql = """
+  SELECT *
+  FROM usuarios
+  WHERE ativo = true
+  """;
+```
+- Classes/interfaces `sealed`, usado para restringir herança, oferecendo maior controle sobre o código. `public sealed interface Shape
+    permits Circle, Rectangle {}`
+- Introdução de `records`, maneira reduzida de declarar classes de dados imutáveis. `public record User(String name, int age) {}`
+- Pattern mathing para `instanceof`.
+```java
+if (obj instanceof String s) {
+    System.out.println(s.length());
+}
+```
+
+### Java 11
+
+- Novo cliente HTTP moderno, com suporte para requisições síncronas e assíncronas.
+- Uso de `var` para criação de variáveis.
+- Novos métodos para classe `String`: `isBlank`, `strip`, `repeat`, `lines`.
+- Novos métodos para `Optional`: `isEmpty`, `isPresent`
+- Novo sistema de módulos.
+- JShell, **REPL(read, evaluate, print e loop)** do Java. Ferramenta de linha de comando para instruções e expressões.
+- Métodos privados em *intefaces*.
+- Factory methods para coleções: `Map.of(...)`, `List.of(...)`, `Set.of(...)`. Se tornam coleções imutáveis.
+
+### Java 8
+
+- Expressões lamdas, antes era necessário criar classes anônimas, com lamdas ficou mais simples, `Runable r = () -> System.out.println("lambda");`.
+- Interfaces funcionais, possuem apenas um método abstrato, exemplos conhecidos: `Predicate`, `Function`, `Consumer`, `Supplier`.
+- *Method reference* usado para simplificar chamadas de método em lambdas:
+  - Usando lambda: `list.forEach(item -> System.out.println(item));`.
+  - Usando *method reference*: `lista.forEach(System.out::println);`.
+- Stream API, pacote para trabalhar com listas e coleções de forma declarativa.
+- Optional, foi criado para evitar uso de `null` e problemas com `NullPointerException`.
+- Default Methods em Interfaces, permite adicionar comportamento padrão em métodos em interfaces.
+- Novo pacote para trabalhar com data e hora, `java.time`.
+- Novo métodos em collections: `list.forEach`, `list.removeIf`, `list.sort`.
