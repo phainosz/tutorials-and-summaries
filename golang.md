@@ -24,6 +24,7 @@
 - [Workspaces](#workspaces)
 - [Erros](#erros)
 - [Generics](#generics)
+- [Versões](#versoes)
 
 ## Instalação
 
@@ -1123,3 +1124,84 @@ return a + b
 ```
 
 - Podendo também fazer o uso de `"golang.org/x/exp/constraints"`. Contém constraints prontas para uso de generics.
+
+## Versões
+
+Principais mudanças de versões no GO.
+
+### GO `1.26`
+
+- `new(...)` agora aceita expressões como argumento. Pode alocar e inicializar um valor de uma vez. `ptr := new(int64(300))`, isso cria um ponteiro de `int64` com valor de 300.
+- Novo garbage collector, green tea, lançado oficialmente, habilitado como o padrão.
+
+### GO `1.25`
+
+- Novo pacote `net/http/httpclient`, foi intruduzido para deixar mais flexivel e configurável os clientes http, maior controle sobre o comportamento como timeouts, retries e proxies.
+```go
+client := httpclient.NewClient(
+	httpclient.WithTimeout(5*time.Second),
+	httpclient.WithMaxRetries(3),
+)
+```
+- Novo pacote `testing/synctest` para teste de código concorrente.
+
+### GO `1.24`
+
+- Novas funções no pacote `slices`:
+  - `slices.Compact([]int{1, 1, 2, 3, 3, 3, 4, 5, 5}) //[1 2 3 4 5]`.
+  - `slices.Max` retorna o maior elemento do slice.
+  - `slices.Min` retorna o menor elemento do slice.
+  - `slices.IsSorted` verifica se o slice está ordenado.
+- Melhorias no suporte para WebAssembly.
+- Suporte a Generics em Type Aliases. Isso significa que agora pode ser criado *alias* para tipos genéricos.
+  - `type MyList[T any] = []T`.
+
+### GO `1.23`
+
+- Melhorias no garbage colletion.
+- Melhorias no compilador.
+- Novas funções no pacote `errors`.
+
+### GO `1.22`
+
+- Melhoria em variáveis na iteração de loop. Antes toda iteração compartilhava a mesma variável, isso podia causar bugs silenciosos em código concorrente.
+- `range` diretamente em números inteiros, `for i := range 5 {}...`.
+- *v2* para o pacote `math/rand`.
+- HTTP mais poderoso no pacote `net/http`:
+```go
+http.Handle("GET /users", ...)
+http.Handle("GET /users{id}", ...)
+```
+
+### GO `1.21`
+
+- Novas funções nativas(`min`, `max`, `clear`):
+  - `a := min(3, 1, 5) //1`
+  - `b := max(3, 1, 5) //5`
+  - `clear` serve para limpar `map` e zerar elementos de um `array`.
+- Novos pacotes da biblioteca padrão:
+  - `log/slog` logs estruturados com níveis.
+  - `slices` operações úteis para *slices*.
+  - `maps` funções para *map*.
+  - `cmp` helpers para comparar valores ordenáveis.
+- Melhorias nas ferramentas do go, `go build`, etc. Agora ao executar comandos, o Go introduziu controle explícito por projeto.
+  - Dentro de `go.mod` pode existir `go 1.20` e `toolchain go1.20.7`. O *toolchain* é o que realmente compila e roda o código.
+  - Se possuir uma versão acima da especificada no `go.mod` o próprio Go baixa automaticamente o *toolchain* correto.
+  - Se o seu `go.mod` possuir apenas `go 1.20` sem o *toolchain* especificado, o go aplica o *toolchain* mais novo compatível com o informado(go 1.20).
+
+### GO `1.20`
+
+- Conversão de slice para array.
+  - Converter diretamente um slice para um array, em vez de usar truques com ponteiros.
+
+```go
+//before 1.20
+s := []int{1, 2, 3}
+a := *(*[3]int)(unsafe.Pointer(&s[0]))
+
+//go 1.20
+s := []int{1, 2, 3}
+a := [3]int(s)
+```
+
+- Garbage collector. Foi reorganizado para ser mais eficiente em uso de memória e CPU.
