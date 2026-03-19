@@ -1,6 +1,7 @@
 # Clean Architecture - Exemplo
 
 ## Visão Geral
+
 Este documento explica o fluxo de dados em um projeto baseado em Clean Architecture, implementando um caso de uso simples: **Buscar Usuário por ID.**
 
 O objetivo é demonstrar claramente as responsabilidades de cada camada, respeitando os princípios de independência de framework, separação de responsabilidades e inversão de dependência.
