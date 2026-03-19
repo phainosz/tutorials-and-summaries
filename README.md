@@ -1,18 +1,33 @@
 # Tutoriais
 
-- [Markdown](markdown.md)
-- [HTML](html.md)
-- [CSS](css.md)
-- [Git](git.md)
-- [Java](java.md)
-- [Python](python.md)
-- [Golang](golang.md)
-- [Kotlin](kotlin.md)
-- [SQL](sql.md)
-- [Linux](linux.md)
-- [Criptografia](criptografia.md)
-- [Docker](docker.md)
-- [Kubernetes](kubernetes.md)
-- [Rust](rust.md)
-- [Neovim](neovim.md)
-- [Arquitetura Limpa](clean-architecture.md)
+[Markdown](markdown.md)
+
+[HTML](html.md)
+
+[CSS](css.md)
+
+[Git](git.md)
+
+[Java](java.md)
+
+[Python](python.md)
+
+[Golang](golang.md)
+
+[Kotlin](kotlin.md)
+
+[SQL](sql.md)
+
+[Linux](linux.md)
+
+[Criptografia](criptografia.md)
+
+[Docker](docker.md)
+
+[Kubernetes](kubernetes.md)
+
+[Rust](rust.md)
+
+[Neovim](neovim.md)
+
+[Arquitetura Limpa](clean-architecture.md)
