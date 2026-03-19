@@ -29,47 +29,52 @@
 
 ### O que é Criptografia?
 
-- Criptografia é o processo de transformar informações legíveis (texto plano) em um formato ilegível (texto cifrado) com
-  o
-  objetivo de protegê-las contra acessos não autorizados. Ela garante que apenas quem possui a chave correta possa
-  decifrar a informação e acessá-la em sua forma original.
+Criptografia é o processo de transformar informações legíveis (texto plano) em um formato ilegível (texto cifrado) com o objetivo de protegê-las contra acessos não autorizados. Ela garante que apenas quem possui a chave correta possa decifrar a informação e acessá-la em sua forma original.
 
 ### Para que serve?
 
-- A criptografia é usada para:
-    - **Confidencialidade**: proteger dados contra acessos não autorizados.
-    - **Integridade**: garantir que os dados não foram alterados.
-    - **Autenticidade**: validar a identidade do emissor.
-    - **Não-repúdio**: impedir que o autor negue a autoria da informação.
+A criptografia é usada para:
+  - **Confidencialidade**: proteger dados contra acessos não autorizados.
+  - **Integridade**: garantir que os dados não foram alterados.
+  - **Autenticidade**: validar a identidade do emissor.
+  - **Não-repúdio**: impedir que o autor negue a autoria da informação.
 
 ### Como surgiu?
 
-- A criptografia tem origem na antiguidade, usada por civilizações como Egito, Roma e Grécia. Um dos exemplos mais
-  conhecidos é a **Cifra de César**, que deslocava letras do alfabeto para ocultar mensagens.
-- Com o avanço da tecnologia, a criptografia evoluiu para algoritmos matemáticos complexos usados em sistemas digitais,
-  comunicações online, bancos, governos, entre outros.
+A criptografia tem origem na antiguidade, usada por civilizações como Egito, Roma e Grécia. Um dos exemplos mais conhecidos é a **Cifra de César**, que deslocava letras do alfabeto para ocultar mensagens.
+
+Com o avanço da tecnologia, a criptografia evoluiu para algoritmos matemáticos complexos usados em sistemas digitais, comunicações online, bancos, governos, entre outros.
 
 ### Como é usada hoje?
 
-- Comunicação segura na internet (HTTPS)
-- Proteção de senhas e dados sensíveis em bancos de dados
-- Autenticação de usuários e sistemas
-- Assinaturas digitais
-- Armazenamento seguro em dispositivos
-- Criptomoedas e blockchain
+Comunicação segura na internet (HTTPS)
+
+Proteção de senhas e dados sensíveis em bancos de dados
+
+Autenticação de usuários e sistemas
+
+Assinaturas digitais
+
+Armazenamento seguro em dispositivos
+
+Criptomoedas e blockchain
 
 ## Tipos de Criptografia
 
 ### Criptografia Simétrica
 
-- Usa a **mesma chave** para criptografar e descriptografar.
-- Mais rápida e eficiente.
-- Exige troca segura da chave entre as partes.
-- Exemplos:
-    - AES (Advanced Encryption Standard)
-    - DES (Data Encryption Standard)
+Usa a **mesma chave** para criptografar e descriptografar.
+
+Mais rápida e eficiente.
+
+Exige troca segura da chave entre as partes.
+
+Exemplos:
+  - AES (Advanced Encryption Standard)
+  - DES (Data Encryption Standard)
 
 **Algoritmos comuns:**
+
 | Algoritmo | Tamanho da chave | Observações |
 |--------------|---------------------|----------------------------|
 | AES | 128, 192, 256 bits | Algoritmo padrão moderno |
@@ -79,15 +84,19 @@
 
 ### Criptografia Assimétrica
 
-- Usa um **par de chaves**: uma pública e uma privada.
-- A chave pública criptografa e a privada descriptografa (ou vice-versa).
-- Mais segura para trocas de informação em redes inseguras.
-- Exemplos:
-    - RSA (Rivest–Shamir–Adleman)
-    - ECC (Elliptic Curve Cryptography)
-    - ElGamal
+Usa um **par de chaves**: uma pública e uma privada.
+
+A chave pública criptografa e a privada descriptografa (ou vice-versa).
+
+Mais segura para trocas de informação em redes inseguras.
+
+Exemplos:
+  - RSA (Rivest–Shamir–Adleman)
+  - ECC (Elliptic Curve Cryptography)
+  - ElGamal
 
 **Algoritmos comuns:**
+
 | Algoritmo | Tamanho das chaves | Aplicações típicas |
 |-----------|------------------------|------------------------------|
 | RSA | 1024–4096 bits | Assinaturas, troca de chaves |
@@ -96,26 +105,31 @@
 
 ### Criptografia Híbrida
 
-- Combina os dois tipos: usa criptografia assimétrica para trocar a chave simétrica, e simétrica para os dados.
-- Utilizada em protocolos como TLS/SSL (HTTPS).
+Combina os dois tipos: usa criptografia assimétrica para trocar a chave simétrica, e simétrica para os dados.
+
+Utilizada em protocolos como TLS/SSL (HTTPS).
 
 ## Soluções e Algoritmos Mais Usados
 
 ### Simétricos
 
-- **AES**: padrão atual, forte e confiável.
-- **ChaCha20**: alternativa moderna, eficiente em dispositivos móveis.
+**AES**: padrão atual, forte e confiável.
+
+**ChaCha20**: alternativa moderna, eficiente em dispositivos móveis.
 
 ### Assimétricos
 
-- **RSA**: clássico, amplamente usado.
-- **ECDSA/ECDH**: baseado em curvas elípticas, menor chave com mesma segurança.
+**RSA**: clássico, amplamente usado.
+
+**ECDSA/ECDH**: baseado em curvas elípticas, menor chave com mesma segurança.
 
 ### Assinaturas e Hashes
 
-- **SHA-256/SHA-3**: funções de hash para integridade.
-- **HMAC**: hash autenticado.
-- **JWT**: JSON Web Token para autenticação e troca segura de dados.
+**SHA-256/SHA-3**: funções de hash para integridade.
+
+**HMAC**: hash autenticado.
+
+**JWT**: JSON Web Token para autenticação e troca segura de dados.
 
 ## Alternativas e Comparações
 
@@ -128,18 +142,19 @@
 
 ### Quando usar cada um?
 
-- **AES**: Para dados em repouso ou transferência entre partes com chave compartilhada.
-- **RSA/ECC**: Para troca de chaves e assinatura digital.
-- **Híbrido (TLS/SSL)**: Para comunicação segura na web.
-- **Hash (SHA/HMAC)**: Para garantir integridade de dados.
+**AES**: Para dados em repouso ou transferência entre partes com chave compartilhada.
+
+**RSA/ECC**: Para troca de chaves e assinatura digital.
+
+**Híbrido (TLS/SSL)**: Para comunicação segura na web.
+
+**Hash (SHA/HMAC)**: Para garantir integridade de dados.
 
 ## Conceitos Técnicos Fundamentais na Criptografia Simétrica
 
 ### Modos de Operação
 
-Os algoritmos de criptografia simétrica como o **AES** operam em blocos fixos de dados (ex: 128 bits). Para lidar com
-dados maiores que um bloco, usam-se os **modos de operação**, que determinam como os blocos são criptografados em
-sequência.
+Os algoritmos de criptografia simétrica como o **AES** operam em blocos fixos de dados (ex: 128 bits). Para lidar com dados maiores que um bloco, usam-se os **modos de operação**, que determinam como os blocos são criptografados em sequência.
 
 #### Modos mais comuns:
 
@@ -154,8 +169,7 @@ sequência.
 
 ### Padding (Preenchimento)
 
-Os algoritmos de bloco exigem que o tamanho dos dados seja múltiplo do tamanho do bloco (ex: 128 bits = 16 bytes).
-Quando não é, adiciona-se **padding** — dados extras — para completar o tamanho necessário.
+Os algoritmos de bloco exigem que o tamanho dos dados seja múltiplo do tamanho do bloco (ex: 128 bits = 16 bytes). Quando não é, adiciona-se **padding** — dados extras — para completar o tamanho necessário.
 
 #### Tipos de padding mais comuns:
 
@@ -168,20 +182,20 @@ Quando não é, adiciona-se **padding** — dados extras — para completar o ta
 
 ### IV (Initialization Vector) - Vetor de Inicialização
 
-O **vetor de inicialização (IV)** é um valor aleatório usado em alguns modos de operação (ex: CBC, CFB, OFB, GCM) para
-garantir que o mesmo texto criptografado duas vezes com a mesma chave produza saídas diferentes.
+O **vetor de inicialização (IV)** é um valor aleatório usado em alguns modos de operação (ex: CBC, CFB, OFB, GCM) para garantir que o mesmo texto criptografado duas vezes com a mesma chave produza saídas diferentes.
 
-- Deve ter o mesmo tamanho do bloco (ex: 16 bytes para AES).
-- Não precisa ser secreto, mas **deve ser único e imprevisível**.
-- Geralmente é transmitido junto com o texto cifrado para que a descriptografia seja possível.
+Deve ter o mesmo tamanho do bloco (ex: 16 bytes para AES).
+
+Não precisa ser secreto, mas **deve ser único e imprevisível**.
+
+Geralmente é transmitido junto com o texto cifrado para que a descriptografia seja possível.
 
 ### Chave (Key)
 
 A chave é o segredo compartilhado usado para criptografar e descriptografar dados.
-
-- Deve ter o comprimento correto (ex: 128, 192 ou 256 bits para AES).
-- Nunca deve ser armazenada em texto plano.
-- Pode ser derivada de senhas com algoritmos como PBKDF2, bcrypt, scrypt, ou Argon2.
+  - Deve ter o comprimento correto (ex: 128, 192 ou 256 bits para AES).
+  - Nunca deve ser armazenada em texto plano.
+  - Pode ser derivada de senhas com algoritmos como PBKDF2, bcrypt, scrypt, ou Argon2.
 
 **Exemplo de geração de chave AES em Java:**
 
@@ -198,8 +212,7 @@ SecretKey secretKey = keyGen.generateKey();
 
 ### Exemplo 1: Criptografia Simétrica com AES
 
-A criptografia simétrica usa a mesma chave para criptografar e descriptografar dados. Um dos algoritmos mais comuns é o
-AES (Advanced Encryption Standard).
+A criptografia simétrica usa a mesma chave para criptografar e descriptografar dados. Um dos algoritmos mais comuns é o AES (Advanced Encryption Standard).
 
 #### Código exemplo
 
@@ -292,8 +305,7 @@ public class AESExample {
 
 ### Exemplo 2: Criptografia Assimétrica com RSA
 
-Na criptografia assimétrica, há um par de chaves — uma pública para criptografar e uma privada para descriptografar. O
-RSA é um dos algoritmos mais populares nesse modelo.
+Na criptografia assimétrica, há um par de chaves — uma pública para criptografar e uma privada para descriptografar. O RSA é um dos algoritmos mais populares nesse modelo.
 
 #### Código exemplo
 
@@ -375,8 +387,8 @@ public class RSAExample {
 
 ## Considerações finais
 
-- A criptografia simétrica é rápida e eficiente para grandes volumes de dados, mas requer que a chave seja compartilhada
-  com segurança.
-- A criptografia assimétrica facilita a troca segura de chaves e a autenticação, porém é mais lenta e indicada para
-  pequenos volumes ou para proteger chaves simétricas.
-- Na prática, sistemas seguros combinam ambos: usam RSA para proteger a chave AES e AES para criptografar os dados.
+A criptografia simétrica é rápida e eficiente para grandes volumes de dados, mas requer que a chave seja compartilhada com segurança.
+
+A criptografia assimétrica facilita a troca segura de chaves e a autenticação, porém é mais lenta e indicada para pequenos volumes ou para proteger chaves simétricas.
+
+Na prática, sistemas seguros combinam ambos: usam RSA para proteger a chave AES e AES para criptografar os dados.
