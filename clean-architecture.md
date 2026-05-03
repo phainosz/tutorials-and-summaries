@@ -25,7 +25,7 @@ src/main/java/com/example/cleanarchitecture
 │   │   ├── client
 │   │   ├── dto
 │   │   └── mapper
-│   ├── integration
+│   ├── broker
 │   │   ├── kafka
 │   │   │   ├── config
 │   │   │   ├── consumer
